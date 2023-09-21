@@ -19,75 +19,60 @@ function Login() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    console.log("id, password", email, password);
-    if (email.trim().length === 0 || password.trim().length === 0)
-      return alert("please, email or password check!");
+    try {
+      e.preventDefault();
+      const formData = {};
 
-    const formData = {
-      email: email,
-      password: password,
-    };
+      // const response = await fetch(
+      //   "https://netflix-clone-f3b17-default-rtdb.firebaseio.com/user.json",
+      //   {
+      //     method: "POST",
+      //     body: JSON.stringify(formData),
+      //   },
+      // ).then((res) => res.status);
 
-    await fetch("", {
-      method: "POST",
-      body: formData,
-    }).then((data) => console.log(data));
+      alert("로그인 성공!");
 
-    router.replace("/browse");
+      router.replace("/browse");
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
-    <div
-      className="hero min-h-screen"
-      style={{
-        backgroundImage:
-          "url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)",
-      }}
-    >
-      <div className="hero-overlay bg-opacity-60"></div>
-      <div className="hero-content text-center text-neutral-content">
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-black">
-          <form className="card-body text-black" onSubmit={handleSubmit}>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-white">Email</span>
-              </label>
-              <input
-                type="text"
-                placeholder="email"
-                value={email}
-                className="input input-bordered"
-                onChange={onChangeEmail}
-              />
-            </div>
-            <div className="form-control">
-              <label className="label">
-                <span className="label-text text-white">Password</span>
-              </label>
-              <input
-                type="text"
-                placeholder="password"
-                className="input input-bordered"
-                onChange={onChangePassword}
-              />
-              <label className="label">
-                <a
-                  href="#"
-                  className="label-text-alt link link-hover text-white"
-                >
-                  도움이 필요하신가요?
-                </a>
-              </label>
-            </div>
-            <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
-            </div>
-          </form>
-          <LoginFooter />
-        </div>
+    <form className="card-body text-black" onSubmit={handleSubmit}>
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text text-white">Email</span>
+        </label>
+        <input
+          type="text"
+          placeholder="email"
+          value={email}
+          className="input input-bordered"
+          onChange={onChangeEmail}
+        />
       </div>
-    </div>
+      <div className="form-control">
+        <label className="label">
+          <span className="label-text text-white">Password</span>
+        </label>
+        <input
+          type="text"
+          placeholder="password"
+          className="input input-bordered"
+          onChange={onChangePassword}
+        />
+        <label className="label">
+          <a href="#" className="label-text-alt link link-hover text-white">
+            도움이 필요하신가요?
+          </a>
+        </label>
+      </div>
+      <div className="form-control mt-6">
+        <button className="btn btn-primary">Login</button>
+      </div>
+    </form>
   );
 }
 
