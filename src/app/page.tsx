@@ -1,6 +1,4 @@
 "use client";
-
-import Navbar from "@/components/ui/header";
 import { useRouter } from "next/navigation";
 import { useRef } from "react";
 import EmailForm from "@/components/login/email-form";
@@ -16,12 +14,11 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
       <main>
         <div>
           <section>
             <div
-              className="hero min-h-screen"
+              className="hero h-80vh"
               style={{
                 backgroundImage:
                   "url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)",
