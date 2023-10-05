@@ -6,7 +6,7 @@ import Pagination from "./pagination";
 
 function CardList(props) {
   const [index, setIndex] = useState(0);
-  const items = props.items;
+  const items = props.items.results;
   const selectedRef = useRef();
   let page = Math.floor(index / 5) + 1;
 
@@ -40,11 +40,8 @@ function CardList(props) {
                   key={item.id}
                   id={item.id}
                   ref={index === idx ? selectedRef : null}
-                  title={item.title}
-                  overview={item.overview}
-                  releaseDate={item.release_date}
-                  posterPath={item.poster_path}
                   backdropPath={item.backdrop_path}
+                  isMovie={props.items.isMovie}
                 />
               );
             })}
