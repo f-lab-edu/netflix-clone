@@ -5,7 +5,7 @@ function LoginFooter() {
     <div className={"text-center  mt-4 mb-12 mx-12"}>
       <div className={"text-sm"}>
         넷 뿌려젔스 회원이 아닌가요?
-        <Link href={"/signup"} className={"ml-2 text-blue-700"}>
+        <Link href={"/signup/regform"} className={"ml-2 text-blue-700"}>
           지금 가입하세요.
         </Link>
       </div>
