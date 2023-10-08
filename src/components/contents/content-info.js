@@ -1,46 +1,35 @@
 import Link from "next/link";
-import { options } from "../../config/config";
-//async 지우세요. getSeasons 분리하면
+import { getSeasons } from "../../app/api/contents/route";
+
+async function getSeason(seriesId, seasonNumber) {
+  const res = getSeasons(seriesId, seasonNumber).then((data) => data.json());
+  return res;
+}
+
 async function ContentsInfo({ contents }) {
-  const title = contents.title ?? contents.name;
-  //TODO: content.seasons 에 객체들 중 프로퍼티 season_number 와 number_of_seasons 가 같은 객체의 air_date 필요
+  //state 로 관리해야하나? ..
+  let seasons;
+  if (contents.contentsType === "tv") {
+    seasons = await getSeason(contents.id, contents.number_of_seasons);
+  }
+
+  const title = contents.title ?? seasons.name;
   const genres = contents.genres.map((g) => g.name + " ");
   const series = contents.belongs_to_collection ?? contents.seasons;
-  const date = contents?.release_date ?? "";
+  const releaseDate = contents?.release_date ?? seasons?.air_date;
+  const runtime = contents.runtime;
 
-  const runtime = contents.runtime ?? "";
   const hour = Math.floor(runtime / 60);
   const minute = runtime % 60;
-  console.log(contents);
-  // TODO: 컴포넌트 분리
-  const getSeason = async () => {
-    const id = contents.id;
-    const seasonNumber = contents.number_of_seasons;
-    const res = await fetch(
-      `https://api.themoviedb.org/3/tv/${id}/season/${seasonNumber}`,
-      options,
-    )
-      .then((response) => response.json())
-      .catch((err) => console.error(err));
-    console.log("getSeason: ", res);
-    return res;
-  };
-  //TODO: 시리즈일 경우 시리즈 조회 API 따로 있음
-  let seasons;
-  if (series.length > 0) {
-    seasons = await getSeason();
-  }
-  console.log("seasons", seasons);
-  const customDate = date
-    ? contents.release_date.split("-")[0]
-    : seasons.air_date.split("-")[0];
+
+  const date = releaseDate?.split("-")[0];
 
   return (
     <div>
       <div className={" grid grid-cols-preview-detail gap-8 "}>
         <div className={"preview-left "}>
           <p>
-            <span className={"ml-1 text-sm text-gray-500"}>{customDate}</span>
+            <span className={"ml-1 text-sm text-gray-500"}>{date}</span>
             {hour ? (
               <span className={"ml-1 text-sm text-gray-500"}>{hour}시간</span>
             ) : null}
@@ -74,12 +63,16 @@ async function ContentsInfo({ contents }) {
           </small>
           <small className={" block "}>
             <span className={"text-gray-700"}> 시리즈 : </span>
-            <Link
-              href={`/contents/${series.id}/?contentsType=movie`}
-              className={"text-blue-600"}
-            >
-              {series.name}
-            </Link>
+            {series && (
+              <Link
+                href={`/series/${series.id}/?contentsType=${contents.contentsType}`}
+                className={"text-blue-600"}
+              >
+                {contents.contentsType === "movie"
+                  ? series.name
+                  : `${contents.name} 시리즈`}
+              </Link>
+            )}
           </small>
         </div>
       </div>
