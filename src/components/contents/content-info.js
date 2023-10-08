@@ -1,5 +1,7 @@
 import Link from "next/link";
+import EpisodeList from "./episode-list";
 import { getSeasons } from "../../app/api/contents/route";
+import Seasons from "./seasons";
 
 async function getSeason(seriesId, seasonNumber) {
   const res = getSeasons(seriesId, seasonNumber).then((data) => data.json());
@@ -76,6 +78,12 @@ async function ContentsInfo({ contents }) {
           </small>
         </div>
       </div>
+      {contents.contentsType === "movie" ? null : (
+        <div className={" mt-10"}>
+          <Seasons seasons={seasons} series={series} />
+          <EpisodeList seasons={seasons} />
+        </div>
+      )}
     </div>
   );
 }
