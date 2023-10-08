@@ -41,7 +41,7 @@ function CardList(props) {
                   id={item.id}
                   ref={index === idx ? selectedRef : null}
                   backdropPath={item.backdrop_path}
-                  isMovie={props.items.isMovie}
+                  contentsType={props.items.contentsType}
                 />
               );
             })}

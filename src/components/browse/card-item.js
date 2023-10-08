@@ -3,12 +3,11 @@ import { forwardRef } from "react";
 import Link from "next/link";
 
 export default forwardRef(function CardItem(
-  { id, backdropPath, isMovie },
+  { id, backdropPath, contentsType },
   ref,
 ) {
-  const href = `${id}?isMovie=${isMovie}`;
+  const href = `${id}?contentsType=${contentsType}`;
   return (
-    // div 에 alert 크게 띄워서 alert 에 `/contents/${id}`페이지 출력 되게
     <Link
       href={`/contents/${href}`}
       ref={ref}
