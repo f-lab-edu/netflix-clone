@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-function MainNav() {
+function LoggedInHeader() {
   const navigationMenuList = [
     { id: 1, title: "홈", url: "/browse" },
     { id: 2, title: "시리즈", url: "/series/83" },
@@ -91,4 +91,4 @@ function MainNav() {
   );
 }
 
-export default MainNav;
+export default LoggedInHeader;
