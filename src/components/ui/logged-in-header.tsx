@@ -4,8 +4,8 @@ import Image from "next/image";
 function LoggedInHeader() {
   const navigationMenuList = [
     { id: 1, title: "홈", url: "/browse" },
-    { id: 2, title: "시리즈", url: "/series/83" },
-    { id: 3, title: "영화", url: "/series/82323" },
+    { id: 2, title: "시리즈", url: "/series" },
+    { id: 3, title: "영화", url: "/movies" },
     { id: 4, title: "NEW! 요즘 대세 콘텐츠", url: "/latest" },
     { id: 5, title: "내가 찜한 콘텐츠", url: "/my-list" },
     { id: 6, title: "언어별로 찾아보기", url: "/original-audio" },
