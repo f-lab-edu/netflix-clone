@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
-import { options } from "../../../config/config";
+import { options } from "@/config/config";
 
-export async function getDetailContent(id, contentsType, language = "ko") {
+export async function getDetailContents(id, contentsType, language = "ko") {
   const res = await fetch(
     `https://api.themoviedb.org/3/${contentsType}/${id}?language=${language}`,
     options,
