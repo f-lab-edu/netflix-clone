@@ -47,7 +47,7 @@ function PlanFormPage() {
       <div className={"w-full border-t"} />
       <section className={"flex flex-col items-center"}>
         <CheckInCircle />
-        <div className={"w-1/2"}>
+        <div className={"w-[620px] border-2 py-16 px-5 rounded-3xl"}>
           <MembershipBenefits membershipDescription={membershipDescription} />
           <div className={"flex justify-end mt-5"}>
             {tr.map((row) => (
@@ -70,7 +70,6 @@ function PlanFormPage() {
               </div>
             ))}
           </div>
-          {/* table */}
           <MembershipTypeInfoTable tr={tr} membership={membership} />
           <MembershipTypeDiffFooter />
         </div>
