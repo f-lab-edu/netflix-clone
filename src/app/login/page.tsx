@@ -1,23 +1,26 @@
 import Login from "../../components/login/login";
 import LoginFooter from "../../components/login/login-footer";
+import Image from "next/image";
 
 function LoginPage() {
   return (
-    <div
-      className="hero min-h-screen"
-      style={{
-        backgroundImage:
-          "url(https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg)",
-      }}
-    >
-      <div className="hero-overlay bg-opacity-60" />
-      <div className="hero-content text-center text-neutral-content">
-        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-black">
+    <>
+      <Image
+        className={"hero h-80vh opacity-60 absolute"}
+        src={
+          "https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg"
+        }
+        alt={"background"}
+        width={500}
+        height={500}
+      />
+      <div className={"flex h-80vh justify-center items-center"}>
+        <div className="card max-w-sm bg-black">
           <Login />
           <LoginFooter />
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
