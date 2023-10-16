@@ -30,7 +30,7 @@ function CardList(props) {
       <Pagination page={page} />
       <div className="py-1 space-x-4 bg-neutral relative h-44">
         <div className={"flex justify-between items-center w-full h-full"}>
-          <div className={"h-full flex ml-2"}>
+          <div className={"h-full flex mx-2 justify-center"}>
             <button className={""}>❮</button>
           </div>
           <div className={"carousel carousel-center"}>
