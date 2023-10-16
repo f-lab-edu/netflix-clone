@@ -4,15 +4,18 @@ import Link from "next/link";
 function EpisodeItem({ episode, posterPath }) {
   const { episode_number, name, overview, runtime, still_path } = episode;
   const poster = still_path ?? posterPath;
+  const imgSrc = poster
+    ? `https://image.tmdb.org/t/p/w500${poster}`
+    : "/logo.png";
 
   return (
-    <li>
+    <>
       <div className={"flex min-w-[60px] border-b rounded px-10 py-2"}>
         <Link href={``} />
         <div className={"flex items-center"}>{episode_number}</div>
         <Image
           className={"rounded mx-5 w-[200px] h-[100px]"}
-          src={`https://image.tmdb.org/t/p/w500${poster}`}
+          src={imgSrc}
           alt={"poster"}
           width={200}
           height={100}
@@ -30,7 +33,7 @@ function EpisodeItem({ episode, posterPath }) {
           <small className={"block"}>{overview}</small>
         </div>
       </div>
-    </li>
+    </>
   );
 }
 

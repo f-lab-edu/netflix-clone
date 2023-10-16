@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-function InitialNav() {
+function InitialHeader() {
   return (
     <header className={"my-0 mx-auto"}>
       <div className="navbar h-24">
@@ -29,4 +29,4 @@ function InitialNav() {
   );
 }
 
-export default InitialNav;
+export default InitialHeader;

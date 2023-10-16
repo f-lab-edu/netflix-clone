@@ -2,7 +2,6 @@
 
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
-import LoginFooter from "./login-footer";
 
 function Login() {
   const router = useRouter();
