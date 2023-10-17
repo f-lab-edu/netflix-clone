@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { options } from "../../../config/config";
+import { options } from "@/config/config";
 
 export async function getPopularMovies(language = "ko", page = 1) {
   const res = await fetch(
@@ -61,4 +61,17 @@ export async function getTopRateTVProgram(language = "ko", page = 1) {
     .catch((err) => console.error(err));
 
   return NextResponse.json({ results: res.results, contentsType: "tv" });
+}
+export async function getAllContents() {
+  const functionsToExecution = [
+    getPopularMovies(),
+    getNowPlayingMovies(),
+    getTopRatedMovies(),
+    getUpcomingMovies(),
+    getPopularTVProgram(),
+    getTopRateTVProgram(),
+  ];
+  const responses = await Promise.all(functionsToExecution);
+  const promises = responses.map((response) => response.json());
+  return await Promise.all(promises);
 }

@@ -1,45 +1,15 @@
 import CardList from "../../components/browse/card-list";
-import {
-  getNowPlayingMovies,
-  getPopularMovies,
-  getPopularTVProgram,
-  getTopRatedMovies,
-  getTopRateTVProgram,
-  getUpcomingMovies,
-} from "../api/browse/route";
+import { getAllContents } from "../api/browse/route";
 
-async function getContentsList() {
-  const popularMovies = await getPopularMovies().then((res) => res.json());
-  const nowPlayingMovies = await getNowPlayingMovies().then((res) =>
-    res.json(),
-  );
-  const topRatedMovies = await getTopRatedMovies().then((res) => res.json());
-  const upcomingMovies = await getUpcomingMovies().then((res) => res.json());
-  const popularTvProgram = await getPopularTVProgram().then((res) =>
-    res.json(),
-  );
-  const topRateTvProgram = await getTopRateTVProgram().then((res) =>
-    res.json(),
-  );
-
-  return {
-    popularMovies,
-    nowPlayingMovies,
-    topRatedMovies,
-    upcomingMovies,
-    popularTvProgram,
-    topRateTvProgram,
-  };
-}
 async function BrowsePage() {
-  const {
+  const [
     popularMovies,
     nowPlayingMovies,
     topRatedMovies,
     upcomingMovies,
     popularTvProgram,
     topRateTvProgram,
-  } = await getContentsList();
+  ] = await getAllContents();
 
   return (
     <div>
