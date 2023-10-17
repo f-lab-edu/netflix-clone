@@ -1,5 +1,4 @@
-function Series({ params }) {
-  console.log(params);
+function Series() {
   return (
     <>
       <div>The Series Page</div>
