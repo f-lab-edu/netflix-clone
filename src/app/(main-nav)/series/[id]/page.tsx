@@ -1,6 +1,6 @@
 "use client";
-import SeasonContents from "../../../../components/seasons/season-contents";
 import { useSearchParams } from "next/navigation";
+import SeasonContents from "@/components/seasons/season-contents";
 
 function SelectedSeriesPage({ params }) {
   const searchParams = useSearchParams();
