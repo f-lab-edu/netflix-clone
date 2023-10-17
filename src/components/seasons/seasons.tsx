@@ -1,3 +1,4 @@
+"use client";
 import EpisodeList from "@/components/contents/episode-list";
 import { useState } from "react";
 import { Contents } from "@/types/contents/types";

@@ -9,17 +9,10 @@ import Seasons from "@/components/seasons/seasons";
 import { Contents, Trailers } from "@/types/contents/types";
 
 async function getContents(id, contentsType) {
-  const res = await getDetailContents(id, contentsType).then((data) =>
-    data.json(),
-  );
-  return res;
+  return await getDetailContents(id, contentsType).then((data) => data.json());
 }
 async function getTrailers(id, contentType) {
-  const res = await getTrailersContent(id, contentType).then((data) =>
-    data.json(),
-  );
-
-  return res;
+  return await getTrailersContent(id, contentType).then((data) => data.json());
 }
 
 async function DetailContents({
@@ -40,7 +33,7 @@ async function DetailContents({
   return (
     <>
       <PreviewContents src={src} />
-      <ContentsInfo contents={contents} contentsType={contentsType} />
+      <ContentsInfo contents={contents} />
       {contents?.seasons && <Seasons contents={contents} />}
     </>
   );
