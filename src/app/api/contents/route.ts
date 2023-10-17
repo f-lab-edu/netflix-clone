@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import { options } from "@/config/config";
 
-export async function getDetailContents(id, contentsType, language = "ko") {
+export async function getDetailContents(
+  id: string,
+  contentsType: string,
+  language = "ko",
+) {
   const res = await fetch(
     `https://api.themoviedb.org/3/${contentsType}/${id}?language=${language}`,
     options,
@@ -14,7 +18,11 @@ export async function getDetailContents(id, contentsType, language = "ko") {
   return NextResponse.json(res);
 }
 
-export async function getTrailersContent(id, contentType, language = "ko") {
+export async function getTrailersContent(
+  id: string,
+  contentType: string,
+  language = "ko",
+) {
   const res = await fetch(
     `https://api.themoviedb.org/3/${contentType}/${id}/videos?language=${language}`,
     options,
@@ -25,7 +33,11 @@ export async function getTrailersContent(id, contentType, language = "ko") {
   return NextResponse.json(res.results);
 }
 
-export async function getSeasons(seriesId, seasonNumber, language = "ko") {
+export async function getSeasons(
+  seriesId: string,
+  seasonNumber: string,
+  language = "ko",
+) {
   const res = await fetch(
     `https://api.themoviedb.org/3/tv/${seriesId}/season/${seasonNumber}?language=${language}`,
     options,
