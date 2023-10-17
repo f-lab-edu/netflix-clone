@@ -4,9 +4,9 @@ import { useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Pagination from "./pagination";
 
-function CardList(props) {
+function CardList({ contents }) {
   const [index, setIndex] = useState(0);
-  const items = props.items.results;
+  const items = contents.results;
   const selectedRef = useRef();
   let page = Math.floor(index / 5) + 1;
 
@@ -41,7 +41,7 @@ function CardList(props) {
                   id={item.id}
                   ref={index === idx ? selectedRef : null}
                   backdropPath={item.backdrop_path}
-                  contentsType={props.items.contentsType}
+                  contentsType={contents.contentsType}
                 />
               );
             })}

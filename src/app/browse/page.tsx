@@ -45,27 +45,27 @@ async function BrowsePage() {
     <div>
       <div className={"mt-5"}>
         <h1>인기 있는 콘텐츠</h1>
-        <CardList items={popularMovies} />
+        <CardList contents={popularMovies} />
       </div>
       <div className={"mt-5"}>
         <h1>극장에서 상영중인 콘텐츠</h1>
-        <CardList items={nowPlayingMovies} />
+        <CardList contents={nowPlayingMovies} />
       </div>
       <div className={"mt-5"}>
         <h1>평점 높은 콘텐츠</h1>
-        <CardList items={topRatedMovies} />
+        <CardList contents={topRatedMovies} />
       </div>
       <div className={"mt-5"}>
         <h1>개봉 예정 콘텐츠</h1>
-        <CardList items={upcomingMovies} />
+        <CardList contents={upcomingMovies} />
       </div>
       <div className={"mt-5"}>
         <h1>인기 있는 TV 프로그램</h1>
-        <CardList items={popularTvProgram} />
+        <CardList contents={popularTvProgram} />
       </div>
       <div className={"mt-5"}>
         <h1>평점 높은 TV 프로그램</h1>
-        <CardList items={topRateTvProgram} />
+        <CardList contents={topRateTvProgram} />
       </div>
     </div>
   );
