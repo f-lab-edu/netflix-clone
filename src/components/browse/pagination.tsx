@@ -1,4 +1,4 @@
-function Pagination({ page }) {
+function Pagination({ page }: { page: number }) {
   const pageSlots = [1, 2, 3, 4];
 
   return (

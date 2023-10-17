@@ -1,4 +1,15 @@
-export default function MembershipTypeInfoTable({ tr, membership }) {
+export default function MembershipTypeInfoTable({
+  tr,
+  membership,
+}: {
+  tr: {
+    id: number;
+    td: string[];
+    membership: string;
+    memhershipKo: string;
+  }[];
+  membership: string;
+}) {
   return (
     <table>
       <div className={"flex my-5"}>

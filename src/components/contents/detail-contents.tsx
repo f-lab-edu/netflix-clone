@@ -8,10 +8,10 @@ import {
 import Seasons from "@/components/seasons/seasons";
 import { Contents, Trailers } from "@/types/contents/types";
 
-async function getContents(id, contentsType) {
+async function getContents(id: string, contentsType: string) {
   return await getDetailContents(id, contentsType).then((data) => data.json());
 }
-async function getTrailers(id, contentType) {
+async function getTrailers(id: string, contentType: string) {
   return await getTrailersContent(id, contentType).then((data) => data.json());
 }
 
