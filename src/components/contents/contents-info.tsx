@@ -1,5 +1,7 @@
 import Link from "next/link";
-function ContentsInfo({ contents }) {
+import { Contents } from "@/types/contents/types";
+
+function ContentsInfo({ contents }: { contents: Contents }) {
   console.log(contents);
   const title = contents.title ?? contents.name;
   const genres = contents?.genres.map((g) => g.name + " ");

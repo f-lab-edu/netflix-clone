@@ -6,6 +6,7 @@ import {
   getTrailersContent,
 } from "@/app/api/contents/route";
 import Seasons from "@/components/seasons/seasons";
+import { Contents, Trailers } from "@/types/contents/types";
 
 async function getContents(id, contentsType) {
   const res = await getDetailContents(id, contentsType).then((data) =>
@@ -21,9 +22,15 @@ async function getTrailers(id, contentType) {
   return res;
 }
 
-async function DetailContents({ id, contentsType }) {
-  const contents = await getContents(id, contentsType);
-  const trailers = await getTrailers(id, contentsType);
+async function DetailContents({
+  id,
+  contentsType,
+}: {
+  id: string;
+  contentsType: string;
+}) {
+  const contents: Contents = await getContents(id, contentsType);
+  const trailers: Trailers = await getTrailers(id, contentsType);
 
   const key = trailers[0]?.key ?? "";
   const src = key

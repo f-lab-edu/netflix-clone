@@ -8,7 +8,13 @@ async function getContents(id, contentsType) {
   return res;
 }
 
-async function SeasonContents({ id, contentsType }) {
+async function SeasonContents({
+  id,
+  contentsType,
+}: {
+  id: string;
+  contentsType: string;
+}) {
   const contents = await getContents(id, contentsType);
 
   return (

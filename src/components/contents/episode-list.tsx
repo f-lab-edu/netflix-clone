@@ -1,20 +1,26 @@
 import EpisodeItem from "./episode-item";
 import { getSeasons } from "@/app/api/contents/route";
 import { useEffect, useState } from "react";
+import { Season } from "@/types/seasons/types";
 
-function EpisodeList({ id, seasonNumber }) {
-  const [season, setSeason] = useState();
+function EpisodeList({
+  id,
+  seasonNumber,
+}: {
+  id: number;
+  seasonNumber: string;
+}) {
+  const [season, setSeason] = useState<Season>();
 
   useEffect(() => {
     const getData = async () => {
       getSeasons(id, seasonNumber)
         .then((res) => res.json())
-        .then((data) => setSeason(data));
+        .then((data: Season) => setSeason(data));
     };
     getData();
     return () => {};
   }, [seasonNumber]);
-
   const episodes = season?.episodes;
   return (
     <>

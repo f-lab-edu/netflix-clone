@@ -1,7 +1,8 @@
 import EpisodeList from "@/components/contents/episode-list";
 import { useState } from "react";
+import { Contents } from "@/types/contents/types";
 
-function Seasons({ contents }) {
+function Seasons({ contents }: { contents: Contents }) {
   const { id, number_of_seasons, seasons } = contents;
   const [selected, setSelected]: [selected: string, setSelected: Function] =
     useState(number_of_seasons);

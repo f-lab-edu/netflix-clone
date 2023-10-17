@@ -1,6 +1,7 @@
 import SeasonItem from "@/components/seasons/season-item";
+import { Contents } from "@/types/contents/types";
 
-function SeasonList({ contents }) {
+function SeasonList({ contents }: { contents: Contents }) {
   const { seasons, poster_path } = contents;
   const seriesList = seasons ?? "";
 
