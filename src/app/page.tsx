@@ -7,7 +7,7 @@ import Image from "next/image";
 export default function Home() {
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement | null>(null);
-  const onSubmit = (e) => {
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const email = inputRef.current!.value;
     router.push(`/login?email=${email}`);

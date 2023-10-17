@@ -1,6 +1,6 @@
 "use client";
 import EpisodeList from "@/components/contents/episode-list";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Contents } from "@/types/contents/types";
 
 function Seasons({ contents }: { contents: Contents }) {
@@ -8,7 +8,7 @@ function Seasons({ contents }: { contents: Contents }) {
   const [selected, setSelected]: [selected: string, setSelected: Function] =
     useState(number_of_seasons);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelected(e.target.value);
   };
 

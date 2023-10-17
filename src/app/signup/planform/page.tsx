@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { CheckInCircle } from "@/components/icon";
 import MembershipTypeInfoTable from "@/components/login/membership-type-info-table";
 import MembershipTypeDiffFooter from "@/components/login/membership-type-diff-footer";
@@ -39,7 +39,7 @@ function PlanFormPage() {
       memhershipKo: "프리미엄",
     },
   ];
-  const handleChecked = (e) => {
+  const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     setMembership(e.target.value);
   };
   return (
