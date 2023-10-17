@@ -1,4 +1,4 @@
-function PreviewContents({ src }) {
+function PreviewContents({ src }: { src: string }) {
   return (
     <div className={"w-full h-[40rem] overflow-hidden relative"}>
       <iframe

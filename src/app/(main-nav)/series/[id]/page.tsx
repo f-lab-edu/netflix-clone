@@ -2,14 +2,14 @@
 import { useSearchParams } from "next/navigation";
 import SeasonContents from "@/components/seasons/season-contents";
 
-function SelectedSeriesPage({ params }) {
+function SelectedSeriesPage({ params }: { params: { id: string } }) {
   const searchParams = useSearchParams();
   const contentsType = searchParams.get("contentsType");
 
   return (
     <>
       <div>
-        <SeasonContents id={params.id} contentsType={contentsType} />
+        <SeasonContents id={params.id} contentsType={contentsType!} />
       </div>
     </>
   );

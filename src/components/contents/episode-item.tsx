@@ -1,7 +1,14 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Episode } from "@/types/seasons/types";
 
-function EpisodeItem({ episode, posterPath }) {
+function EpisodeItem({
+  episode,
+  posterPath,
+}: {
+  episode: Episode;
+  posterPath?: string;
+}) {
   const { episode_number, name, overview, runtime, still_path } = episode;
   const poster = still_path ?? posterPath;
   const imgSrc = poster

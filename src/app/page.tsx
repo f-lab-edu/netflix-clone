@@ -1,15 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { useRef } from "react";
+import React, { useRef } from "react";
 import EmailForm from "@/components/login/email-form";
 import Image from "next/image";
 
 export default function Home() {
   const router = useRouter();
-  const inputRef = useRef();
+  const inputRef = useRef<HTMLInputElement | null>(null);
   const onSubmit = (e) => {
     e.preventDefault();
-    const email = inputRef.current.value;
+    const email = inputRef.current!.value;
     router.push(`/login?email=${email}`);
   };
 

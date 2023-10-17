@@ -1,6 +1,12 @@
 import Image from "next/image";
 
-function SeasonItem({ itemPoster, mainPoster }) {
+function SeasonItem({
+  itemPoster,
+  mainPoster,
+}: {
+  itemPoster?: string;
+  mainPoster?: string;
+}) {
   const imgSrc = itemPoster ?? mainPoster;
 
   return (
