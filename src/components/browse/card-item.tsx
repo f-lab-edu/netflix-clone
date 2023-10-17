@@ -3,7 +3,11 @@ import { forwardRef } from "react";
 import Link from "next/link";
 
 export default forwardRef(function CardItem(
-  { id, backdropPath, contentsType },
+  {
+    id,
+    backdropPath,
+    contentsType,
+  }: { id: string; backdropPath: string; contentsType: string },
   ref,
 ) {
   const href = `${id}?contentsType=${contentsType}`;

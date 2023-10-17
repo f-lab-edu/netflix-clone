@@ -7,7 +7,7 @@ import Pagination from "./pagination";
 function CardList({ contents }) {
   const [index, setIndex] = useState(0);
   const items = contents.results;
-  const selectedRef = useRef();
+  const selectedRef = useRef<HTMLInputElement | null>(null);
   let page = Math.floor(index / 5) + 1;
 
   const onClickRight = () => {
@@ -19,7 +19,7 @@ function CardList({ contents }) {
       }
       console.log(index);
     });
-    selectedRef.current.scrollIntoView({
+    selectedRef.current!.scrollIntoView({
       behavior: "smooth",
       block: "start",
       inline: "start",

@@ -1,4 +1,8 @@
-export default function MembershipBenefits({ membershipDescription }) {
+export default function MembershipBenefits({
+  membershipDescription,
+}: {
+  membershipDescription: { description: string }[];
+}) {
   return (
     <>
       <div className={"text-center"}>

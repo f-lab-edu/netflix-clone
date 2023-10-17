@@ -13,7 +13,7 @@ function ContentsInfo({ contents }: { contents: Contents }) {
   const hour = Math.floor(runtime / 60);
   const minute = runtime % 60;
 
-  const date = releaseDate?.split("-")[0];
+  const date: string = releaseDate!.split("-")[0];
 
   return (
     <div>

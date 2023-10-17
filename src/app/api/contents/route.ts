@@ -34,7 +34,7 @@ export async function getTrailersContent(
 }
 
 export async function getSeasons(
-  seriesId: string,
+  seriesId: number,
   seasonNumber: string,
   language = "ko",
 ) {
