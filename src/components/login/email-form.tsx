@@ -1,7 +1,7 @@
-import { ForwardedRef, forwardRef } from "react";
+import React, { ForwardedRef, forwardRef } from "react";
 
 export default forwardRef(function EmailForm(
-  props: { onSubmit: () => void },
+  props: { onSubmit: (e: React.FormEvent<HTMLFormElement>) => void },
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   return (
