@@ -1,26 +1,24 @@
 "use client";
 
-import { useRouter, useSearchParams } from "next/navigation";
-import React, { useState } from "react";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 
-function Login() {
+function Login({ email }: { email: string }) {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onSubmit",
+    defaultValues: { email: email ?? "", password: "" },
+  });
+  const emailReg =
+    /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-  const [email, setEmail] = useState(searchParams.get("email") ?? "");
-  const [password, setPassword] = useState("");
-
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
-  };
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (data: { email: string; password: string }) => {
     try {
-      e.preventDefault();
-      const formData = {};
+      //TODO: route handler 에서 fetch
 
       // const response = await fetch(
       //   "https://netflix-clone-f3b17-default-rtdb.firebaseio.com/user.json",
@@ -39,28 +37,34 @@ function Login() {
   };
 
   return (
-    <form className="card-body text-black" onSubmit={handleSubmit}>
+    <form className="card-body text-black" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-control">
         <label className="label">
           <span className="label-text text-white">Email</span>
         </label>
         <input
+          {...register("email", {
+            required: "이메일을 입력해주세요.",
+            pattern: {
+              value: emailReg,
+              message: "이메일 양식에 맞지 않습니다.",
+            },
+          })}
           type="text"
           placeholder="email"
-          value={email}
           className="input input-bordered"
-          onChange={onChangeEmail}
         />
-      </div>
-      <div className="form-control">
+        {errors?.email && (
+          <small className={"text-red-500 mt-1"}>{errors.email?.message}</small>
+        )}
         <label className="label">
           <span className="label-text text-white">Password</span>
         </label>
         <input
+          {...register("password")}
           type="text"
           placeholder="password"
           className="input input-bordered"
-          onChange={onChangePassword}
         />
         <label className="label">
           <a href="#" className="label-text-alt link link-hover text-white">
@@ -68,7 +72,7 @@ function Login() {
           </a>
         </label>
       </div>
-      <div className="form-control mt-6">
+      <div className="form-control mt-3">
         <button className="btn btn-primary">Login</button>
       </div>
     </form>
