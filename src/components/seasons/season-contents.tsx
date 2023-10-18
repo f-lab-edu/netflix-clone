@@ -1,7 +1,7 @@
 import SeasonList from "./season-list";
 import { getDetailContents } from "@/app/api/contents/route";
 
-async function getContents(id, contentsType) {
+async function getContents(id: string, contentsType: string) {
   const res = await getDetailContents(id, contentsType).then((data) =>
     data.json(),
   );

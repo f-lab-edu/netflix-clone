@@ -1,4 +1,4 @@
-export interface Contents {
+export interface DetailContents {
   title: string;
   adult: boolean;
   backdrop_path: string;

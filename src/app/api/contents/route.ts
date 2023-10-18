@@ -35,7 +35,7 @@ export async function getTrailersContent(
 
 export async function getSeasons(
   seriesId: number,
-  seasonNumber: string,
+  seasonNumber: number,
   language = "ko",
 ) {
   const res = await fetch(

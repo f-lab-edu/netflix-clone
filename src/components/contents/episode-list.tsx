@@ -8,7 +8,7 @@ function EpisodeList({
   seasonNumber,
 }: {
   id: number;
-  seasonNumber: string;
+  seasonNumber: number;
 }) {
   const [season, setSeason] = useState<Season>();
 
