@@ -12,9 +12,12 @@ function InitialHeader() {
         <div className="flex-none">
           <ul className="menu menu-horizontal px-1">
             <li>
-              <select className="select hover:text-white select-bordered border-white border-1 h-9 bg-base-content select-xs w-full max-w-xs">
-                <option defaultValue>한국어</option>
-                <option>English</option>
+              <select
+                defaultValue="ko"
+                className="select hover:text-white select-bordered border-white border-1 h-9 bg-base-content select-xs w-full max-w-xs"
+              >
+                <option value="ko">한국어</option>
+                <option value="en">English</option>
               </select>
             </li>
             <li className={"ml-7"}>
