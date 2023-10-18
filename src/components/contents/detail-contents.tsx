@@ -1,4 +1,4 @@
-import ContentsInfo from "./contents-info";
+import ContentsInfo from "./detail-contents-info";
 
 import PreviewContents from "./preview-contents";
 import {
@@ -6,7 +6,7 @@ import {
   getTrailersContent,
 } from "@/app/api/contents/route";
 import Seasons from "@/components/seasons/seasons";
-import { Contents, Trailers } from "@/types/contents/types";
+import { DetailContents, Trailers } from "@/types/contents/types";
 
 async function getContents(id: string, contentsType: string) {
   return await getDetailContents(id, contentsType).then((data) => data.json());
@@ -22,19 +22,19 @@ async function DetailContents({
   id: string;
   contentsType: string;
 }) {
-  const contents: Contents = await getContents(id, contentsType);
+  const detailContents: DetailContents = await getContents(id, contentsType);
   const trailers: Trailers = await getTrailers(id, contentsType);
 
   const key = trailers[0]?.key ?? "";
   const src = key
     ? `https://www.youtube.com/embed/${key}?autoplay=1&loop=1&playlist=${key}&mute=1&controls=0&si=nh5lkzt8Jqa2v4Z1&amp;`
-    : `https://image.tmdb.org/t/p/w500${contents?.backdrop_path}`;
+    : `https://image.tmdb.org/t/p/w500${detailContents?.backdrop_path}`;
 
   return (
     <>
       <PreviewContents src={src} />
-      <ContentsInfo contents={contents} />
-      {contents?.seasons && <Seasons contents={contents} />}
+      <ContentsInfo detailContents={detailContents} />
+      {detailContents?.seasons && <Seasons detailContents={detailContents} />}
     </>
   );
 }
