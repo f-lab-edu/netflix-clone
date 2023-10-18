@@ -3,11 +3,12 @@ import CardItem from "./card-item";
 import { useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Pagination from "./pagination";
+import { Contents } from "@/types/browse/types";
 
-function CardList({ contents }) {
+function CardList({ contents }: { contents: Contents }) {
   const [index, setIndex] = useState(0);
   const items = contents.results;
-  const selectedRef = useRef<HTMLInputElement | null>(null);
+  const selectedRef = useRef<HTMLAnchorElement | null>(null);
   let page = Math.floor(index / 5) + 1;
 
   const onClickRight = () => {
