@@ -1,14 +1,19 @@
 import Link from "next/link";
-import { Contents } from "@/types/contents/types";
+import { DetailContents } from "@/types/contents/types";
 
-function ContentsInfo({ contents }: { contents: Contents }) {
-  console.log(contents);
-  const title = contents.title ?? contents.name;
-  const genres = contents?.genres.map((g) => g.name + " ");
-  const series = contents?.belongs_to_collection?.name ?? contents.name;
-  const releaseDate = contents?.release_date ?? contents?.last_air_date;
+function DetailContentsInfo({
+  detailContents,
+}: {
+  detailContents: DetailContents;
+}) {
+  const title = detailContents.title ?? detailContents.name;
+  const genres = detailContents?.genres.map((g) => g.name + " ");
+  const series =
+    detailContents?.belongs_to_collection?.name ?? detailContents.name;
+  const releaseDate =
+    detailContents?.release_date ?? detailContents?.last_air_date;
 
-  const runtime = contents.runtime ?? "";
+  const runtime = detailContents.runtime ?? "";
 
   const hour = Math.floor(runtime / 60);
   const minute = runtime % 60;
@@ -26,7 +31,9 @@ function ContentsInfo({ contents }: { contents: Contents }) {
             ) : null}
 
             <span className={"ml-1 text-sm text-gray-500"}>
-              {runtime ? `${minute}분` : `시즌 ${contents.seasons.length}개`}
+              {runtime
+                ? `${minute}분`
+                : `시즌 ${detailContents.seasons.length}개`}
             </span>
           </p>
           <div className={"flex text-lg"}>
@@ -40,13 +47,14 @@ function ContentsInfo({ contents }: { contents: Contents }) {
             </svg>
             <h1>[{title}] 지금 시청하세요!</h1>
           </div>
-          <small className={"block mt-3"}>{contents.overview}</small>
+          <small className={"block mt-3"}>{detailContents.overview}</small>
         </div>
 
         <div className={"preview-right"}>
           <small className={" block "}>
             <span className={"text-gray-700"}>평점: </span>
-            {contents.vote_average.toFixed(2)} ({contents.vote_count})
+            {detailContents.vote_average.toFixed(2)} (
+            {detailContents.vote_count})
           </small>
           <small className={" block "}>
             <span className={"text-gray-700"}>장르: </span>
@@ -56,10 +64,10 @@ function ContentsInfo({ contents }: { contents: Contents }) {
             <span className={"text-gray-700"}> 시리즈 : </span>
             {series && (
               <Link
-                href={`/series/${contents.id}/?contentsType=${contents.contentsType}`}
+                href={`/series/${detailContents.id}/?contentsType=${detailContents.contentsType}`}
                 className={"text-blue-600"}
               >
-                {contents.contentsType === "movie"
+                {detailContents.contentsType === "movie"
                   ? series
                   : `${series} 시리즈`}
               </Link>
@@ -71,4 +79,4 @@ function ContentsInfo({ contents }: { contents: Contents }) {
   );
 }
 
-export default ContentsInfo;
+export default DetailContentsInfo;
