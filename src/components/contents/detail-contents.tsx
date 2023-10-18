@@ -1,5 +1,3 @@
-import ContentsInfo from "./detail-contents-info";
-
 import PreviewContents from "./preview-contents";
 import {
   getDetailContents,
@@ -7,6 +5,7 @@ import {
 } from "@/app/api/contents/route";
 import Seasons from "@/components/seasons/seasons";
 import { DetailContents, Trailers } from "@/types/contents/types";
+import DetailContentsInfo from "./detail-contents-info";
 
 async function getContents(id: string, contentsType: string) {
   return await getDetailContents(id, contentsType).then((data) => data.json());
@@ -33,7 +32,7 @@ async function DetailContents({
   return (
     <>
       <PreviewContents src={src} />
-      <ContentsInfo detailContents={detailContents} />
+      <DetailContentsInfo detailContents={detailContents} />
       {detailContents?.seasons && <Seasons detailContents={detailContents} />}
     </>
   );
