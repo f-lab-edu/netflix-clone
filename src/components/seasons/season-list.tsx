@@ -5,7 +5,7 @@ function SeasonList({ detailContents }: { detailContents: DetailContents }) {
   const { id, seasons, poster_path, contentsType } = detailContents;
   const seriesContentsList = seasons ?? "";
 
-  if (!seriesContentsList) {
+  if (contentsType === "movie") {
     return (
       <SeasonItem
         seriesId={id}
