@@ -1,61 +1,44 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
 import { CheckInCircle } from "@/components/icon";
+import { useForm } from "react-hook-form";
+import { FormData } from "@/types/signup/types";
 
 function RegFormPage() {
   const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [privacyTerms, setPrivacyTerms] = useState(false);
-  const [eventAlarmTerm, setEventAlarmTerm] = useState(false);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    mode: "onSubmit",
+    defaultValues: {
+      email: "",
+      password: "",
+      requiredTerm: false,
+      optionsTerm: false,
+    },
+  });
+
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-  const passwordReg = /^[a-zA-Z0-9]{4,12}$/;
 
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+  const onSubmit = (data: FormData) => {
+    if (!data.requiredTerm)
+      return alert("개인정보 수집 및 활용 동의는 필수입니다.");
+    //TODO: 서버 API  요청
+    //fetch('', {body: data})
+    router.replace("/signup");
   };
-  const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value);
-  };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    if (email.trim() === "" || password.trim() === "") {
-      return alert("이메일 또는 비밀번호를 확인해주세요");
-    }
-    if (!emailReg.test(email)) {
-      return console.log("email");
-    }
-
-    if (!passwordReg.test(password) || email === password) {
-      return console.log("password ");
-    }
-    if (!privacyTerms)
-      return alert("개인정보 수집 및 활용에 동의해주셔야 합니다.");
-
-    const form = {
-      email,
-      password,
-      privacyTerms,
-      eventAlarmTerm,
-    };
-    // const res = await fetch(`/`, {
-    //   method: "POST",
-    //   body: JSON.stringify(form),
-    // }).catch(err => console.error(err));
-    //
-    router.push("/signup");
-  };
   return (
     <>
       <div className={"w-full border-t"} />
       <section className={"flex flex-col items-center"}>
         <CheckInCircle />
         <form
-          onSubmit={handleSubmit}
+          onSubmit={handleSubmit(onSubmit)}
           className={"border-2 py-16 px-5 rounded-3xl"}
         >
           <div className={"form-control flex flex-col w-108 "}>
@@ -73,12 +56,23 @@ function RegFormPage() {
               </label>
               <input
                 className={"input w-full text-black"}
-                onChange={onChangeEmail}
+                {...register("email", {
+                  required: true,
+                  maxLength: 20,
+                  min: 5,
+                  pattern: {
+                    value: emailReg,
+                    message: "이메일 형식에 맞지 않습니다.",
+                  },
+                })}
               />
+              {errors?.email && <small>{errors.email?.message}</small>}
               <input
                 className={"input w-full text-black mt-3"}
                 placeholder={"비밀번호를 추가하세요."}
-                onChange={onChangePassword}
+                {...register("password", {
+                  required: "비밀번호를 입력해주세요",
+                })}
               />
             </div>
             <div className={"terms mt-3"}>
@@ -86,7 +80,7 @@ function RegFormPage() {
                 <input
                   type="checkbox"
                   className="checkbox checkbox-success cursor-pointer"
-                  onClick={() => setPrivacyTerms(!privacyTerms)}
+                  {...register("requiredTerm")}
                 />
                 <p className="pl-3 label-text text-white">
                   예, 저는 <span>개인정보 처리방침</span>에 따른 개인정보 수집
@@ -97,7 +91,7 @@ function RegFormPage() {
                 <input
                   type="checkbox"
                   className="checkbox checkbox-success cursor-pointer"
-                  onClick={() => setEventAlarmTerm(!eventAlarmTerm)}
+                  {...register("optionsTerm")}
                 />
                 <p className="pl-3 label-text text-white ">
                   예, 넷플릭스 특별 할인 알림 이메일을 보내주세요. (선택 사항)

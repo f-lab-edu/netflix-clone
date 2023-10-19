@@ -1,8 +1,9 @@
-import Login from "../../components/login/login";
-import LoginFooter from "../../components/login/login-footer";
 import Image from "next/image";
+import Login from "@/components/login/login";
+import LoginFooter from "@/components/login/login-footer";
 
-function LoginPage() {
+function LoginPage({ searchParams }: { searchParams: { email: string } }) {
+  const email = searchParams?.email ?? "";
   return (
     <>
       <Image
@@ -16,7 +17,7 @@ function LoginPage() {
       />
       <div className={"flex h-80vh justify-center items-center"}>
         <div className="card max-w-sm bg-black">
-          <Login />
+          <Login email={email} />
           <LoginFooter />
         </div>
       </div>
