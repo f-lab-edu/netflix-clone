@@ -1,5 +1,5 @@
 import SeasonList from "./season-list";
-import { getDetailContents } from "@/services/contents/route";
+import { getDetailContents } from "@/services/contents";
 
 async function getContents(id: string, contentsType: string) {
   const res = await getDetailContents(id, contentsType).then((data) =>

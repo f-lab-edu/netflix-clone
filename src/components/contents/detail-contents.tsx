@@ -1,8 +1,5 @@
 import PreviewContents from "./preview-contents";
-import {
-  getDetailContents,
-  getTrailersContent,
-} from "@/services/contents/route";
+import { getDetailContents, getTrailersContent } from "@/services/contents";
 import Seasons from "@/components/seasons/seasons";
 import { DetailContents, Trailers } from "@/types/contents/types";
 import DetailContentsInfo from "./detail-contents-info";

@@ -1,6 +1,6 @@
 import { Contents } from "@/types/browse/types";
 import CardList from "@/components/browse/card-list";
-import { getAllContents } from "@/services/browse/route";
+import { getAllContents } from "@/services/contents";
 
 async function BrowsePage() {
   const [
