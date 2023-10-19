@@ -1,5 +1,5 @@
 import EpisodeItem from "./episode-item";
-import { getSeasons } from "@/app/api/contents/route";
+import { getSeasons } from "@/services/contents/route";
 import { useEffect, useState } from "react";
 import { Season } from "@/types/seasons/types";
 
