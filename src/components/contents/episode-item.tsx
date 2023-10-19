@@ -20,13 +20,17 @@ function EpisodeItem({
       <div className={"flex min-w-[60px] border-b rounded px-10 py-2"}>
         <Link href={``} />
         <div className={"flex items-center"}>{episode_number}</div>
-        <Image
-          className={"rounded mx-5 w-[200px] h-[100px]"}
-          src={imgSrc}
-          alt={"poster"}
-          width={200}
-          height={100}
-        />
+        <div className={"mx-5 w-[240px]"}>
+          <Image
+            className={"rounded"}
+            src={imgSrc}
+            alt={"poster"}
+            sizes={"240px"}
+            width={500}
+            height={300}
+            style={{ width: "100%", height: "auto" }}
+          />
+        </div>
         <div className={"flex flex-col justify-center w-full  "}>
           <div className={"flex justify-between "}>
             <div>
