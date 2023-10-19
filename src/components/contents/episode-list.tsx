@@ -20,7 +20,7 @@ function EpisodeList({
     };
     getData();
     return () => {};
-  }, [seasonNumber]);
+  }, [id, seasonNumber]);
   const episodes = season?.episodes;
   return (
     <>
