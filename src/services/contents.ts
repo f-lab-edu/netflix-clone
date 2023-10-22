@@ -141,7 +141,8 @@ export async function getMovieContents(MovieQueryParams: Partial<ReqMovie>) {
 
   return NextResponse.json(res);
 }
-export async function getMovieGenres(contentsType, language = "ko") {
+
+export async function getGenres(contentsType, language = "ko") {
   const res = await fetch(
     `https://api.themoviedb.org/3/genre/${contentsType}/list?language=${language}`,
     options,
