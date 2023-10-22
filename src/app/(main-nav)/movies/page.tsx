@@ -1,5 +1,5 @@
 import CardList from "@/components/ui/card-list";
-import { getMovieContents, getMovieGenres } from "@/services/contents";
+import { getMovieContents, getGenres } from "@/services/contents";
 import OptionList from "@/components/ui/option-list";
 
 async function MoviesPage() {
@@ -11,7 +11,7 @@ async function MoviesPage() {
     page: 1,
   };
   const data = await getMovieContents(queryParams).then((res) => res.json());
-  const genres = await getMovieGenres("movie").then((res) => res.json());
+  const genres = await getGenres("movie").then((res) => res.json());
   const selectBoxStyles = "select bg-transparent border-white";
 
   return (
