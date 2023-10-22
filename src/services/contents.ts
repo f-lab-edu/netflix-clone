@@ -138,3 +138,13 @@ export async function getMovieContents(MovieQueryParams: ReqMovie) {
 
   return NextResponse.json(res);
 }
+export async function getMovieGenres(contentsType, language = "ko") {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/genre/${contentsType}/list?language=${language}`,
+    options,
+  )
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+
+  return NextResponse.json(res);
+}
