@@ -141,6 +141,7 @@ export async function getMovieContents(MovieQueryParams: Partial<ReqMovie>) {
 
   return NextResponse.json(res);
 }
+
 export async function getTvContents(TvQueryParams: Partial<ReqTv>) {
   let queryParams = "";
 
@@ -160,6 +161,7 @@ export async function getTvContents(TvQueryParams: Partial<ReqTv>) {
 
   return NextResponse.json(res);
 }
+
 export async function getGenres(contentsType, language = "ko") {
   const res = await fetch(
     `https://api.themoviedb.org/3/genre/${contentsType}/list?language=${language}`,
