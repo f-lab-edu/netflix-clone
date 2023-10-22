@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { options } from "@/config/config";
-import { ReqMovie } from "@/types/contents/types";
+import { ReqMovie, ReqTv } from "@/types/contents/types";
 
 export async function getPopularMovies(language = "ko", page = 1) {
   const res = await fetch(
@@ -138,6 +138,26 @@ export async function getMovieContents(MovieQueryParams: Partial<ReqMovie>) {
     .catch((err) => console.log(err));
 
   res.media_type = "movie";
+
+  return NextResponse.json(res);
+}
+
+export async function getTvContents(TvQueryParams: Partial<ReqTv>) {
+  let queryParams = "";
+
+  for (let param in TvQueryParams) {
+    queryParams += `${param}=${TvQueryParams[param]}&`;
+  }
+  console.log(queryParams);
+
+  const res = await fetch(
+    `https://api.themoviedb.org/3/discover/tv?${queryParams}`,
+    options,
+  )
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+
+  res.media_type = "tv";
 
   return NextResponse.json(res);
 }
