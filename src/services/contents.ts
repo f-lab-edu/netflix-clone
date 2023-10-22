@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { options } from "@/config/config";
+import { ReqMovie } from "@/types/contents/types";
 
 export async function getPopularMovies(language = "ko", page = 1) {
   const res = await fetch(
@@ -115,6 +116,21 @@ export async function getSeasons(
 ) {
   const res = await fetch(
     `https://api.themoviedb.org/3/tv/${seriesId}/season/${seasonNumber}?language=${language}`,
+    options,
+  )
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+
+  return NextResponse.json(res);
+}
+export async function getMovieContents(MovieQueryParams: ReqMovie) {
+  let queryParams = "";
+  for (let param in MovieQueryParams) {
+    queryParams += `${MovieQueryParams[param]}=${param}&`;
+  }
+
+  const res = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?${queryParams}`,
     options,
   )
     .then((response) => response.json())
