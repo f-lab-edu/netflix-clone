@@ -123,10 +123,11 @@ export async function getSeasons(
 
   return NextResponse.json(res);
 }
-export async function getMovieContents(MovieQueryParams: ReqMovie) {
+export async function getMovieContents(MovieQueryParams: Partial<ReqMovie>) {
   let queryParams = "";
+
   for (let param in MovieQueryParams) {
-    queryParams += `${MovieQueryParams[param]}=${param}&`;
+    queryParams += `${param}=${MovieQueryParams[param]}&`;
   }
 
   const res = await fetch(
@@ -135,6 +136,8 @@ export async function getMovieContents(MovieQueryParams: ReqMovie) {
   )
     .then((response) => response.json())
     .catch((err) => console.log(err));
+
+  res.media_type = "movie";
 
   return NextResponse.json(res);
 }
