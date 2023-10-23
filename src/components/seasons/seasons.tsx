@@ -9,8 +9,7 @@ function Seasons({ detailContents }: { detailContents: DetailContents }) {
   const seasonNumber = searchParams.get("seasonNumber");
 
   const { id, number_of_seasons, seasons } = detailContents;
-  const [selected, setSelected]: [selected: number, setSelected: Function] =
-    useState(seasonNumber ?? number_of_seasons);
+  const [selected, setSelected] = useState(seasonNumber ?? number_of_seasons);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelected(e.target.value);
