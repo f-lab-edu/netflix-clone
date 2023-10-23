@@ -1,7 +1,11 @@
 import CardList from "@/components/ui/card-list";
 import { getMovieContents, getGenres } from "@/services/contents";
 import OptionList from "@/components/ui/option-list";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "영화",
+  description: "넷 뿌러졌스에서 영화를 시청하세요!",
+};
 async function MoviesPage() {
   const queryParams = {
     include_adult: true,
