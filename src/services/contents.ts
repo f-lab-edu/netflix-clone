@@ -161,8 +161,18 @@ export async function getTvContents(TvQueryParams: Partial<ReqTv>) {
 
   return NextResponse.json(res);
 }
+export async function getTrendContents(time_window: string, language = "ko") {
+  const res = await fetch(
+    `https://api.themoviedb.org/3/trending/all/${time_window}?language=${language}`,
+    options,
+  )
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
 
-export async function getGenres(contentsType, language = "ko") {
+  return NextResponse.json(res);
+}
+
+export async function getGenres(contentsType: string, language = "ko") {
   const res = await fetch(
     `https://api.themoviedb.org/3/genre/${contentsType}/list?language=${language}`,
     options,

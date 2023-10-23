@@ -1,4 +1,5 @@
 export interface ReqMovie {
+  [key: string]: string | boolean | number;
   certification: string;
   certification_gte: string;
   certification_lte: string;
@@ -40,6 +41,7 @@ export interface ReqMovie {
 }
 
 export interface ReqTv {
+  [key: string]: string | boolean | number;
   air_date_gte: string;
   air_date_lte: string;
   first_air_date_year: string;
