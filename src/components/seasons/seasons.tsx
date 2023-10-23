@@ -2,11 +2,15 @@
 import EpisodeList from "@/components/contents/episode-list";
 import React, { useState } from "react";
 import { DetailContents } from "@/types/contents/types";
+import { useSearchParams } from "next/navigation";
 
 function Seasons({ detailContents }: { detailContents: DetailContents }) {
+  const searchParams = useSearchParams();
+  const seasonNumber = searchParams.get("seasonNumber");
+
   const { id, number_of_seasons, seasons } = detailContents;
   const [selected, setSelected]: [selected: number, setSelected: Function] =
-    useState(number_of_seasons);
+    useState(seasonNumber ?? number_of_seasons);
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setSelected(e.target.value);

@@ -15,11 +15,11 @@ async function SeasonContents({
   id: string;
   contentsType: string;
 }) {
-  const contents = await getContents(id, contentsType);
+  const detailContents = await getContents(id, contentsType);
 
   return (
     <div className={"grid grid-cols-3 gap-4"}>
-      <SeasonList contents={contents} />
+      <SeasonList detailContents={detailContents} />
     </div>
   );
 }
