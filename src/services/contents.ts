@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { options } from "@/config/config";
 import { ReqMovie, ReqTv } from "@/types/contents/types";
+import { Contents } from "@/types/browse/types";
 
 export async function getPopularMovies(language = "ko", page = 1) {
   const res = await fetch(
@@ -72,8 +73,12 @@ export async function getAllContents() {
     getPopularTVProgram(),
     getTopRateTVProgram(),
   ];
-  const responses = await Promise.all(functionsToExecution);
-  const promises = responses.map((response) => response.json());
+  const responses: Awaited<
+    NextResponse<{ contentsType: string; results: Contents }>[]
+  > = await Promise.all(functionsToExecution);
+  const promises: Promise<Contents>[] = responses.map((response) =>
+    response.json(),
+  );
   return await Promise.all(promises);
 }
 
