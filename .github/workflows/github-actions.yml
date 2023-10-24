@@ -3,7 +3,8 @@ name: build-actions
 on:
   pull_request:
     branches: [ main ]
-
+env: 
+  NEXT_PUBLIC_TMDB_ACCESS_TOKEN: ${{env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN}}
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,13 +14,8 @@ jobs:
         with:
           node-version: 19
       - run: npm install
-      - name: build actions
-        env: 
-          NEXT_PUBLIC_TMDB_ACCESS_TOKEN: 
-            ${{env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN}}
-        run: npm run build
-
-          
-            
-      - run: npm run export
       
+      - name: build actions
+        run: npm run build
+        
+      - run: npm run export
