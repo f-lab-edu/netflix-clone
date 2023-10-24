@@ -1,7 +1,11 @@
 import OptionList from "@/components/ui/option-list";
 import CardList from "@/components/ui/card-list";
 import { getTrendContents } from "@/services/contents";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "NEW! 요즘 대세 콘텐츠",
+  description: "NEW! 요즘 대세 콘텐츠",
+};
 async function LatestContentPage() {
   const selectTimeWindow = "week";
   const data = await getTrendContents(selectTimeWindow).then((res) =>

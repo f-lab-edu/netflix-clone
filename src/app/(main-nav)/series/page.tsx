@@ -1,6 +1,12 @@
 import CardList from "@/components/ui/card-list";
 import { getGenres, getTvContents } from "@/services/contents";
 import OptionList from "@/components/ui/option-list";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "TV 시리즈",
+  description: "넷 뿌러졌스에서 TV 시리즈를 시청하세요!",
+};
 
 async function Series() {
   const queryParams = {
