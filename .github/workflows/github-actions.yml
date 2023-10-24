@@ -12,6 +12,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 19
-      - run: npm ci
-      - run: npm test
-      - run: next build
+      - run: npm install
+      - name: build actions
+        env: 
+          NEXT_PUBLIC_TMDB_ACCESS_TOKEN: 
+            ${{env.NEXT_PUBLIC_TMDB_ACCESS_TOKEN}}
+        run: npm run build
+
+          
+            
+      - run: npm run export
+      
