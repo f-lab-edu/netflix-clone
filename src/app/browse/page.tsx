@@ -9,7 +9,7 @@ async function BrowsePage() {
     upcomingMovies,
     popularTvProgram,
     topRateTvProgram,
-  ] = allContents;
+  ] = await allContents();
 
   return (
     <div>

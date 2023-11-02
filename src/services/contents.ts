@@ -71,14 +71,16 @@ export async function getTopRateTVProgram(language = "ko", page = 1) {
   return res;
 }
 
-export const allContents = await Promise.all([
-  getPopularMovies(),
-  getNowPlayingMovies(),
-  getUpcomingMovies(),
-  getTopRatedMovies(),
-  getPopularTVProgram(),
-  getTopRateTVProgram(),
-]);
+export const allContents = async () => {
+  return await Promise.all([
+    getPopularMovies(),
+    getNowPlayingMovies(),
+    getUpcomingMovies(),
+    getTopRatedMovies(),
+    getPopularTVProgram(),
+    getTopRateTVProgram(),
+  ]);
+};
 
 export async function getDetailContents(
   id: string,
