@@ -13,7 +13,7 @@ export default function CardItem({
 }) {
   return (
     <Link
-      href={`/contents/${id}?&contentsType=${type}`}
+      href={`/contents/${id}?&mediaType=${mediaType}`}
       className={"h-[393px]"}
     >
       <Image
