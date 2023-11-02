@@ -4,9 +4,7 @@ import { getTrendContents } from "@/services/contents";
 
 async function LatestContentPage() {
   const selectTimeWindow = "week";
-  const data = await getTrendContents(selectTimeWindow).then((res) =>
-    res.json(),
-  );
+  const data = await getTrendContents(selectTimeWindow);
 
   const options = [
     { id: "week", name: "주간" },

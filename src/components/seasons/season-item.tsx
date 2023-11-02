@@ -5,13 +5,13 @@ function SeasonItem({
   seriesId,
   itemPoster,
   mainPoster,
-  contentsType,
+  mediaType,
   seasonNumber,
 }: {
   seriesId: number;
   itemPoster?: string;
   mainPoster?: string;
-  contentsType: string;
+  mediaType: string;
   seasonNumber?: number;
 }) {
   const imgSrc = itemPoster ?? mainPoster;
@@ -19,7 +19,7 @@ function SeasonItem({
 
   return (
     <div className={"rounded border bg-[#2f2f2f]"}>
-      <Link href={`/contents/${seriesId}?contentsType=${contentsType}${href}`}>
+      <Link href={`/contents/${seriesId}?mediaType=${mediaType}${href}`}>
         <Image
           className={"rounded rounded-b-none"}
           src={`https://image.tmdb.org/t/p/w500${imgSrc}`}

@@ -2,15 +2,16 @@ import SeasonItem from "@/components/seasons/season-item";
 import { DetailContents } from "@/types/contents/types";
 
 function SeasonList({ detailContents }: { detailContents: DetailContents }) {
-  const { id, seasons, poster_path, contentsType } = detailContents;
+  const { id, seasons, poster_path } = detailContents;
+  const mediaType = detailContents.media_type;
   const seriesContentsList = seasons ?? "";
 
-  if (contentsType === "movie") {
+  if (mediaType === "movie") {
     return (
       <SeasonItem
         seriesId={id}
         mainPoster={poster_path}
-        contentsType={contentsType}
+        mediaType={mediaType}
       />
     );
   }
@@ -23,7 +24,7 @@ function SeasonList({ detailContents }: { detailContents: DetailContents }) {
           seriesId={id}
           itemPoster={series.poster_path}
           mainPoster={poster_path}
-          contentsType={contentsType}
+          mediaType={mediaType}
           seasonNumber={series.season_number}
         />
       ))}

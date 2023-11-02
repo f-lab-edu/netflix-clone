@@ -42,7 +42,7 @@ function CardList({ contents }: { contents: Contents }) {
                   id={item.id}
                   ref={index === idx ? selectedRef : null}
                   backdropPath={item.backdrop_path}
-                  contentsType={contents.contentsType}
+                  mediaType={contents.media_type}
                 />
               );
             })}

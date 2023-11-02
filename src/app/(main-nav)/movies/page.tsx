@@ -10,8 +10,8 @@ async function MoviesPage() {
     sort_by: "popularity.desc",
     page: 1,
   };
-  const data = await getMovieContents(queryParams).then((res) => res.json());
-  const genres = await getGenres("movie").then((res) => res.json());
+  const data = await getMovieContents(queryParams);
+  const genres = await getGenres("movie");
   const selectBoxStyles = "select bg-transparent border-white";
 
   return (
@@ -20,7 +20,7 @@ async function MoviesPage() {
         <OptionList options={genres.genres} sStyle={selectBoxStyles} />
       </div>
       <div className={"grid gap-4 grid-cols-4 px-5"}>
-        <CardList dataList={data.results} contentsType={data.media_type} />
+        <CardList dataList={data.results} mediaType={data.media_type} />
       </div>
     </section>
   );

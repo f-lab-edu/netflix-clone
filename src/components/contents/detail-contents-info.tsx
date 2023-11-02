@@ -17,6 +17,7 @@ function DetailContentsInfo({
 
   const hour = Math.floor(runtime / 60);
   const minute = runtime % 60;
+  const mediaType = detailContents.media_type;
 
   const date: string = releaseDate!.split("-")[0];
 
@@ -64,12 +65,10 @@ function DetailContentsInfo({
             <span className={"text-gray-700"}> 시리즈 : </span>
             {series && (
               <Link
-                href={`/series/${detailContents.id}/?contentsType=${detailContents.contentsType}`}
+                href={`/series/${detailContents.id}/?mediaType=${mediaType}`}
                 className={"text-blue-600"}
               >
-                {detailContents.contentsType === "movie"
-                  ? series
-                  : `${series} 시리즈`}
+                {mediaType === "movie" ? series : `${series} 시리즈`}
               </Link>
             )}
           </small>

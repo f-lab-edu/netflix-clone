@@ -5,14 +5,14 @@ function SelectedSeriesPage({
   searchParams,
 }: {
   params: { id: string };
-  searchParams: { contentsType: string };
+  searchParams: { mediaType: string };
 }) {
-  const contentsType = searchParams.contentsType;
+  const mediaType = searchParams.mediaType;
 
   return (
     <>
       <div>
-        <SeasonContents id={params.id} contentsType={contentsType} />
+        <SeasonContents id={params.id} mediaType={mediaType} />
       </div>
     </>
   );
