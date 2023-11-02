@@ -1,4 +1,3 @@
-import { NextResponse } from "next/server";
 import { options } from "@/config/config";
 import { ReqMovie, ReqTv } from "@/types/contents/types";
 
@@ -10,7 +9,9 @@ export async function getPopularMovies(language = "ko", page = 1) {
     .then((response) => response.json())
     .catch((err) => console.error(err));
 
-  return NextResponse.json({ results: res.results, contentsType: "movie" });
+  res.media_type = "movie";
+
+  return res;
 }
 export async function getNowPlayingMovies(language = "ko", page = 1) {
   const res = await fetch(
@@ -20,7 +21,9 @@ export async function getNowPlayingMovies(language = "ko", page = 1) {
     .then((response) => response.json())
     .catch((err) => console.error(err));
 
-  return NextResponse.json({ results: res.results, contentsType: "movie" });
+  res.media_type = "movie";
+
+  return res;
 }
 export async function getUpcomingMovies(language = "ko", page = 1) {
   const res = await fetch(
@@ -29,7 +32,8 @@ export async function getUpcomingMovies(language = "ko", page = 1) {
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
-  return NextResponse.json({ results: res.results, contentsType: "movie" });
+  res.media_type = "movie";
+  return res;
 }
 export async function getTopRatedMovies(language = "ko", page = 1) {
   const res = await fetch(
@@ -39,7 +43,9 @@ export async function getTopRatedMovies(language = "ko", page = 1) {
     .then((response) => response.json())
     .catch((err) => console.error(err));
 
-  return NextResponse.json({ results: res.results, contentsType: "movie" });
+  res.media_type = "movie";
+
+  return res;
 }
 
 export async function getPopularTVProgram(language = "ko", page = 1) {
@@ -49,8 +55,9 @@ export async function getPopularTVProgram(language = "ko", page = 1) {
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
+  res.media_type = "tv";
 
-  return NextResponse.json({ results: res.results, contentsType: "tv" });
+  return res;
 }
 
 export async function getTopRateTVProgram(language = "ko", page = 1) {
@@ -60,8 +67,8 @@ export async function getTopRateTVProgram(language = "ko", page = 1) {
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
-
-  return NextResponse.json({ results: res.results, contentsType: "tv" });
+  res.media_type = "tv";
+  return res;
 }
 export async function getAllContents() {
   const functionsToExecution = [
@@ -79,34 +86,35 @@ export async function getAllContents() {
 
 export async function getDetailContents(
   id: string,
-  contentsType: string,
+  mediaType: string,
   language = "ko",
 ) {
   const res = await fetch(
-    `https://api.themoviedb.org/3/${contentsType}/${id}?language=${language}`,
+    `https://api.themoviedb.org/3/${mediaType}/${id}?language=${language}`,
     options,
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
+  console.log("reszz: ", id, mediaType);
 
-  res.contentsType = contentsType;
+  res.media_type = mediaType;
 
-  return NextResponse.json(res);
+  return res;
 }
 
 export async function getTrailersContent(
   id: string,
-  contentType: string,
+  mediaType: string,
   language = "ko",
 ) {
   const res = await fetch(
-    `https://api.themoviedb.org/3/${contentType}/${id}/videos?language=${language}`,
+    `https://api.themoviedb.org/3/${mediaType}/${id}/videos?language=${language}`,
     options,
   )
     .then((response) => response.json())
     .catch((err) => console.log(err));
 
-  return NextResponse.json(res.results);
+  return res;
 }
 
 export async function getSeasons(
@@ -121,7 +129,7 @@ export async function getSeasons(
     .then((response) => response.json())
     .catch((err) => console.log(err));
 
-  return NextResponse.json(res);
+  return res;
 }
 export async function getMovieContents(MovieQueryParams: Partial<ReqMovie>) {
   let queryParams = "";
@@ -139,7 +147,7 @@ export async function getMovieContents(MovieQueryParams: Partial<ReqMovie>) {
 
   res.media_type = "movie";
 
-  return NextResponse.json(res);
+  return res;
 }
 
 export async function getTvContents(TvQueryParams: Partial<ReqTv>) {
@@ -159,7 +167,7 @@ export async function getTvContents(TvQueryParams: Partial<ReqTv>) {
 
   res.media_type = "tv";
 
-  return NextResponse.json(res);
+  return res;
 }
 export async function getTrendContents(time_window: string, language = "ko") {
   const res = await fetch(
@@ -169,16 +177,16 @@ export async function getTrendContents(time_window: string, language = "ko") {
     .then((response) => response.json())
     .catch((err) => console.log(err));
 
-  return NextResponse.json(res);
+  return res;
 }
 
-export async function getGenres(contentsType: string, language = "ko") {
+export async function getGenres(mediaType: string, language = "ko") {
   const res = await fetch(
-    `https://api.themoviedb.org/3/genre/${contentsType}/list?language=${language}`,
+    `https://api.themoviedb.org/3/genre/${mediaType}/list?language=${language}`,
     options,
   )
     .then((response) => response.json())
     .catch((err) => console.log(err));
 
-  return NextResponse.json(res);
+  return res;
 }
