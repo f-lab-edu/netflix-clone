@@ -87,7 +87,7 @@ export interface DetailContents {
     poster_path: string;
   };
   budget: number;
-  contentsType: "movie" | "tv";
+  media_type: "movie" | "tv";
   genres: { id: number; name: string }[];
   homepage: "string";
   id: number;
