@@ -70,19 +70,15 @@ export async function getTopRateTVProgram(language = "ko", page = 1) {
   res.media_type = "tv";
   return res;
 }
-export async function getAllContents() {
-  const functionsToExecution = [
-    getPopularMovies(),
-    getNowPlayingMovies(),
-    getTopRatedMovies(),
-    getUpcomingMovies(),
-    getPopularTVProgram(),
-    getTopRateTVProgram(),
-  ];
-  const responses = await Promise.all(functionsToExecution);
-  const promises = responses.map((response) => response.json());
-  return await Promise.all(promises);
-}
+
+export const allContents = await Promise.all([
+  getPopularMovies(),
+  getNowPlayingMovies(),
+  getUpcomingMovies(),
+  getTopRatedMovies(),
+  getPopularTVProgram(),
+  getTopRateTVProgram(),
+]);
 
 export async function getDetailContents(
   id: string,
