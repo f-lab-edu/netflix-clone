@@ -62,7 +62,7 @@ function MoviesPage() {
             <CardList
               key={page.page}
               dataList={page.results}
-              contentsType={page.media_type}
+              mediaType={page.media_type}
             />
           ))}
         </div>

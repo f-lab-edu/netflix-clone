@@ -14,7 +14,7 @@ function Series() {
 
   useEffect(() => {
     const fetchGenres = async () => {
-      const res = await getGenres("tv").then((res) => res.json());
+      const res = await getGenres("tv");
       setGenres(res.genres);
     };
     fetchGenres();
@@ -28,7 +28,7 @@ function Series() {
       sort_by: "popularity.desc",
       page: pageParam,
     };
-    return await getTvContents(queryParams).then((res) => res.json());
+    return await getTvContents(queryParams);
   };
   const { data, fetchNextPage, status } = useInfiniteQuery(
     ["seriesList"],
@@ -61,7 +61,7 @@ function Series() {
             <CardList
               key={page.page}
               dataList={page.results}
-              contentsType={page.media_type}
+              mediaType={page.media_type}
             />
           ))}
         </div>
