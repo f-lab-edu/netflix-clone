@@ -23,7 +23,7 @@ async function LatestContentPage() {
         />
       </div>
       <div className={"grid gap-4 grid-cols-4 px-5"}>
-        <CardList dataList={data.results} />
+        <CardList dataList={data.results} mediaType={data.media_type} />
       </div>
     </section>
   );
