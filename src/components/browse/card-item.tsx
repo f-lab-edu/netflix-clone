@@ -6,11 +6,11 @@ export default forwardRef(function CardItem(
   {
     id,
     backdropPath,
-    contentsType,
-  }: { id: number; backdropPath: string; contentsType: string },
+    mediaType,
+  }: { id: number; backdropPath: string; mediaType: string },
   ref: ForwardedRef<HTMLAnchorElement>,
 ) {
-  const href = `${id}?contentsType=${contentsType}`;
+  const href = `${id}?mediaType=${mediaType}`;
   return (
     <Link
       href={`/contents/${href}`}

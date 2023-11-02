@@ -4,9 +4,7 @@ import { getTrendContents } from "@/services/contents";
 
 async function LatestContentPage() {
   const selectTimeWindow = "week";
-  const data = await getTrendContents(selectTimeWindow).then((res) =>
-    res.json(),
-  );
+  const data = await getTrendContents(selectTimeWindow);
 
   const options = [
     { id: "week", name: "주간" },
@@ -25,7 +23,7 @@ async function LatestContentPage() {
         />
       </div>
       <div className={"grid gap-4 grid-cols-4 px-5"}>
-        <CardList dataList={data.results} />
+        <CardList dataList={data.results} mediaType={data.media_type} />
       </div>
     </section>
   );

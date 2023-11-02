@@ -18,7 +18,7 @@ function MoviesPage() {
       sort_by: "popularity.desc",
       page: pageParam,
     };
-    return await getMovieContents(queryParams).then((res) => res.json());
+    return await getMovieContents(queryParams);
   };
   const { data, fetchNextPage, status } = useInfiniteQuery(
     ["moviesList"],
@@ -39,7 +39,7 @@ function MoviesPage() {
 
   useEffect(() => {
     const fetchGenres = async () => {
-      const res = await getGenres("movie").then((res) => res.json());
+      const res = await getGenres("movie");
       setGenres(res.genres);
     };
     fetchGenres();

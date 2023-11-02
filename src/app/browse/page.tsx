@@ -1,6 +1,5 @@
-import { Contents } from "@/types/browse/types";
 import CardList from "@/components/browse/card-list";
-import { getAllContents } from "@/services/contents";
+import { allContents } from "@/services/contents";
 
 async function BrowsePage() {
   const [
@@ -10,7 +9,7 @@ async function BrowsePage() {
     upcomingMovies,
     popularTvProgram,
     topRateTvProgram,
-  ]: Contents[] = await getAllContents();
+  ] = await allContents();
 
   return (
     <div>

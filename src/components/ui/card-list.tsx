@@ -1,12 +1,12 @@
 import CardItem from "@/components/ui/card-item";
-import { Result } from "@/types/browse/types";
+import { Contents, Result } from "@/types/browse/types";
 
 export default function CardList({
   dataList,
-  contentsType,
+  mediaType,
 }: {
   dataList: Result[];
-  contentsType?: string;
+  mediaType: Pick<Contents, "media_type">;
 }) {
   return (
     <>
@@ -14,8 +14,7 @@ export default function CardList({
         <CardItem
           key={data.id}
           id={data.id}
-          contentsType={contentsType}
-          mediaType={data.media_type}
+          mediaType={mediaType}
           posterPath={data.poster_path}
         />
       ))}

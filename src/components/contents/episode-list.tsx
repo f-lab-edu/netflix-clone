@@ -1,3 +1,4 @@
+"use client";
 import EpisodeItem from "./episode-item";
 import { getSeasons } from "@/services/contents";
 import { useEffect, useState } from "react";
@@ -14,9 +15,8 @@ function EpisodeList({
 
   useEffect(() => {
     const getData = async () => {
-      getSeasons(id, seasonNumber)
-        .then((res) => res.json())
-        .then((data: Season) => setSeason(data));
+      const response = await getSeasons(id, seasonNumber);
+      setSeason(response);
     };
     getData();
     return () => {};

@@ -1,25 +1,18 @@
 import PreviewContents from "./preview-contents";
 import { getDetailContents, getTrailersContent } from "@/services/contents";
 import Seasons from "@/components/seasons/seasons";
-import { DetailContents, Trailers } from "@/types/contents/types";
 import DetailContentsInfo from "./detail-contents-info";
-
-async function getContents(id: string, contentsType: string) {
-  return await getDetailContents(id, contentsType).then((data) => data.json());
-}
-async function getTrailers(id: string, contentType: string) {
-  return await getTrailersContent(id, contentType).then((data) => data.json());
-}
+import React from "react";
 
 async function DetailContents({
   id,
-  contentsType,
+  mediaType,
 }: {
   id: string;
-  contentsType: string;
+  mediaType: string;
 }) {
-  const detailContents: DetailContents = await getContents(id, contentsType);
-  const trailers: Trailers = await getTrailers(id, contentsType);
+  const detailContents = await getDetailContents(id, mediaType);
+  const trailers = await getTrailersContent(id, mediaType);
 
   const key = trailers[0]?.key ?? "";
   const src = key

@@ -5,13 +5,13 @@ function ContentDetailPage({
   searchParams,
 }: {
   params: { cid: string };
-  searchParams: { contentsType: string };
+  searchParams: { mediaType: string };
 }) {
-  const contentsType = searchParams?.contentsType as string;
+  const mediaType = searchParams?.mediaType as string;
 
   return (
     <section className={"px-10 min-w-[1080px]"}>
-      <DetailContents id={params.cid} contentsType={contentsType} />
+      <DetailContents id={params.cid} mediaType={mediaType} />
     </section>
   );
 }

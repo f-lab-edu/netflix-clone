@@ -1,18 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Contents } from "@/types/browse/types";
 
 export default function CardItem({
   id,
   mediaType,
   posterPath,
-  contentsType,
 }: {
   id: number;
-  mediaType?: string;
+  mediaType?: Pick<Contents, "media_type">;
   posterPath?: string;
-  contentsType?: string;
 }) {
-  const type = mediaType ?? contentsType;
   return (
     <Link
       href={`/contents/${id}?&contentsType=${type}`}
