@@ -12,9 +12,14 @@ export default function CardItem({
   posterPath?: string;
 }) {
   return (
-    <Link href={`/contents/${id}?&mediaType=${mediaType}`}>
+    <Link
+      href={`/contents/${id}?&contentsType=${type}`}
+      className={"h-[393px]"}
+    >
       <Image
-        className={"w-full border rounded cursor-pointer hover:scale-125 "}
+        className={
+          "w-full h-full border rounded cursor-pointer hover:scale-125 "
+        }
         src={`https://image.tmdb.org/t/p/w500${posterPath}`}
         alt={"movie-poster"}
         width={500}

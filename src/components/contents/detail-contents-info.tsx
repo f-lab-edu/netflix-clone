@@ -32,7 +32,7 @@ function DetailContentsInfo({
             ) : null}
 
             <span className={"ml-1 text-sm text-gray-500"}>
-              {runtime
+              {detailContents.contentsType === "movie"
                 ? `${minute}분`
                 : `시즌 ${detailContents.seasons.length}개`}
             </span>
