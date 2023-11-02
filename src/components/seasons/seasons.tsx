@@ -1,8 +1,12 @@
 "use client";
-import EpisodeList from "@/components/contents/episode-list";
+
 import React, { useState } from "react";
 import { DetailContents } from "@/types/contents/types";
 import { useSearchParams } from "next/navigation";
+
+const EpisodeList = React.lazy(
+  () => import("@/components/contents/episode-list"),
+);
 
 function Seasons({ detailContents }: { detailContents: DetailContents }) {
   const searchParams = useSearchParams();
