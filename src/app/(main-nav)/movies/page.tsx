@@ -3,13 +3,18 @@ import CardList from "@/components/ui/card-list";
 import { getMovieContents, getGenres } from "@/services/contents";
 import OptionList from "@/components/ui/option-list";
 import { useInfiniteQuery } from "react-query";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useObserver } from "@/hooks/use-observer";
 import { Options } from "@/types/ui/types";
 
 function MoviesPage() {
   const bottom = useRef<HTMLDivElement | null>(null);
   const [genres, setGenres] = useState<Options[]>();
+  const [selected, setSelected] = useState();
+  const onChangeGenres = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSelected(e.target.value);
+    console.log(e.target.value);
+  };
   const fetchMovies = async ({ pageParam = 1 }) => {
     const queryParams = {
       include_adult: true,
@@ -17,9 +22,11 @@ function MoviesPage() {
       language: "ko",
       sort_by: "popularity.desc",
       page: pageParam,
+      with_genres: selected,
     };
     return await getMovieContents(queryParams);
   };
+
   const { data, fetchNextPage, status } = useInfiniteQuery(
     ["moviesList"],
     fetchMovies,
@@ -29,6 +36,7 @@ function MoviesPage() {
         if (lastPage.total_pages === page) return false;
         return page + 1;
       },
+      notifyOnChangeProps: "tracked",
     },
   );
   const onIntersect = (entries: IntersectionObserverEntry[]) => {
@@ -50,7 +58,14 @@ function MoviesPage() {
   return (
     <section>
       <div className={"ml-5 mt-5 mb-10"}>
-        {genres && <OptionList options={genres} sStyle={selectBoxStyles} />}
+        {genres && (
+          <OptionList
+            options={genres}
+            sStyle={selectBoxStyles}
+            onChange={onChangeGenres}
+            defaultOption
+          />
+        )}
       </div>
       {status === "loading" && <p>불러오는중 </p>}
       {status === "error" && (
