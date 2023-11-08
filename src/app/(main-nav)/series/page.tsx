@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { useInfiniteQuery } from "react-query";
 import { useObserver } from "@/hooks/use-observer";
 import { Options } from "@/types/ui/types";
+import { Contents } from "@/types/browse/types";
 
 function Series() {
   const [genres, setGenres] = useState<Options[]>();
@@ -57,7 +58,7 @@ function Series() {
 
       {status === "success" && data && (
         <div className={"grid gap-4 grid-cols-4 px-5"}>
-          {data.pages.map((page) => (
+          {data.pages.map((page: Contents) => (
             <CardList
               key={page.page}
               dataList={page.results}
