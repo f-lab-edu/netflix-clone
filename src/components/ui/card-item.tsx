@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Contents } from "@/types/browse/types";
 
 export default function CardItem({
   id,
@@ -8,7 +7,7 @@ export default function CardItem({
   posterPath,
 }: {
   id: number;
-  mediaType?: Pick<Contents, "media_type">;
+  mediaType?: string;
   posterPath?: string;
 }) {
   return (

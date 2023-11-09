@@ -11,6 +11,17 @@ function CardList({ contents }: { contents: Contents }) {
   const selectedRef = useRef<HTMLAnchorElement | null>(null);
   let page = Math.floor(index / 5) + 1;
 
+  const onClickLeft = () => {
+    flushSync(() => {
+      setIndex(0);
+    });
+    selectedRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "start",
+    });
+  };
+
   const onClickRight = () => {
     flushSync(() => {
       setIndex(index + 5);
@@ -32,7 +43,9 @@ function CardList({ contents }: { contents: Contents }) {
       <div className="py-1 space-x-4 bg-neutral relative h-44">
         <div className={"flex justify-between items-center w-full h-full"}>
           <div className={"h-full flex mx-2 justify-center"}>
-            <button className={""}>❮</button>
+            <button className={""} onClick={onClickLeft}>
+              ❮
+            </button>
           </div>
           <div className={"carousel carousel-center"}>
             {items.map((item, idx) => {
