@@ -40,7 +40,7 @@ function LatestContentPage() {
         <OptionList
           options={options}
           sStyle={selectBoxStyles}
-          defaultOption={false}
+          selected={selected}
           onChange={onChangeOptions}
         />
       </div>
