@@ -12,7 +12,7 @@ export default function MembershipTypeInfoTable({
 }) {
   return (
     <table>
-      <div className={"flex my-5"}>
+      <tbody className={"flex my-5"}>
         {tr.map((row) => (
           <tr key={row.id} className={"flex flex-col "}>
             {row.td.map((data, index) => (
@@ -33,7 +33,7 @@ export default function MembershipTypeInfoTable({
             ))}
           </tr>
         ))}
-      </div>
+      </tbody>
     </table>
   );
 }
