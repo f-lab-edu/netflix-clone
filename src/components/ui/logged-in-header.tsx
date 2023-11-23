@@ -4,7 +4,7 @@ import Image from "next/image";
 function LoggedInHeader() {
   const navigationMenuList = [
     { id: 1, title: "홈", url: "/browse" },
-    { id: 2, title: "시리즈", url: "/series" },
+    { id: 2, title: "시리즈", url: "/series/10759" },
     { id: 3, title: "영화", url: "/movies/28" },
     { id: 4, title: "NEW! 요즘 대세 콘텐츠", url: "/latest" },
     { id: 5, title: "내가 찜한 콘텐츠", url: "/my-list" },

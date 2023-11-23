@@ -65,7 +65,7 @@ function DetailContentsInfo({
             <span className={"text-gray-700"}> 시리즈 : </span>
             {series && (
               <Link
-                href={`/series/${detailContents.id}/?mediaType=${mediaType}`}
+                href={`/series/detail/${detailContents.id}/?mediaType=${mediaType}`}
                 className={"text-blue-600"}
               >
                 {mediaType === "movie" ? series : `${series} 시리즈`}

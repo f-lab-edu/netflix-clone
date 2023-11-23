@@ -1,26 +1,14 @@
 "use client";
-import CardList from "@/components/ui/card-list";
-import { getGenres, getTvContents } from "@/services/contents";
-import OptionList from "@/components/ui/option-list";
-import { useEffect, useRef, useState } from "react";
+
+import React, { useRef } from "react";
+import { getTvContents } from "@/services/contents";
 import { useInfiniteQuery } from "react-query";
 import { useObserver } from "@/hooks/use-observer";
-import { Options } from "@/types/ui/types";
 import { Contents } from "@/types/browse/types";
+import CardList from "@/components/ui/card-list";
 
-function Series() {
-  const [genres, setGenres] = useState<Options[]>();
+export default function SeriesInfo({ genres }: { genres: string }) {
   const bottom = useRef<HTMLDivElement | null>(null);
-  const selectBoxStyles = "select bg-transparent border-white";
-
-  useEffect(() => {
-    const fetchGenres = async () => {
-      const res = await getGenres("tv");
-      setGenres(res.genres);
-    };
-    fetchGenres();
-  }, []);
-
   const fetchData = async ({ pageParam = 1 }) => {
     const queryParams = {
       include_adult: true,
@@ -28,6 +16,7 @@ function Series() {
       language: "ko",
       sort_by: "popularity.desc",
       page: pageParam,
+      with_genres: genres,
     };
     return await getTvContents(queryParams);
   };
@@ -47,15 +36,8 @@ function Series() {
   };
 
   useObserver({ target: bottom, onIntersect });
-
   return (
-    <section>
-      {genres && (
-        <div className={"ml-5 mt-5 mb-10"}>
-          <OptionList options={genres} sStyle={selectBoxStyles} />
-        </div>
-      )}
-
+    <>
       {status === "success" && data && (
         <div className={"grid gap-4 grid-cols-4 px-5"}>
           {data.pages.map((page: Contents) => (
@@ -70,8 +52,6 @@ function Series() {
       <div ref={bottom} className={"flex justify-center my-10"}>
         <span className="loading loading-spinner loading-md" />
       </div>
-    </section>
+    </>
   );
 }
-
-export default Series;

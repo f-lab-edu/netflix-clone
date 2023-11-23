@@ -1,21 +1,11 @@
-import SeasonContents from "@/components/seasons/season-contents";
+import Genres from "@/components/series/genres";
+import SeriesInfo from "@/components/series/series-info";
 
-function SelectedSeriesPage({
-  params,
-  searchParams,
-}: {
-  params: { id: string };
-  searchParams: { mediaType: string };
-}) {
-  const mediaType = searchParams.mediaType;
-
+export default function SeriesPage({ params }: { params: { id: string } }) {
   return (
-    <>
-      <div>
-        <SeasonContents id={params.id} mediaType={mediaType} />
-      </div>
-    </>
+    <section>
+      <Genres params={params.id} />
+      <SeriesInfo genres={params.id} />
+    </section>
   );
 }
-
-export default SelectedSeriesPage;
