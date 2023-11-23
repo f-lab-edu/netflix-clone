@@ -1,17 +1,20 @@
+import React from "react";
 import { Options } from "@/types/ui/types";
 
 export default function OptionList({
   options,
   sStyle,
-  defaultOption,
+  onChange,
+  selected,
 }: {
   options: Options[];
   sStyle: string;
   defaultOption?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+  selected: string;
 }) {
   return (
-    <select className={sStyle}>
-      {defaultOption && <option value={"all"}>전체</option>}
+    <select className={sStyle} onChange={onChange} defaultValue={selected}>
       {options.map((option) => (
         <option key={option.id} value={option.id}>
           {option.name}
