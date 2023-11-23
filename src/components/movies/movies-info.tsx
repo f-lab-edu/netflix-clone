@@ -1,16 +1,13 @@
 "use client";
-import CardList from "@/components/ui/card-list";
-import { getMovieContents, getGenres } from "@/services/contents";
-import OptionList from "@/components/ui/option-list";
+import React, { useRef } from "react";
+import { getMovieContents } from "@/services/contents";
 import { useInfiniteQuery } from "react-query";
-import { useEffect, useRef, useState } from "react";
 import { useObserver } from "@/hooks/use-observer";
-import { Options } from "@/types/ui/types";
 import Loading from "@/app/(main-nav)/movies/loading";
+import CardList from "@/components/ui/card-list";
 
-function MoviesPage() {
+export default function MoviesInfo({ genres }: { genres: string }) {
   const bottom = useRef<HTMLDivElement | null>(null);
-  const [genres, setGenres] = useState<Options[]>();
   const fetchMovies = async ({ pageParam = 1 }) => {
     const queryParams = {
       include_adult: true,
@@ -18,6 +15,7 @@ function MoviesPage() {
       language: "ko",
       sort_by: "popularity.desc",
       page: pageParam,
+      with_genres: genres,
     };
     return await getMovieContents(queryParams);
   };
@@ -30,6 +28,7 @@ function MoviesPage() {
         if (lastPage.total_pages === page) return false;
         return page + 1;
       },
+      notifyOnChangeProps: "tracked",
     },
   );
   const onIntersect = (entries: IntersectionObserverEntry[]) => {
@@ -37,28 +36,14 @@ function MoviesPage() {
   };
 
   useObserver({ target: bottom, onIntersect });
-
-  useEffect(() => {
-    const fetchGenres = async () => {
-      const res = await getGenres("movie");
-      setGenres(res.genres);
-    };
-    fetchGenres();
-  }, []);
-
-  const selectBoxStyles = "select bg-transparent border-white";
-
   return (
-    <section>
+    <>
       {status === "loading" && <Loading />}
       {status === "error" && (
         <p>에러가 발생했습니다. 잠시후 다시 시도해주세요.</p>
       )}
-      {status === "success" && data && genres && (
+      {status === "success" && data && (
         <>
-          <div className={"ml-5 mt-5 mb-10"}>
-            <OptionList options={genres} sStyle={selectBoxStyles} />
-          </div>
           <div className={"grid gap-4 grid-cols-4 px-5"}>
             {data?.pages.map((page) => (
               <CardList
@@ -73,8 +58,6 @@ function MoviesPage() {
       <div ref={bottom} className={"flex justify-center my-10"}>
         <span className="loading loading-spinner loading-md" />
       </div>
-    </section>
+    </>
   );
 }
-
-export default MoviesPage;
