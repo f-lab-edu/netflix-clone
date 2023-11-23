@@ -1,4 +1,5 @@
 export interface Contents {
+  page: number;
   media_type: "movie" | "tv";
   results: Result[];
   total_pages: number;
