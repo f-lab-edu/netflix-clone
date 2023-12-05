@@ -26,14 +26,12 @@ export const signup = async (data: { email: string; password: string }) => {
   console.log(formData);
   const fetchData = await fetch("http://115.85.181.186:8000/v1/users", {
     method: "POST",
-    // mode: "no-cors",
     headers: {
       "content-type": "application/json",
     },
     body: JSON.stringify(formData),
   }).then((data) => data.json());
-  console.log(fetchData);
-  // console.log("signup:", signup);
+  console.log(fetchData.id);
 
   const { request_token } = await fetch(
     "https://api.themoviedb.org/3/authentication/token/new",
@@ -53,5 +51,19 @@ export const signup = async (data: { email: string; password: string }) => {
   ).then((data) => data.json());
   console.log("sessionId: ", sessionId);
 
-  return true;
+  // ㅎㅐ당 계정에 sessionId 저장
+  //TODO: API 추가
+  await fetch(``, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+    },
+    body: JSON.stringify({ id: fetchData.id, sessionId: sessionId }),
+  }).then((data) => data.json());
+
+  return {
+    id: fetchData.id,
+    sessionId: sessionId.session_id,
+    token: request_token,
+  };
 };
