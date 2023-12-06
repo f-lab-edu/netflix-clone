@@ -2,6 +2,7 @@
 import { getMyListMovie, getMyListTv } from "@/services/contents";
 import CardItem from "@/components/ui/card-item";
 import { useUserState } from "@/context/user-context";
+import { Contents } from "@/types/browse/types";
 
 async function MyListPage() {
   //TODO: preloading 사용하여 서버 컴포넌트로 변경
@@ -9,7 +10,7 @@ async function MyListPage() {
   console.log(user);
   const myListMoviesData = getMyListMovie(user.sessionId);
   const myListTvData = getMyListTv(user.sessionId);
-  const [MovieList, tvList] = await Promise.all([
+  const [MovieList, tvList]: [Contents, Contents] = await Promise.all([
     myListMoviesData,
     myListTvData,
   ]);
@@ -20,7 +21,7 @@ async function MyListPage() {
         <CardItem
           key={data.id}
           id={data.id}
-          mediaType={"movie"}
+          mediaType={MovieList.media_type}
           posterPath={data.poster_path}
         />
       ))}
@@ -28,7 +29,7 @@ async function MyListPage() {
         <CardItem
           key={data.id}
           id={data.id}
-          mediaType={"movie"}
+          mediaType={tvList.media_type}
           posterPath={data.poster_path}
         />
       ))}

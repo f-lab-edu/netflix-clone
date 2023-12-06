@@ -28,7 +28,7 @@ function userReducer(state: User, action: Action): User {
       //TODO: 수정
       return {
         ...state,
-        myList: action.id,
+        myList: [action.id],
       };
     default:
       throw new Error("Unhandled action");
@@ -42,9 +42,9 @@ export function UserContextProvider({
 }) {
   //TODO: initialState 값 지우기
   const [user, dispatch] = useReducer(userReducer, {
-    accessToken: null,
+    accessToken: "",
     sessionId: "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
-    myList: [],
+    myList: [""],
   });
   return (
     <UserDispatchContext.Provider value={dispatch}>

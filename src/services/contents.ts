@@ -189,7 +189,11 @@ export async function getGenres(mediaType: string, language = "ko") {
   return res;
 }
 
-export async function addMyList(mediaType, mediaId, favorite) {
+export async function addMyList(
+  mediaType: string,
+  mediaId: number,
+  favorite: boolean,
+) {
   const res = await fetch("", {
     ...options,
     body: JSON.stringify({
@@ -205,6 +209,9 @@ export async function getMyListMovie(sessionId: string) {
     `https://api.themoviedb.org/3/account/20466738/favorite/movies?language=ko&page=1&session_id=${sessionId}&sort_by=created_at.asc`,
     options,
   ).then((response) => response.json());
+
+  res.media_type = "movie";
+
   return res;
 }
 export async function getMyListTv(sessionId: string) {
@@ -212,5 +219,8 @@ export async function getMyListTv(sessionId: string) {
     `https://api.themoviedb.org/3/account/20466738/favorite/tv?language=ko&page=1&session_id=${sessionId}&sort_by=created_at.asc`,
     options,
   ).then((response) => response.json());
+
+  res.media_type = "tv";
+
   return res;
 }
