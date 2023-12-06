@@ -2,7 +2,7 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import QueryClientWrapper from "@/components/ui/query-client-wrapper";
-import { UserContextProvider } from "@/context/user";
+import { UserContextProvider } from "@/context/user-context";
 
 const inter = Inter({ subsets: ["latin"] });
 
