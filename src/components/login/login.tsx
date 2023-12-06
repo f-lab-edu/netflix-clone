@@ -3,11 +3,10 @@
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { login } from "@/services/account/account";
-import { useContext } from "react";
-import UserContext from "@/context/user";
+import { useUserDispatch } from "@/context/user-context";
 
 function Login({ email }: { email: string }) {
-  const userCtx = useContext(UserContext);
+  const dispatch = useUserDispatch();
   const router = useRouter();
   const {
     register,
@@ -23,9 +22,13 @@ function Login({ email }: { email: string }) {
   const onSubmit = async (data: { email: string; password: string }) => {
     const token = await login(data);
     if (token) {
-      userCtx.signIn({
-        accessToken: token.accessToken,
-        sessionId: token.sessionId,
+      dispatch({
+        type: "SIGN_IN",
+        data: {
+          accessToken: token.accessToken,
+          sessionId: "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
+          // sessionId: token.sessionId,
+        },
       });
       alert("즐거운 관람되세요");
       router.replace("/browse");
