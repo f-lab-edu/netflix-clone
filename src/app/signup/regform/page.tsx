@@ -5,12 +5,8 @@ import { CheckInCircle } from "@/components/icon";
 import { useForm } from "react-hook-form";
 import { FormData } from "@/types/signup/types";
 import { signup } from "@/services/account/account";
-import { useContext } from "react";
-import UserContext from "@/context/user";
 
 function RegFormPage() {
-  const userCtx = useContext(UserContext);
-  // console.log(userCtx);
   const router = useRouter();
   const {
     register,
