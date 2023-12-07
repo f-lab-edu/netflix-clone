@@ -2,8 +2,11 @@
 
 import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { login } from "@/services/account/account";
+import { useUserDispatch } from "@/context/user-context";
 
 function Login({ email }: { email: string }) {
+  const dispatch = useUserDispatch();
   const router = useRouter();
   const {
     register,
@@ -17,25 +20,20 @@ function Login({ email }: { email: string }) {
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    try {
-      //TODO: route handler 에서 fetch
-
-      // const response = await fetch(
-      //   "https://netflix-clone-f3b17-default-rtdb.firebaseio.com/user.json",
-      //   {
-      //     method: "POST",
-      //     body: JSON.stringify(formData),
-      //   },
-      // ).then((res) => res.status);
-
-      alert("로그인 성공!");
-
+    const token = await login(data);
+    if (token) {
+      dispatch({
+        type: "SIGN_IN",
+        data: {
+          accessToken: token.accessToken,
+          sessionId: "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
+          // sessionId: token.sessionId,
+        },
+      });
+      alert("즐거운 관람되세요");
       router.replace("/browse");
-    } catch (err) {
-      console.error(err);
     }
   };
-
   return (
     <form className="card-body text-black" onSubmit={handleSubmit(onSubmit)}>
       <div className="form-control">

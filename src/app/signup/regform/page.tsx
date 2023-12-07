@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { CheckInCircle } from "@/components/icon";
 import { useForm } from "react-hook-form";
 import { FormData } from "@/types/signup/types";
+import { signup } from "@/services/account/account";
 
 function RegFormPage() {
   const router = useRouter();
@@ -24,11 +25,11 @@ function RegFormPage() {
   const emailReg =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     if (!data.requiredTerm)
       return alert("개인정보 수집 및 활용 동의는 필수입니다.");
-    //TODO: 서버 API  요청
-    //fetch('', {body: data})
+    const res = await signup(data);
+
     router.replace("/signup");
   };
 
@@ -43,8 +44,7 @@ function RegFormPage() {
         >
           <div className={"form-control flex flex-col w-108 "}>
             <h1 className={"text-2xl text-center"}>
-              비밀번호를 설정해 멤버십을
-              <br /> 시작하세요.
+              비밀번호를 설정해 멤버십을 <br /> 시작하세요.
             </h1>
             <div className={"mt-2 text-sm"}>
               몇 단계만 더 거치면 넷뿌러졌스 가입 완료! <br />
