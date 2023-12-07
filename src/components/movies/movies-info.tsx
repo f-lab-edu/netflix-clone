@@ -5,8 +5,10 @@ import { useInfiniteQuery } from "react-query";
 import { useObserver } from "@/hooks/use-observer";
 import Loading from "@/app/(main-nav)/movies/loading";
 import CardList from "@/components/ui/card-list";
+import { useUserState } from "@/context/user-context";
 
 export default function MoviesInfo({ genres }: { genres: string }) {
+  const { myList } = useUserState();
   const bottom = useRef<HTMLDivElement | null>(null);
   const fetchMovies = async ({ pageParam = 1 }) => {
     const queryParams = {
@@ -50,6 +52,7 @@ export default function MoviesInfo({ genres }: { genres: string }) {
                 key={page.page}
                 dataList={page.results}
                 mediaType={page.media_type}
+                inMyList={myList?.movies}
               />
             ))}
           </div>
