@@ -93,7 +93,6 @@ export async function getDetailContents(
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
-  console.log("reszz: ", id, mediaType);
 
   res.media_type = mediaType;
 
@@ -188,20 +187,27 @@ export async function getGenres(mediaType: string, language = "ko") {
 
   return res;
 }
-
-export async function addMyList(
+export async function addOrRemoveInMyList(
+  sessionId: string,
   mediaType: string,
   mediaId: number,
   favorite: boolean,
 ) {
-  const res = await fetch("", {
-    ...options,
-    body: JSON.stringify({
-      media_type: mediaType,
-      media_id: mediaId,
-      favorite,
-    }),
-  }).then((response) => response.json());
+  const res = await fetch(
+    `https://api.themoviedb.org/3/account/20466738/favorite?session_id=${sessionId}`,
+    {
+      ...options,
+      method: "POST",
+      body: JSON.stringify({
+        media_type: mediaType,
+        media_id: mediaId,
+        favorite,
+      }),
+    },
+  )
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
+  return res;
 }
 
 export async function getMyListMovie(sessionId: string) {
