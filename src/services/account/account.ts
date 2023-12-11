@@ -1,7 +1,9 @@
 import { options } from "@/config/config";
+import { getMyListMovie, getMyListTv } from "@/services/contents";
+import { Contents } from "@/types/browse/types";
 
 export const login = async (data: { email: string; password: string }) => {
-  return await fetch("http://115.85.181.186:8000/v1/auth/login", {
+  const userInfo = await fetch("http://115.85.181.186:8000/v1/auth/login", {
     method: "POST",
     headers: {
       "content-type": "application/json",
@@ -15,6 +17,15 @@ export const login = async (data: { email: string; password: string }) => {
       return alert("로그인에 실패하였습니다.");
     })
     .catch((err) => console.error(err));
+  //TODO: API 변경시 같이 수정
+  const [myMoviesData, myTvData]: [Contents, Contents] = await Promise.all([
+    getMyListMovie("2bc5adb67cde82f05b5cc514f01dd01b6a41954e"), //getMyListMovie(userInfo.sessionId),
+    getMyListTv("2bc5adb67cde82f05b5cc514f01dd01b6a41954e"), //getMyListTv(userInfo.sessionId),
+  ]);
+  const movies = myMoviesData.results.map((movie) => movie.id);
+  const tv = myTvData.results.map((tv) => tv.id);
+  const user = { accessToken: userInfo.accessToken, myList: { movies, tv } };
+  return user;
 };
 
 export const signup = async (data: { email: string; password: string }) => {

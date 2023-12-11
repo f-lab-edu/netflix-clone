@@ -7,7 +7,6 @@ import { Contents } from "@/types/browse/types";
 async function MyListPage() {
   //TODO: preloading 사용하여 서버 컴포넌트로 변경
   const user = useUserState();
-  console.log(user);
   const myListMoviesData = getMyListMovie(user.sessionId);
   const myListTvData = getMyListTv(user.sessionId);
   const [MovieList, tvList]: [Contents, Contents] = await Promise.all([
@@ -16,13 +15,14 @@ async function MyListPage() {
   ]);
 
   return (
-    <div className={"flex"}>
+    <div className={"grid gap-4 grid-cols-4 px-5"}>
       {MovieList.results.map((data) => (
         <CardItem
           key={data.id}
           id={data.id}
           mediaType={MovieList.media_type}
           posterPath={data.poster_path}
+          inMyList={true}
         />
       ))}
       {tvList.results.map((data) => (
@@ -31,6 +31,7 @@ async function MyListPage() {
           id={data.id}
           mediaType={tvList.media_type}
           posterPath={data.poster_path}
+          inMyList={true}
         />
       ))}
     </div>

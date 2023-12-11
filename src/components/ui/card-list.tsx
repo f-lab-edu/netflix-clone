@@ -4,9 +4,11 @@ import { Result } from "@/types/browse/types";
 export default function CardList({
   dataList,
   mediaType,
+  inMyList,
 }: {
   dataList: Result[];
   mediaType?: string;
+  inMyList: number[];
 }) {
   return (
     <>
@@ -16,6 +18,7 @@ export default function CardList({
           id={data.id}
           mediaType={mediaType ?? data.media_type}
           posterPath={data.poster_path}
+          inMyList={inMyList?.includes(data.id)}
         />
       ))}
     </>

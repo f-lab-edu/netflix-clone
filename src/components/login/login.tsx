@@ -20,14 +20,14 @@ function Login({ email }: { email: string }) {
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    const token = await login(data);
-    if (token) {
+    const user = await login(data);
+    if (user) {
       dispatch({
         type: "SIGN_IN",
         data: {
-          accessToken: token.accessToken,
+          accessToken: user.accessToken,
           sessionId: "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
-          // sessionId: token.sessionId,
+          myList: user.myList,
         },
       });
       alert("즐거운 관람되세요");
