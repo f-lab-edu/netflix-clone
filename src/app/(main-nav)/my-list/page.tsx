@@ -15,7 +15,7 @@ async function MyListPage() {
   ]);
 
   return (
-    <div className={"flex"}>
+    <div className={"grid gap-4 grid-cols-4 px-5"}>
       {MovieList.results.map((data) => (
         <CardItem
           key={data.id}
