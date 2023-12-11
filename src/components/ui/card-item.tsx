@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import StarIcon from "@/components/ui/star";
-import { addMyList } from "@/services/contents";
+import { addOrRemoveInMyList } from "@/services/contents";
 import { useUserDispatch, useUserState } from "@/context/user-context";
 
 export default function CardItem({
@@ -18,8 +18,10 @@ export default function CardItem({
   const { sessionId } = useUserState();
   const dispatch = useUserDispatch();
   const onClickStar = async () => {
-    await addMyList(sessionId, mediaType, id, !inMyList);
-    return inMyList ? dispatch({ type: "REMOVE_MYLIST", id, mediaType }) : dispatch({ type: "ADD_MYLIST", id, mediaType });
+    await addOrRemoveInMyList(sessionId, mediaType, id, !inMyList);
+    return inMyList
+      ? dispatch({ type: "REMOVE_MYLIST", id, mediaType })
+      : dispatch({ type: "ADD_MYLIST", id, mediaType });
   };
   return (
     <Link
