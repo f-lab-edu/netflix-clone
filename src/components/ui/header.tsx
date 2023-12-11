@@ -1,11 +1,11 @@
 import InitialHeader from "@/components/ui/initial-header";
 import LoggedInHeader from "@/components/ui/logged-in-header";
-import { useContext } from "react";
-import UserContext from "@/context/user";
+import { usePathname } from "next/navigation";
 
 function Header() {
-  const userCtx = useContext(UserContext);
-  if (userCtx.accessToken) {
+  const pathname = usePathname();
+  console.log(pathname);
+  if (pathname !== "/" || pathname !== "/login" || "/signup") {
     return <LoggedInHeader />;
   }
   return <InitialHeader />;
