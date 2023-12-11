@@ -52,10 +52,14 @@ function userReducer(state: User, action: Action): User {
       return state;
     case "REMOVE_MYLIST":
       if (action.mediaType === "tv") {
-        return state.myList?.tv.filter((tv) => tv !== action.id);
+        const nextTv = state.myList?.tv.filter((tv) => tv !== action.id);
+        return { ...state, myList: { ...state.myList, tv: nextTv } };
       }
       if (action.mediaType === "movie") {
-        return state.myList?.movies.filter((movie) => movie !== action.id);
+        const nextMovies = state.myList?.movies.filter(
+          (movie) => movie !== action.id,
+        );
+        return { ...state, myList: { ...state.myList, movies: nextMovies } };
       }
       return state;
     default:
@@ -72,7 +76,7 @@ export function UserContextProvider({
   const [user, dispatch] = useReducer(userReducer, {
     accessToken: "",
     sessionId: "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
-    myList: [""],
+    myList: { tv: [], movies: [] },
   });
   return (
     <UserDispatchContext.Provider value={dispatch}>
