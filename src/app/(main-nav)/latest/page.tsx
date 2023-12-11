@@ -5,8 +5,11 @@ import { getTrendContents } from "@/services/contents";
 import React, { useEffect, useState } from "react";
 import ClientSideLoading from "@/components/ui/client-side-loading";
 import { Contents } from "@/types/browse/types";
+import { useUserState } from "@/context/user-context";
 
 function LatestContentPage() {
+  const { myList } = useUserState();
+  const inMyList = [...myList?.tv, ...myList?.movies];
   const [selected, setSelected] = useState("week");
   const [data, setData] = useState<Contents | null>(null);
 
@@ -45,7 +48,7 @@ function LatestContentPage() {
         />
       </div>
       <div className={"grid gap-4 grid-cols-4 px-5"}>
-        <CardList dataList={data.results} />
+        <CardList dataList={data.results} inMyList={inMyList} />
       </div>
     </section>
   );
