@@ -11,7 +11,7 @@ export default function CardItem({
   inMyList,
 }: {
   id: number;
-  mediaType?: string;
+  mediaType: string;
   posterPath?: string;
   inMyList: boolean;
 }) {
@@ -45,7 +45,7 @@ export default function CardItem({
           {inMyList ? (
             <StarIcon key={id} isMyList={true} />
           ) : (
-            <StarIcon key={id} />
+            <StarIcon key={id} isMyList={false} />
           )}
         </div>
       </div>

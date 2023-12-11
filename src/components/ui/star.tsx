@@ -1,8 +1,4 @@
-export default function StarIcon({
-  isMyList = false,
-}: {
-  isMyList: boolean;
-}) {
+export default function StarIcon({ isMyList }: { isMyList: boolean }) {
   return (
     <div className={"bg-orange-600 hover:scale-125 hover:rotate-45"}>
       {isMyList ? (

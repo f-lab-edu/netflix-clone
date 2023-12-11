@@ -4,7 +4,7 @@ import React, { createContext, Dispatch, useContext, useReducer } from "react";
 export type User = {
   accessToken: string;
   sessionId: string;
-  myList?: { movies: number[]; tv: number[] };
+  myList: { movies: number[]; tv: number[] };
 };
 
 type Action =
@@ -46,7 +46,10 @@ function userReducer(state: User, action: Action): User {
       if (action.mediaType === "tv") {
         return {
           ...state,
-          myList: { ...state.myList, tv: state.myList?.tv.concat(action.id) },
+          myList: {
+            ...state.myList,
+            tv: state.myList?.tv.concat(action.id),
+          },
         };
       }
       return state;
