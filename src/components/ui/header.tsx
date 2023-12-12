@@ -4,8 +4,7 @@ import { usePathname } from "next/navigation";
 
 function Header() {
   const pathname = usePathname();
-  console.log(pathname);
-  if (pathname !== "/" || pathname !== "/login" || "/signup") {
+  if (pathname !== "/" && pathname !== "/login" && pathname !== "/signup") {
     return <LoggedInHeader />;
   }
   return <InitialHeader />;
