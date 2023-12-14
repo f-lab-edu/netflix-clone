@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import QueryClientWrapper from "@/components/ui/query-client-wrapper";
 import { UserContextProvider } from "@/context/user-context";
+import React from "react";
+import LoggedInHeader from "@/components/ui/logged-in-header";
+import InitialHeader from "@/components/ui/initial-header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,11 +19,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const getUser = () => {};
+  // const isLoggedIn = getUser();
+  const isLoggedIn = true;
   return (
     <html lang="en">
       <body className={inter.className}>
         <UserContextProvider>
-          <QueryClientWrapper>{children}</QueryClientWrapper>
+          <QueryClientWrapper>
+            {isLoggedIn ? <LoggedInHeader /> : <InitialHeader />}
+            {children}
+          </QueryClientWrapper>
         </UserContextProvider>
       </body>
     </html>
