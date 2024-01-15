@@ -3,7 +3,7 @@ import React, { useRef } from "react";
 import { getMovieContents } from "@/services/contents";
 import { useInfiniteQuery } from "react-query";
 import { useObserver } from "@/hooks/use-observer";
-import Loading from "@/app/(main-nav)/movies/loading";
+import Loading from "@/app/(afterLogin)/movies/loading";
 import CardList from "@/components/ui/card-list";
 import { useUserState } from "@/context/user-context";
 
