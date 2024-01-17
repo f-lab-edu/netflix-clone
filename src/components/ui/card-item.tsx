@@ -1,28 +1,16 @@
 import Image from "next/image";
 import Link from "next/link";
-import StarIcon from "@/components/ui/star";
-import { addOrRemoveInMyList } from "@/services/contents";
-import { useUserDispatch, useUserState } from "@/context/user-context";
 
 export default function CardItem({
   id,
   mediaType,
   posterPath,
-  inMyList,
 }: {
   id: number;
   mediaType: string;
   posterPath?: string;
   inMyList: boolean;
 }) {
-  const { sessionId } = useUserState();
-  const dispatch = useUserDispatch();
-  const onClickStar = async () => {
-    await addOrRemoveInMyList(sessionId, mediaType, id, !inMyList);
-    return inMyList
-      ? dispatch({ type: "REMOVE_MYLIST", id, mediaType })
-      : dispatch({ type: "ADD_MYLIST", id, mediaType });
-  };
   return (
     <Link
       href={`/contents/${id}?&mediaType=${mediaType}`}
@@ -37,18 +25,6 @@ export default function CardItem({
         width={500}
         height={500}
       />
-      <div className={"relative"}>
-        <div
-          className={"absolute bottom-0 right-0 mr-3 mb-3"}
-          onClick={onClickStar}
-        >
-          {inMyList ? (
-            <StarIcon key={id} isMyList={true} />
-          ) : (
-            <StarIcon key={id} isMyList={false} />
-          )}
-        </div>
-      </div>
     </Link>
   );
 }
