@@ -1,24 +1,41 @@
-import DetailContents from "@/components/contents/detail-contents";
+"use client";
 
-function ContentDetailPage({
+import DetailContents from "@/components/contents/detail-contents";
+import CloseButton from "@/app/(afterLogin)/_component/close-button";
+import { usePathname } from "next/navigation";
+import ContentsDetailPage from "@/app/(afterLogin)/contents/[cid]/page";
+
+function ContentsModal({
   params,
   searchParams,
 }: {
   params: { cid: string };
-  searchParams: { mediaType: string };
+  searchParams: { mediaType: string; seasonNumber?: string };
 }) {
   const mediaType = searchParams?.mediaType as string;
+  const pathname = usePathname();
+  console.log("searchParams: ", searchParams);
+
+  // if (searchParams?.seasonNumber)
+  //   return <ContentsDetailPage params={params} searchParams={searchParams} />;
+  if (!pathname.split("/").includes("contents")) return null;
 
   return (
-    <section
+    <div
       className={
-        "absolute top-[50%] left-[50%] -translate-x-[50%] -translate-y-[50%] bg-black overflow-y-scroll w-[80vw] h-[80vh]"
-        // "fixed my-0 mx-auto bg-black overflow-y-scroll
+        "w-[100vw] h-full flex justify-center absolute top-0 left-0 right-0 bottom-0 bg-[rgba(0, 0, 0, 0.4)]"
       }
     >
-      <DetailContents id={params.cid} mediaType={mediaType} />
-    </section>
+      <div
+        className={
+          "relative top-5 max-w-7xl min-w-[600px] flex flex-col bg-black  border border-rose-600 rounded-lg "
+        }
+      >
+        <CloseButton />
+        <DetailContents id={params.cid} mediaType={mediaType} />
+      </div>
+    </div>
   );
 }
 
-export default ContentDetailPage;
+export default ContentsModal;
