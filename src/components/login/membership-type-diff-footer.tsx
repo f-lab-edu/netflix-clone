@@ -35,7 +35,7 @@ export default function MembershipTypeDiffFooter() {
       <div className={"flex justify-center"}>
         <Link
           className={"w-96 rounded-md mt-5 p-4 bg-red-700 text-center"}
-          href={"/signup/payment-picker"}
+          href={"/browse"}
         >
           다음
         </Link>
