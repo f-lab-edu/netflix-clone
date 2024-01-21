@@ -3,7 +3,6 @@
 import DetailContents from "@/components/contents/detail-contents";
 import CloseButton from "@/app/(afterLogin)/_component/close-button";
 import { usePathname } from "next/navigation";
-import ContentsDetailPage from "@/app/(afterLogin)/contents/[cid]/page";
 
 function ContentsModal({
   params,
@@ -14,7 +13,6 @@ function ContentsModal({
 }) {
   const mediaType = searchParams?.mediaType as string;
   const pathname = usePathname();
-  console.log("searchParams: ", searchParams);
 
   // if (searchParams?.seasonNumber)
   //   return <ContentsDetailPage params={params} searchParams={searchParams} />;
@@ -28,7 +26,7 @@ function ContentsModal({
     >
       <div
         className={
-          "relative top-5 max-w-7xl min-w-[600px] flex flex-col bg-black  border border-rose-600 rounded-lg "
+          "relative top-5 min-w-[400px] max-w-[800px] flex flex-col bg-black  border border-rose-600 rounded-lg "
         }
       >
         <CloseButton />

@@ -12,18 +12,15 @@ export default function CardItem({
   inMyList: boolean;
 }) {
   return (
-    <Link
-      href={`/contents/${id}?&mediaType=${mediaType}`}
-      className={"h-[393px]"}
-    >
+    <Link href={`/contents/${id}?&mediaType=${mediaType}`}>
       <Image
         className={
-          "w-full h-full border rounded cursor-pointer hover:scale-95 "
+          "w-max-[285px] h-[390px] border rounded cursor-pointer hover:scale-95 "
         }
         src={`https://image.tmdb.org/t/p/w500${posterPath}`}
         alt={"movie-poster"}
-        width={500}
-        height={500}
+        width={285}
+        height={390}
       />
     </Link>
   );
