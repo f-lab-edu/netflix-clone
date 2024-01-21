@@ -11,7 +11,7 @@ function DetailContentsInfo({
   const series =
     detailContents?.belongs_to_collection?.name ?? detailContents.name;
   const releaseDate =
-    detailContents?.release_date ?? detailContents?.last_air_date;
+    detailContents?.release_date ?? (detailContents?.last_air_date as string);
 
   const runtime = detailContents.runtime ?? "";
 
@@ -19,7 +19,7 @@ function DetailContentsInfo({
   const minute = runtime % 60;
   const mediaType = detailContents.media_type;
 
-  const date: string = releaseDate!.split("-")[0];
+  const date = releaseDate.split("-")[0];
 
   return (
     <div>

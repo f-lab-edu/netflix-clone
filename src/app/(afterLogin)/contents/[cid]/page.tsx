@@ -1,6 +1,6 @@
 import DetailContents from "@/components/contents/detail-contents";
 
-function ContentDetailPage({
+function ContentsDetailPage({
   params,
   searchParams,
 }: {
@@ -16,4 +16,4 @@ function ContentDetailPage({
   );
 }
 
-export default ContentDetailPage;
+export default ContentsDetailPage;

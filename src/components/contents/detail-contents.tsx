@@ -13,15 +13,14 @@ async function DetailContents({
 }) {
   const detailContents = await getDetailContents(id, mediaType);
   const trailers = await getTrailersContent(id, mediaType);
-
-  const key = trailers[0]?.key ?? "";
-  const src = key
-    ? `https://www.youtube.com/embed/${key}?autoplay=1&loop=1&playlist=${key}&mute=1&controls=0&si=nh5lkzt8Jqa2v4Z1&amp;`
-    : `https://image.tmdb.org/t/p/w500${detailContents?.backdrop_path}`;
+  const preview =
+    trailers?.results?.length === 0
+      ? detailContents?.backdrop_path
+      : trailers.results;
 
   return (
     <>
-      <PreviewContents src={src} />
+      <PreviewContents preview={preview} />
       <DetailContentsInfo detailContents={detailContents} />
       {detailContents?.seasons && <Seasons detailContents={detailContents} />}
     </>
