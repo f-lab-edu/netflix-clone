@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
 import EmailForm from "@/components/login/email-form";
 import Image from "next/image";
+import Background from "@/app/(beforeLogin)/_component/background";
 
 export default function Home() {
   const router = useRouter();
@@ -17,15 +18,7 @@ export default function Home() {
     <>
       <main>
         <section>
-          <Image
-            className="hero h-80vh relative opacity-60 "
-            src={
-              "https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg"
-            }
-            alt={"background"}
-            width={500}
-            height={500}
-          />
+          <Background />
           <div className={"absolute w-full text-center top-1/2 "}>
             <h1 className="mb-5 text-5xl font-bold ">
               영화, 시리즈 등을 무제한으로
