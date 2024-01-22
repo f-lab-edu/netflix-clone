@@ -7,6 +7,8 @@ import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import GoogleButton from "@/app/(beforeLogin)/login/_component/google-button";
 import NaverButton from "@/app/(beforeLogin)/login/_component/naver-button";
+import React from "react";
+import Background from "@/app/(beforeLogin)/_component/background";
 
 function LoginPage({ searchParams }: { searchParams: { email: string } }) {
   const router = useRouter();
@@ -18,16 +20,8 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
 
   return (
     <>
-      <Image
-        className={"hero h-80vh opacity-60 absolute"}
-        src={
-          "https://daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.jpg"
-        }
-        alt={"background"}
-        width={500}
-        height={500}
-      />
-      <div className={"flex h-80vh justify-center items-center"}>
+      <Background />
+      <div className={"flex h-80vh justify-center items-center z-1"}>
         <div className="card max-w-sm bg-black">
           <Login email={email} />
           <div className={"flex justify-around"}>
