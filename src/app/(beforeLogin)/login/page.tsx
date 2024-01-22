@@ -17,6 +17,7 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
   if (session) return router.replace("/browse");
 
   const email = searchParams?.email ?? "";
+  console.log("google client id: ", process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
 
   return (
     <>
