@@ -20,9 +20,9 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
   console.log("google client id: ", process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
   console.log(
     "google client secret: ",
-    process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
+    process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
   );
-  console.log("auth secrets: ", process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
+  console.log("auth secrets: ", process.env.NEXT_PUBLIC_NEXTAUTH_SECRET);
 
   return (
     <>
