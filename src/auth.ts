@@ -12,6 +12,7 @@ export const {
   auth,
   signIn,
 } = NextAuth({
+  trustHost: true,
   providers: [
     Google({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
