@@ -18,5 +18,17 @@ export const {
       clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     }),
   ],
+  logger: {
+    error(code, ...message) {
+      console.error(code, message);
+    },
+    warn(code, ...message) {
+      console.warn(code, message);
+    },
+    debug(code, ...message) {
+      console.debug(code, message);
+    },
+  },
+  // pages: { signIn: "/login" },
   secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
 });
