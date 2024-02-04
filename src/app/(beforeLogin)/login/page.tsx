@@ -1,9 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import Login from "@/components/login/login";
 import LoginFooter from "@/components/login/login-footer";
-import { useSession } from "next-auth/react";
+// import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import GoogleButton from "@/app/(beforeLogin)/login/_component/google-button";
 import NaverButton from "@/app/(beforeLogin)/login/_component/naver-button";
@@ -12,17 +11,12 @@ import Background from "@/app/(beforeLogin)/_component/background";
 
 function LoginPage({ searchParams }: { searchParams: { email: string } }) {
   const router = useRouter();
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
+  // console.log(process.env.GOOGLE_CLIENT_ID);
 
-  if (session) return router.replace("/browse");
+  // if (session) return router.replace("/browse");
 
   const email = searchParams?.email ?? "";
-  console.log("google client id: ", process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID);
-  console.log(
-    "google client secret: ",
-    process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
-  );
-  console.log("auth secrets: ", process.env.NEXT_PUBLIC_NEXTAUTH_SECRET);
 
   return (
     <>

@@ -20,22 +20,30 @@ function Login({ email }: { email: string }) {
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
   const onSubmit = async (data: { email: string; password: string }) => {
-    const user = await login(data);
-    if (user) {
-      dispatch({
-        type: "SIGN_IN",
-        data: {
-          accessToken: user.accessToken,
-          sessionId: "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
-          myList: user.myList,
-        },
-      });
-      alert("즐거운 관람되세요");
-      router.replace("/browse");
-    }
+    // const user = await login(data);
+    // if (user) {
+    //   dispatch({
+    //     type: "SIGN_IN",
+    //     data: {
+    //       accessToken: user.accessToken,
+    //       sessionId: "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
+    //       myList: user.myList,
+    //     },
+    //   });
+    //   alert("즐거운 관람되세요");
+    //   router.replace("/browse");
+    // }
+    alert("즐거운 관람되세요");
+    router.replace("/browse");
   };
   return (
     <form className="card-body text-black" onSubmit={handleSubmit(onSubmit)}>
+      <div>
+        <span className={"text-xs text-white"}>
+          테스트 계정
+          <br /> email: test@test.com, password: 123123
+        </span>
+      </div>
       <div className="form-control">
         <label className="label">
           <span className="label-text text-white">Email</span>
@@ -60,7 +68,7 @@ function Login({ email }: { email: string }) {
         </label>
         <input
           {...register("password")}
-          type="text"
+          type="password"
           placeholder="password"
           className="input input-bordered"
         />
