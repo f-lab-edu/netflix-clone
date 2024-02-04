@@ -24,10 +24,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <UserContextProvider>
           <QueryClientWrapper>
-            <AuthSession>
-              <Header />
-              {children}
-            </AuthSession>
+            <Header />
+            {/*<AuthSession>*/}
+            {children}
+            {/*</AuthSession>*/}
           </QueryClientWrapper>
         </UserContextProvider>
       </body>
