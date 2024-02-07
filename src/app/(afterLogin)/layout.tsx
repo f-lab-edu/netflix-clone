@@ -1,6 +1,5 @@
-"use client";
-
 import React, { ReactNode } from "react";
+import Header from "@/app/(afterLogin)/_component/header";
 
 export default function Layout({
   children,
@@ -11,6 +10,7 @@ export default function Layout({
 }) {
   return (
     <main>
+      <Header />
       {children}
       {modal}
     </main>
