@@ -1,11 +1,39 @@
 "use client";
 
+import { db, fireAuth, storage } from "@/firebase";
+import {
+  getAuth,
+  GoogleAuthProvider,
+  inMemoryPersistence,
+  setPersistence,
+  signInWithPopup,
+} from "@firebase/auth";
 import { signIn } from "next-auth/react";
 
 export default function GoogleButton() {
+  const auth = getAuth();
+  console.log("fireAuth.currentUser: ", fireAuth.currentUser);
+
+  const handleLogin = async () => {
+    const provider = new GoogleAuthProvider();
+    try {
+      const { user } = await signInWithPopup(auth, provider);
+      await signIn(
+        "credentials",
+        { callbackUrl: "/browse" },
+        {
+          username: user.email,
+          password: user.displayName,
+        },
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div className={"flex flex-col items-center"}>
-      <button onClick={() => signIn("google")}>
+      <button onClick={handleLogin}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="40"
