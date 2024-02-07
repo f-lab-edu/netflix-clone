@@ -5,7 +5,6 @@ import SearchBar from "@/app/(afterLogin)/_component/search-bar";
 
 export default async function SubNav() {
   const session = await auth();
-  console.log(session?.user);
 
   return (
     <>

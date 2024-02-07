@@ -30,7 +30,6 @@ export default function Profile() {
             <span className={"profile-arrow-icon"}></span>
           </div>
           {isOpen && (
-            // <div className={"fixed mt-2 border"}>
             <div className={"absolute mt-2 border p-1 z-[9999]"}>
               <ul>
                 <li>
