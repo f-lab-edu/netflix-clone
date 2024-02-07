@@ -1,6 +1,7 @@
 import NextAuth from "next-auth";
 import Google from "@auth/core/providers/google";
 import Credentials from "@auth/core/providers/credentials";
+import { NextResponse } from "next/server";
 
 export const {
   handlers: { GET, POST },
@@ -32,7 +33,11 @@ export const {
 
         const user = await authResponse.json();
 
-        return user;
+        return {
+          email: user.id,
+          name: user.nickname,
+          ...user,
+        };
       },
     }),
   ],
@@ -64,6 +69,12 @@ export const {
       if (url.startsWith("/")) return `${baseUrl}${url}`;
       else if (new URL(url).origin === baseUrl) return url;
       return baseUrl;
+    },
+    async authorized({ request, auth }) {
+      if (!auth) {
+        return NextResponse.redirect("https://www.broken-netflix.com/login");
+      }
+      return true;
     },
   },
   // pages: { signIn: "/login" },
