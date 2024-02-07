@@ -1,9 +1,7 @@
 import CardList from "@/components/browse/card-list";
 import { allContents } from "@/services/contents";
-import { fireAuth } from "@/firebase";
 
 async function BrowsePage() {
-  console.log("fireAuth: ", fireAuth);
   const [
     popularMovies,
     nowPlayingMovies,
