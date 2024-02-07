@@ -2,6 +2,8 @@ import NextAuth from "next-auth";
 import Google from "@auth/core/providers/google";
 import Credentials from "@auth/core/providers/credentials";
 import { NextResponse } from "next/server";
+import { signInWithEmailAndPassword } from "@firebase/auth";
+import { fireAuth } from "@/firebase";
 
 export const {
   handlers: { GET, POST },
@@ -15,29 +17,18 @@ export const {
       clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || "",
     }),
     Credentials({
-      async authorize(credentials) {
-        const authResponse = await fetch(`${process.env.AUTH_URL}/api/login`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            email: credentials.username,
-            password: credentials.password,
-          }),
-        });
-
-        if (!authResponse.ok) {
-          return null;
+      async authorize(credentials, request) {
+        try {
+          await signInWithEmailAndPassword(
+            fireAuth,
+            credentials.email as string,
+            credentials.password as string,
+          );
+          return { email: credentials.email };
+        } catch (err) {
+          console.error("next-auth credentials error: ", err);
         }
-
-        const user = await authResponse.json();
-
-        return {
-          email: user.id,
-          name: user.nickname,
-          ...user,
-        };
+        return;
       },
     }),
   ],
