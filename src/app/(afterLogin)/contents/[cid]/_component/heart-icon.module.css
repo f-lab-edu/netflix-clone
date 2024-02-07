@@ -1,0 +1,26 @@
+.heartButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.heartButton button {
+  background: #ffffff;
+  border: none;
+  outline: none;
+  display: flex;
+  width: 38px;
+  height: 38px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 19px;
+  cursor: pointer;
+  transition-property: background-color;
+  transition-duration: 0.2s;
+  margin-right: 4px;
+}
+.heartButton:hover button {
+  background-color: rgba(249, 24, 128, 0.1)
+}
+.heartButton svg, .heartButton:hover svg {
+  fill: rgb(228, 34, 126);
+}
