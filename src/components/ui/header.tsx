@@ -1,15 +1,10 @@
 "use client";
-
-import InitialHeader from "@/components/ui/initial-header";
-import LoggedInHeader from "@/components/ui/logged-in-header";
-import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 function Header() {
-  const pathname = usePathname();
-  if (pathname !== "/" && pathname !== "/login" && pathname !== "/signup") {
-    return <LoggedInHeader />;
-  }
-  return <InitialHeader />;
+  const { data: session } = useSession();
+  if (session) return;
+  return <Header />;
 }
 
 export default Header;

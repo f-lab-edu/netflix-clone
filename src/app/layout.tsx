@@ -6,6 +6,7 @@ import { UserContextProvider } from "@/context/user-context";
 import React from "react";
 import AuthSession from "@/app/_component/auth-session";
 import Header from "@/components/ui/header";
+import { MswComponent } from "@/app/_component/msw-component";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,10 +25,8 @@ export default function RootLayout({
       <body className={inter.className}>
         <UserContextProvider>
           <QueryClientWrapper>
-            <Header />
-            {/*<AuthSession>*/}
-            {children}
-            {/*</AuthSession>*/}
+            <MswComponent />
+            <AuthSession>{children}</AuthSession>
           </QueryClientWrapper>
         </UserContextProvider>
       </body>
