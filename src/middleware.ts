@@ -1,9 +1,9 @@
-import { auth } from "./auth";
 import { NextResponse } from "next/server";
+import { auth } from "@/auth";
 
 export async function middleware() {
   const session = await auth();
-  if (!session) {
+  if (!session?.user) {
     return NextResponse.redirect("https://broken-netflix.com/login");
   }
 }
