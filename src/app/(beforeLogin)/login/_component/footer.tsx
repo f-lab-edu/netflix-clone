@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-function LoginFooter() {
+function Footer() {
   return (
     <div className={"text-center  mt-4 mb-12 mx-12"}>
       <div className={"text-sm"}>
@@ -18,4 +18,4 @@ function LoginFooter() {
   );
 }
 
-export default LoginFooter;
+export default Footer;
