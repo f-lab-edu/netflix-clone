@@ -1,11 +1,17 @@
 import Link from "next/link";
 import { DetailContents } from "@/types/contents/types";
+import HeartIcon from "@/app/(afterLogin)/contents/[cid]/_component/heart-icon";
+import { addOrRemoveInMyList } from "@/services/contents";
+import { useUserState } from "@/context/user-context";
 
 function DetailContentsInfo({
   detailContents,
+  favorites,
 }: {
   detailContents: DetailContents;
+  favorites: { tv: number[]; movie: number[] };
 }) {
+  const { sessionId } = useUserState();
   const title = detailContents.title ?? detailContents.name;
   const genres = detailContents?.genres.map((g) => g.name + " ");
   const series =
@@ -20,6 +26,30 @@ function DetailContentsInfo({
   const mediaType = detailContents.media_type;
 
   const date = releaseDate.split("-")[0];
+
+  let hearted = false;
+
+  if (
+    mediaType === "tv" &&
+    favorites.tv.find((tv) => tv === detailContents.id)
+  ) {
+    hearted = true;
+  }
+  if (
+    mediaType === "movie" &&
+    favorites.movie.find((movie) => movie === detailContents.id)
+  ) {
+    hearted = true;
+  }
+
+  const onFavorite = async () => {
+    await addOrRemoveInMyList(
+      sessionId,
+      mediaType,
+      detailContents.id,
+      !hearted,
+    );
+  };
 
   return (
     <div>
@@ -52,6 +82,7 @@ function DetailContentsInfo({
         </div>
 
         <div className={"preview-right"}>
+          <HeartIcon hearted={hearted} onFavorite={onFavorite} />
           <small className={" block "}>
             <span className={"text-gray-700"}>평점: </span>
             {detailContents.vote_average.toFixed(2)} (
