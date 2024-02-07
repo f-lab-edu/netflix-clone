@@ -1,7 +1,8 @@
 "use client";
+
 import { useRouter } from "next/navigation";
 import React, { useRef } from "react";
-import EmailForm from "@/components/login/email-form";
+import EmailForm from "@/app/(beforeLogin)/_component/email-form";
 import Background from "@/app/(beforeLogin)/_component/background";
 
 export default function Home() {
