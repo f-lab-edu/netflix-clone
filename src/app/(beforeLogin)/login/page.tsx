@@ -44,6 +44,16 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
       <div className={"flex h-80vh justify-center items-center z-1"}>
         <div className="card max-w-sm bg-black">
           <form onSubmit={onSubmit} className="card-body text-black">
+            <div className={"text-white"}>
+              <small> 테스트 계정 </small>
+              <small className={"text-red-600"}>
+                구글 로그인 수리중 ㅠ_ㅜ!!{" "}
+              </small>
+              <br />
+              <small>
+                id: test@test.com <br /> password: 123123
+              </small>
+            </div>
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-white">Email</span>
@@ -64,7 +74,7 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
               <input
                 id="password"
                 name="password"
-                type="text"
+                type="password"
                 placeholder="password"
                 className="input input-bordered"
                 required
