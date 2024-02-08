@@ -36,11 +36,13 @@ function RegFormPage() {
               </label>
               <input
                 id="email"
+                type="email"
                 name="email"
                 className={"input w-full text-black"}
               />
               <input
                 id="password"
+                type="password"
                 name="password"
                 className={"input w-full text-black mt-3"}
                 placeholder={"비밀번호를 추가하세요."}
