@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import Google from "@auth/core/providers/google";
 import Credentials from "@auth/core/providers/credentials";
 import { NextResponse } from "next/server";
@@ -24,11 +24,13 @@ export const {
             credentials.email as string,
             credentials.password as string,
           );
-          return { email: credentials.email };
+          return <User>{
+            email: credentials.email,
+          };
         } catch (err) {
           console.error("next-auth credentials error: ", err);
         }
-        return;
+        return null;
       },
     }),
   ],
