@@ -15,6 +15,7 @@ export const {
     Google({
       clientId: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET || "",
+      authorization: { params: { access_type: "offline", prompt: "consent" } },
     }),
     Credentials({
       async authorize(credentials, request) {
@@ -55,7 +56,6 @@ export const {
       if (isAllowedToSignIn) {
         return true;
       }
-      console.log("isAllowedToSign: ", isAllowedToSignIn);
       return false;
     },
     async redirect({ url, baseUrl }) {
@@ -70,6 +70,5 @@ export const {
       return true;
     },
   },
-  // pages: { signIn: "/login" },
   secret: process.env.NEXT_PUBLIC_NEXTAUTH_SECRET,
 });
