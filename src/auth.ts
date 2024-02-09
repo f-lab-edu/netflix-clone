@@ -51,18 +51,6 @@ export const {
     newUser: "/signup/regform",
   },
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
-      const isAllowedToSignIn = true;
-      if (isAllowedToSignIn) {
-        return true;
-      }
-      return false;
-    },
-    async redirect({ url, baseUrl }) {
-      if (url.startsWith("/")) return `${baseUrl}${url}`;
-      else if (new URL(url).origin === baseUrl) return url;
-      return baseUrl;
-    },
     async authorized({ request, auth }) {
       if (!auth) {
         return NextResponse.redirect("https://www.broken-netflix.com/login");
