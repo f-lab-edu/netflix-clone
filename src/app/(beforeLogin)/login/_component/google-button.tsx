@@ -11,6 +11,7 @@ export default function GoogleButton() {
     await signIn("credentials", {
       provider: "google",
       email: response.user.email,
+      redirect: false,
     });
   };
   return (
