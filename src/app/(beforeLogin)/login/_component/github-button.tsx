@@ -14,6 +14,7 @@ export default function GithubButton() {
     await signIn("credentials", {
       provider: "github",
       email: response.user.email,
+      redirect: false,
     });
   };
   return (
