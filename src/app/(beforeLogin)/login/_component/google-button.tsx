@@ -1,10 +1,21 @@
 "use client";
 import { signIn } from "next-auth/react";
+import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
+import { fireAuth } from "@/firebase";
 
 export default function GoogleButton() {
+  const onClick = async () => {
+    const provider = new GoogleAuthProvider();
+    const response = await signInWithPopup(fireAuth, provider);
+    if (!response.user) return;
+    await signIn("credentials", {
+      provider: "google",
+      email: response.user.email,
+    });
+  };
   return (
     <div className={"flex flex-col items-center"}>
-      <button onClick={() => signIn("google")}>
+      <button onClick={onClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="40"
