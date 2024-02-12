@@ -2,7 +2,7 @@
 
 import Footer from "@/app/(beforeLogin)/login/_component/footer";
 import GoogleButton from "@/app/(beforeLogin)/login/_component/google-button";
-import NaverButton from "@/app/(beforeLogin)/login/_component/naver-button";
+import GithubButton from "@/app/(beforeLogin)/login/_component/github-button";
 import Background from "@/app/(beforeLogin)/_component/background";
 import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -46,9 +46,6 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
           <form onSubmit={onSubmit} className="card-body text-black">
             <div className={"text-white"}>
               <small> 테스트 계정 </small>
-              <small className={"text-red-600"}>
-                구글 로그인 수리중 ㅠ_ㅜ!!{" "}
-              </small>
               <br />
               <small>
                 id: test@test.com <br /> password: 123123
@@ -100,7 +97,7 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
           </form>
           <div className={"flex justify-around"}>
             <GoogleButton />
-            <NaverButton />
+            <GithubButton />
           </div>
           <Footer />
         </div>

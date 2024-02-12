@@ -20,11 +20,13 @@ export const {
     Credentials({
       async authorize(credentials, request) {
         try {
-          await signInWithEmailAndPassword(
-            fireAuth,
-            credentials.email as string,
-            credentials.password as string,
-          );
+          if (!credentials.provider) {
+            await signInWithEmailAndPassword(
+              fireAuth,
+              credentials.email as string,
+              credentials.password as string,
+            );
+          }
           return <User>{
             email: credentials.email,
           };
