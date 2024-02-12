@@ -46,9 +46,6 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
           <form onSubmit={onSubmit} className="card-body text-black">
             <div className={"text-white"}>
               <small> 테스트 계정 </small>
-              <small className={"text-red-600"}>
-                구글 로그인 수리중 ㅠ_ㅜ!!{" "}
-              </small>
               <br />
               <small>
                 id: test@test.com <br /> password: 123123
