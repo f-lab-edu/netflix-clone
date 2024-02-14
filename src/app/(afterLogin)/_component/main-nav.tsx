@@ -9,7 +9,7 @@ export default function MainNav() {
   console.log(segment);
   return (
     <>
-      <li>
+      <li className={"ml-2"}>
         <Link href={"/browse"}>
           <div className={style.navPill}>
             {segment === "browse" ? (
@@ -40,7 +40,7 @@ export default function MainNav() {
           </div>
         </Link>
       </li>
-      <li>
+      <li className={"ml-2"}>
         <Link href={"/series/10759"}>
           <div className={style.navPill}>
             {segment === "series" ? (
@@ -78,7 +78,7 @@ export default function MainNav() {
           </div>
         </Link>
       </li>
-      <li>
+      <li className={"ml-2"}>
         <Link href={"/movies/28"}>
           <div className={style.navPill}>
             {segment === "movies" ? (
@@ -117,7 +117,7 @@ export default function MainNav() {
           </div>
         </Link>
       </li>
-      <li>
+      <li className={"ml-2"}>
         <Link href={"/latest"}>
           <div className={style.navPill}>
             {segment === "latest" ? (
@@ -163,7 +163,7 @@ export default function MainNav() {
           </div>
         </Link>
       </li>
-      <li>
+      <li className={"ml-2"}>
         <Link href={"/my-list"}>
           <div className={style.navPill}>
             {segment === "my-list" ? (

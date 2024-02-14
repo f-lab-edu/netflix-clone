@@ -12,7 +12,7 @@ export default function Profile() {
 
   return (
     <>
-      <div className={"nav-element ml-5"}>
+      <div className={"nav-element "}>
         <div className={"profile-menu-item"}>
           <div
             className={"profile-dropdown-button w-8 hover:cursor-pointer"}
@@ -30,8 +30,12 @@ export default function Profile() {
             <span className={"profile-arrow-icon"}></span>
           </div>
           {isOpen && (
-            <div className={"absolute mt-2 border p-1 z-[9999]"}>
-              <ul>
+            <div
+              className={
+                " absolute right-1 border bg-gray-600 mt-1 rounded p-1 z-[9999]"
+              }
+            >
+              <ul className={"flex flex-col"}>
                 <li>
                   <Link href={"#"}>설정</Link>
                 </li>

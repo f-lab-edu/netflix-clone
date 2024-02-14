@@ -5,9 +5,15 @@ import MainNav from "@/app/(afterLogin)/_component/main-nav";
 
 function Header() {
   return (
-    <nav className={"flex h-16 px-16 text-sm items-center"}>
-      <Link className={"w-24"} href={"/"}>
-        <Image src={"/logo.png"} alt={"logo"} width={200} height={200} />
+    <nav className={"flex h-16 text-sm items-center mx-1"}>
+      <Link className={"min-w-[100px] min-h-[50px]"} href={"/"}>
+        <Image
+          className={"min-w-[100px] min-h-[50px]"}
+          src={"/logo.png"}
+          alt={"logo"}
+          width={100}
+          height={50}
+        />
       </Link>
       <div className={"flex flex-1 items-center"}>
         <ul className={"flex flex-1 justify-around"}>
