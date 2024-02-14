@@ -5,7 +5,7 @@ import { getTvContents } from "@/services/contents";
 import { useInfiniteQuery } from "react-query";
 import { useObserver } from "@/hooks/use-observer";
 import { Contents } from "@/types/browse/types";
-import CardList from "@/components/ui/card-list";
+import CardList from "@/app/(afterLogin)/_component/card-list";
 import { useUserState } from "@/context/user-context";
 
 export default function SeriesInfo({ genres }: { genres: string }) {
@@ -39,9 +39,13 @@ export default function SeriesInfo({ genres }: { genres: string }) {
 
   useObserver({ target: bottom, onIntersect });
   return (
-    <>
+    <div className={"flex flex-col items-center"}>
       {status === "success" && data && (
-        <div className={"grid gap-4 grid-cols-4 px-5"}>
+        <div
+          className={
+            "min-[375px]:grid-cols-2 max-w-[1480px] grid px-5 grid-col-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
+          }
+        >
           {data.pages.map((page: Contents) => (
             <CardList
               key={page.page}
@@ -55,6 +59,6 @@ export default function SeriesInfo({ genres }: { genres: string }) {
       <div ref={bottom} className={"flex justify-center my-10"}>
         <span className="loading loading-spinner loading-md" />
       </div>
-    </>
+    </div>
   );
 }

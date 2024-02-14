@@ -8,7 +8,7 @@ export default async function SubNav() {
 
   return (
     <>
-      <div className={"sub-navigation flex"}>
+      <div className={"sub-navigation flex items-center"}>
         <SearchBar />
         {session?.user && (
           <>

@@ -1,4 +1,4 @@
-import CardItem from "@/components/ui/card-item";
+import CardItem from "@/app/(afterLogin)/_component/card-item";
 import { Result } from "@/types/browse/types";
 
 export default function CardList({

@@ -8,7 +8,7 @@ export default function Notification() {
   return (
     <>
       <div
-        className={"relative nav-element ml-5"}
+        className={"relative nav-element"}
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className={"notifications"}>
