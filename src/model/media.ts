@@ -12,6 +12,7 @@ export interface Movie {
   vote_average: number;
   vote_count: number;
   homepage: string;
+  tagline: string;
 }
 export interface Tv {
   id: number;
@@ -23,6 +24,7 @@ export interface Tv {
   vote_count: number;
   seasons: number;
   homepage: string;
+  last_air_date: string;
 }
 export interface Media {
   adult: boolean;

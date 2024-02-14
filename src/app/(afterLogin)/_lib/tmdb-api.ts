@@ -19,6 +19,7 @@ export const getDetail = async (mediaType: string, id: string) => {
       vote_count,
       seasons,
       homepage,
+      last_air_date,
     } = response;
     const result: Tv = {
       id: response.id,
@@ -30,6 +31,7 @@ export const getDetail = async (mediaType: string, id: string) => {
       vote_count,
       seasons: seasons.length,
       homepage,
+      last_air_date,
     };
     return result;
   }
@@ -42,6 +44,7 @@ export const getDetail = async (mediaType: string, id: string) => {
     vote_average,
     vote_count,
     homepage,
+    tagline,
   } = response;
   const result: Movie = {
     id: response.id,
@@ -53,6 +56,7 @@ export const getDetail = async (mediaType: string, id: string) => {
     vote_average,
     vote_count,
     homepage,
+    tagline,
   };
 
   return result;
