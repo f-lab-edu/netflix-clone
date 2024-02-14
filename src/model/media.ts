@@ -1,3 +1,29 @@
+export interface Genre {
+  id: number;
+  name: string;
+}
+export interface Movie {
+  id: number;
+  runtime: number;
+  genres: Genre[];
+  title: string;
+  overview: string;
+  release_date: string;
+  vote_average: number;
+  vote_count: number;
+  homepage: string;
+}
+export interface Tv {
+  id: number;
+  overview: string;
+  episode_run_time: [number];
+  name: string;
+  poster_path: string;
+  vote_average: number;
+  vote_count: number;
+  seasons: number;
+  homepage: string;
+}
 export interface Media {
   adult: boolean;
   backdrop_path: string;
@@ -13,4 +39,8 @@ export interface Media {
   video: boolean;
   vote_average: number;
   vote_count: number;
+}
+export interface Video {
+  key: string;
+  site: string;
 }
