@@ -11,7 +11,7 @@ function DetailContentsInfo({
   detailContents: DetailContents;
   favorites: { tv: number[]; movie: number[] };
 }) {
-  const { sessionId } = useUserState();
+  // const { sessionId } = useUserState();
   const title = detailContents.title ?? detailContents.name;
   const genres = detailContents?.genres.map((g) => g.name + " ");
   const series =
@@ -42,14 +42,14 @@ function DetailContentsInfo({
     hearted = true;
   }
 
-  const onFavorite = async () => {
-    await addOrRemoveInMyList(
-      sessionId,
-      mediaType,
-      detailContents.id,
-      !hearted,
-    );
-  };
+  // const onFavorite = async () => {
+  //   await addOrRemoveInMyList(
+  //     "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
+  //     mediaType,
+  //     detailContents.id,
+  //     !hearted,
+  //   );
+  // };
 
   return (
     <div>
@@ -82,7 +82,7 @@ function DetailContentsInfo({
         </div>
 
         <div className={"preview-right"}>
-          <HeartIcon hearted={hearted} onFavorite={onFavorite} />
+          {/*<HeartIcon hearted={hearted} onFavorite={onFavorite} />*/}
           <small className={" block "}>
             <span className={"text-gray-700"}>평점: </span>
             {detailContents.vote_average.toFixed(2)} (

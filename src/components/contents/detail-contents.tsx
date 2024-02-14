@@ -18,11 +18,15 @@ async function DetailContents({
   id: string;
   mediaType: string;
 }) {
-  const { sessionId } = useUserState();
+  // const { sessionId } = useUserState();
   const detailContents = await getDetailContents(id, mediaType);
   const trailers = await getTrailersContent(id, mediaType);
-  const favoriteMovies = await getMyListMovie(sessionId);
-  const favoriteTv = await getMyListTv(sessionId);
+  const favoriteMovies = await getMyListMovie(
+    "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
+  );
+  const favoriteTv = await getMyListTv(
+    "2bc5adb67cde82f05b5cc514f01dd01b6a41954e",
+  );
   const preview =
     trailers?.results?.length === 0
       ? detailContents?.backdrop_path
