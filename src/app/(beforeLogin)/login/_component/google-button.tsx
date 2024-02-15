@@ -1,15 +1,47 @@
 "use client";
 import { signIn } from "next-auth/react";
 import { GoogleAuthProvider, signInWithPopup } from "@firebase/auth";
-import { fireAuth } from "@/firebase";
+import { db, fireAuth } from "@/firebase";
+import { child, get, ref, set } from "@firebase/database";
+import {
+  confirmToken,
+  getSessionId,
+  getToken,
+} from "@/app/(beforeLogin)/signup/_lib/get-tmdb";
 
 export default function GoogleButton() {
   const onClick = async () => {
     const provider = new GoogleAuthProvider();
     const response = await signInWithPopup(fireAuth, provider);
+
     if (!response.user) return;
+
+    const uid = response.user.uid;
+
+    const snapshot = await get(child(ref(db), `users/${uid}`)).then(
+      async (snapshot) => {
+        if (!snapshot.exists()) {
+          const token = await getToken();
+          const confirm = await confirmToken(token);
+          const sessionId = await getSessionId(token);
+
+          await set(ref(db, "users/" + uid), {
+            tmdb_session: sessionId,
+            email: response.user.email,
+            confirm_token: token,
+          });
+          const newSnapshot = await get(child(ref(db), `users/${uid}`)).then(
+            (snapshot) => snapshot.val(),
+          );
+          return newSnapshot;
+        }
+        return snapshot.val();
+      },
+    );
+
     await signIn("credentials", {
       provider: "google",
+      tmdb_session: snapshot.tmdb_session,
       email: response.user.email,
       redirect: false,
     });
