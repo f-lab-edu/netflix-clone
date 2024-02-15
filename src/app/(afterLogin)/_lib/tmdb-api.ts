@@ -8,13 +8,13 @@ export const getDetail = async (mediaType: string, id: string) => {
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
-  // console.log(response);
+  console.log(response);
   if (mediaType === "tv") {
     const {
       name,
       overview,
       episode_run_time,
-      poster_path,
+      backdrop_path,
       vote_average,
       vote_count,
       seasons,
@@ -26,7 +26,7 @@ export const getDetail = async (mediaType: string, id: string) => {
       name,
       overview,
       episode_run_time,
-      poster_path,
+      backdrop_path,
       vote_average,
       vote_count,
       seasons: seasons.length,

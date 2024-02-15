@@ -35,10 +35,10 @@ function BrowsePage() {
   } = data;
 
   return (
-    <div>
+    <div className={style.container}>
       <div className={"mt-5"}>
         <h1>인기 있는 콘텐츠</h1>
-        <div className={style.container}>
+        <div className={style.sliderContainer}>
           <Slider {...settings}>
             {popularMovies?.results.map((media: Media) => (
               <SlickItem
@@ -53,7 +53,7 @@ function BrowsePage() {
       </div>
       <div className={"mt-5"}>
         <h1>극장에서 상영중인 콘텐츠</h1>
-        <div className={style.container}>
+        <div className={style.sliderContainer}>
           <Slider {...settings}>
             {nowPlayingMovies?.results.map((media: Media) => (
               <SlickItem
@@ -68,7 +68,7 @@ function BrowsePage() {
       </div>
       <div className={"mt-5"}>
         <h1>평점 높은 콘텐츠</h1>
-        <div className={style.container}>
+        <div className={style.sliderContainer}>
           <Slider {...settings}>
             {topRatedMovies?.results.map((media: Media) => (
               <SlickItem
@@ -83,7 +83,7 @@ function BrowsePage() {
       </div>
       <div className={"mt-5"}>
         <h1>개봉 예정 콘텐츠</h1>
-        <div className={style.container}>
+        <div className={style.sliderContainer}>
           <Slider {...settings}>
             {upcomingMovies?.results.map((media: Media) => (
               <SlickItem
@@ -98,7 +98,7 @@ function BrowsePage() {
       </div>
       <div className={"mt-5"}>
         <h1>인기 있는 TV 프로그램</h1>
-        <div className={style.container}>
+        <div className={style.sliderContainer}>
           <Slider {...settings}>
             {popularTvProgram?.results.map((media: Media) => (
               <SlickItem
@@ -113,7 +113,7 @@ function BrowsePage() {
       </div>
       <div className={"mt-5"}>
         <h1>평점 높은 TV 프로그램</h1>
-        <div className={style.container}>
+        <div className={style.sliderContainer}>
           <Slider {...settings}>
             {topRateTvProgram?.results.map((media: Media) => (
               <SlickItem

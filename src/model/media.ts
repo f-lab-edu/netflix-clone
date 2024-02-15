@@ -19,7 +19,7 @@ export interface Tv {
   overview: string;
   episode_run_time: [number];
   name: string;
-  poster_path: string;
+  backdrop_path: string;
   vote_average: number;
   vote_count: number;
   seasons: number;
