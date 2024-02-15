@@ -18,6 +18,5 @@ export default function SlickItem({
         height={150}
       />
     </Link>
-    // </div>
   );
 }

@@ -3,7 +3,13 @@
 import { redirect } from "next/navigation";
 import { signIn } from "@/auth";
 import { createUserWithEmailAndPassword } from "@firebase/auth";
-import { fireAuth } from "@/firebase";
+import { db, fireAuth } from "@/firebase";
+import { ref, set } from "@firebase/database";
+import {
+  confirmToken,
+  getSessionId,
+  getToken,
+} from "@/app/(beforeLogin)/signup/_lib/get-tmdb";
 
 export default async (prevState: any, formData: FormData) => {
   if (!formData.get("email") || !(formData.get("email") as string)?.trim())
@@ -15,11 +21,24 @@ export default async (prevState: any, formData: FormData) => {
   let shouldRedirect = false;
 
   try {
-    await createUserWithEmailAndPassword(
+    const response = await createUserWithEmailAndPassword(
       fireAuth,
       formData.get("email") as string,
       formData.get("password") as string,
     );
+    // tmdb session 생성하기 위함
+    const token = await getToken();
+    const confirm = await confirmToken(token);
+    const sessionId = await getSessionId(token);
+
+    const uid = response.user.uid;
+
+    // tmdb session 저장하기 위함
+    await set(ref(db, "users/" + uid), {
+      tmdb_session: sessionId,
+      email: formData.get("email"),
+      confirm_token: token,
+    });
 
     shouldRedirect = true;
 
@@ -38,4 +57,3 @@ export default async (prevState: any, formData: FormData) => {
   }
   return { message: null };
 };
-//const emailReg = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
