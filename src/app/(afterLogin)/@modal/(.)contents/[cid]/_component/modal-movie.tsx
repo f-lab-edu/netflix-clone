@@ -1,13 +1,19 @@
 import style from "@/app/(afterLogin)/@modal/(.)contents/[cid]/_component/modal.module.css";
 import { formatGenres } from "@/app/(afterLogin)/contents/[cid]/_lib/format";
-import Link from "next/link";
 import CloseButton from "@/app/(afterLogin)/_component/close-button";
-import { getDetail, getVideo } from "@/app/(afterLogin)/_lib/tmdb-api";
+import {
+  getDetail,
+  getFavorite,
+  getVideo,
+} from "@/app/(afterLogin)/_lib/tmdb-api";
 import { Movie } from "@/model/media";
+import HeartIcon from "@/app/(afterLogin)/contents/[cid]/_component/heart-icon";
+import ShareIcon from "@/app/(afterLogin)/contents/[cid]/_component/share-icon";
 
 export default async function ModalMovie({ id }: { id: string }) {
   const media = (await getDetail("movie", id)) as Movie;
   const video = await getVideo("movie", id);
+  const { movies } = await getFavorite();
 
   return (
     <>
@@ -42,10 +48,20 @@ export default async function ModalMovie({ id }: { id: string }) {
               <div className="flex-1 min-w-[1px]" />
             )}
             <div className={style.right}>
+              <div className={style.actionZone}>
+                <div className={style.action}>
+                  <HeartIcon id={id} favoriteIds={movies} />
+                  <small>찜하기</small>
+                </div>
+                <div className={style.action}>
+                  <ShareIcon />
+                  <small>공유</small>
+                </div>
+              </div>
               <small>장르: {formatGenres(media.genres)}</small>
               <small>개봉일: {media.release_date}</small>
               <small>
-                별점: {media.vote_average}({media.vote_count})
+                별점: ⭐ {media.vote_average}({media.vote_count})
               </small>
             </div>
           </div>
