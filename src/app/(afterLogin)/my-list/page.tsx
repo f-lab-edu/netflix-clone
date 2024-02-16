@@ -1,21 +1,27 @@
-import { getMyListMovie, getMyListTv } from "@/services/contents";
+"use client";
+
 import CardItem from "@/app/(afterLogin)/_component/card-item";
-import { Contents } from "@/types/browse/types";
-import { auth } from "@/auth";
+import { useEffect, useState } from "react";
+import { getFavorite } from "@/app/(afterLogin)/_lib/tmdb-api";
 
-async function MyListPage() {
-  const session = await auth();
-  const sessionId = session?.user?.name as string;
+interface Props {
+  id: number;
+  poster_path: string;
+}
+function MyListPage() {
+  const [movies, setMovies] = useState<Props[] | null>(null);
+  const [tv, setTv] = useState<Props[] | null>(null);
 
-  const myListMoviesData = getMyListMovie(sessionId);
-  const myListTvData = getMyListTv(sessionId);
+  useEffect(() => {
+    getFavorite(true).then((res) => {
+      setMovies(res.movies);
+      setTv(res.tv);
+    });
+  }, []);
 
-  const [movies, tv]: [Contents, Contents] = await Promise.all([
-    myListMoviesData,
-    myListTvData,
-  ]);
+  if (!movies && !tv) return <div>Loading...</div>;
 
-  if (movies.total_results === 0 && tv.total_results === 0)
+  if (movies?.length === 0 && tv?.length === 0)
     return <div>찜한 콘텐츠가 없습니다.</div>;
 
   return (
@@ -24,22 +30,20 @@ async function MyListPage() {
         "min-[375px]:grid-cols-2 max-w-[1480px] grid px-5 grid-col-2 gap-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5"
       }
     >
-      {movies.results.map((data) => (
+      {movies?.map((m) => (
         <CardItem
-          key={data.id}
-          id={data.id}
-          mediaType={movies!.media_type}
-          posterPath={data.poster_path}
-          inMyList={true}
+          key={m.id}
+          id={m.id}
+          mediaType={"movie"}
+          posterPath={m.poster_path}
         />
       ))}
-      {tv.results.map((data) => (
+      {tv?.map((t) => (
         <CardItem
-          key={data.id}
-          id={data.id}
-          mediaType={tv!.media_type}
-          posterPath={data.poster_path}
-          inMyList={true}
+          key={t.id}
+          id={t.id}
+          mediaType={"tv"}
+          posterPath={t.poster_path}
         />
       ))}
     </div>
