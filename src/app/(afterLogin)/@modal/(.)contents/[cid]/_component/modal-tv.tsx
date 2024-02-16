@@ -1,12 +1,14 @@
 import CloseButton from "@/app/(afterLogin)/_component/close-button";
 import style from "@/app/(afterLogin)/@modal/(.)contents/[cid]/_component/modal.module.css";
-import Link from "next/link";
-import { getDetail } from "@/app/(afterLogin)/_lib/tmdb-api";
+import { getDetail, getFavorite } from "@/app/(afterLogin)/_lib/tmdb-api";
 import { Tv } from "@/model/media";
 import Image from "next/image";
+import HeartIcon from "@/app/(afterLogin)/contents/[cid]/_component/heart-icon";
+import ShareIcon from "@/app/(afterLogin)/contents/[cid]/_component/share-icon";
 
 export default async function ModalTv({ id }: { id: string }) {
   const media = (await getDetail("tv", id)) as Tv;
+  const { tv } = await getFavorite();
   return (
     <div className={style.container}>
       <div className={style.modal}>
@@ -28,11 +30,25 @@ export default async function ModalTv({ id }: { id: string }) {
           <small>{media.episode_run_time}분</small>
         </div>
         <div className={style.infoZone}>
-          <div className={style.left}>{media.overview}</div>
+          {media.overview ? (
+            <div className={style.left}>{media.overview}</div>
+          ) : (
+            <div className="flex-1 min-w-[1px]" />
+          )}
           <div className={style.right}>
+            <div className={style.actionZone}>
+              <div className={style.action}>
+                <HeartIcon id={id} favoriteIds={tv} />
+                <small>찜하기</small>
+              </div>
+              <div className={style.action}>
+                <ShareIcon />
+                <small>공유</small>
+              </div>
+            </div>
             <small>최근 방영: {media.last_air_date}</small>
             <small>
-              별점: {media.vote_average}({media.vote_count})
+              별점: ⭐ {media.vote_average}({media.vote_count})
             </small>
           </div>
         </div>
