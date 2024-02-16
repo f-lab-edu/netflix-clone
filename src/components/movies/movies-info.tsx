@@ -8,7 +8,6 @@ import CardList from "@/app/(afterLogin)/_component/card-list";
 import { useUserState } from "@/context/user-context";
 
 export default function MoviesInfo({ genres }: { genres: string }) {
-  const { myList } = useUserState();
   const bottom = useRef<HTMLDivElement | null>(null);
   const fetchMovies = async ({ pageParam = 1 }) => {
     const queryParams = {
@@ -56,7 +55,6 @@ export default function MoviesInfo({ genres }: { genres: string }) {
                 key={page.page}
                 dataList={page.results}
                 mediaType={page.media_type}
-                inMyList={myList?.movies}
               />
             ))}
           </div>
