@@ -1,18 +1,25 @@
 "use client";
 
 import style from "./heart-icon.module.css";
-import { addOrRemoveInMyList } from "@/services/contents";
+import { useState } from "react";
+import { addFavorite } from "@/app/(afterLogin)/_lib/tmdb-api";
 export default function HeartIcon({
-  hearted,
-  onFavorite,
+  id,
+  favoriteIds,
 }: {
-  hearted: boolean;
-  onFavorite: () => {};
+  id: string;
+  favoriteIds: number[] | null;
 }) {
+  const [heart, setHeart] = useState(favoriteIds?.includes(Number(id)));
+  const onClick = async () => {
+    await addFavorite("movie", id, !heart);
+    setHeart(!heart);
+  };
+
   return (
     <div className={style.heartButton}>
-      <button onClick={onFavorite}>
-        {hearted ? (
+      <button onClick={onClick}>
+        {heart ? (
           <svg
             fill="#ff0000"
             viewBox="0 0 24 24"
