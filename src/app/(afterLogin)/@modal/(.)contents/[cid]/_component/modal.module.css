@@ -24,7 +24,11 @@
   height: 720px;
   width: 60%;
   border-radius: 10px;
-  overflow: scroll;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+}
+.modal::-webkit-scrollbar {
+  display: none;
 }
 
 @media all and (max-height: 800px) {
@@ -35,6 +39,7 @@
 
 .tagline {
   display: flex;
+  font-size: large;
   height: 40px;
   align-items: center;
   background: #DC2626;
@@ -65,8 +70,12 @@
   align-items: center;
 }
 .image {
-  min-width: 450px;
+  min-width: 300px;
   min-height: 250px;
+}
+.left {
+  font-weight: bold;
+  font-size: 90%
 }
 .right {
   min-width: 200px;
@@ -74,7 +83,12 @@
 .right small {
   display: block;
 }
-
+@media all and (max-width: 768px){
+  .right {
+    min-width: 130px;
+    padding-left: 10px;
+  }
+}
 .tvTitle {
   display: flex;
   align-items: center;
@@ -88,4 +102,18 @@
 }
 .tvTitle small {
   margin-left: 10px;
+}
+.actionZone {
+  display: flex;
+}
+.action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 10px;
+}
+.action small {
+  padding-bottom: 5px;
+  padding-top: 2px;
 }
