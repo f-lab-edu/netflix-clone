@@ -9,7 +9,6 @@ export default function CardItem({
   id: number;
   mediaType: string;
   posterPath?: string;
-  inMyList: boolean;
 }) {
   return (
     <Link href={`/contents/${id}?&mediaType=${mediaType}`}>
