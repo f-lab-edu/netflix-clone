@@ -1,14 +1,10 @@
-"use client";
+import Link from "next/link";
 
-import { useState } from "react";
-
-export default function SearchBar() {
-  const [isOpen, setIsOpen] = useState(false);
+export default function SearchIcon() {
   return (
     <>
       <div className={"nav-element"}>
-        <div className={"search-box"} onClick={() => setIsOpen(!isOpen)}>
-          {/* TODO:  Button icon 추가 */}
+        <Link href={"/search"} className={"search-box"}>
           <button className={"search-tab"}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -25,9 +21,8 @@ export default function SearchBar() {
               />
             </svg>
           </button>
-        </div>
+        </Link>
       </div>
-      {isOpen && <div> Link 검색 페이지 이동</div>}
     </>
   );
 }
