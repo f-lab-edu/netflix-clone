@@ -3,12 +3,15 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
-import { signOut } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export default function Profile() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const { data: session } = useSession();
+
+  if (!session) return;
 
   return (
     <>
