@@ -1,25 +1,33 @@
 import style from "./search-bar.module.css";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, {
+  ChangeEvent,
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useState,
+} from "react";
 import { getSearch } from "@/app/(afterLogin)/_lib/tmdb-api";
-import useDebounce from "@/app/(afterLogin)/search/_lib/use-debounce";
+import { SearchMedia } from "@/model/media";
 export default function SearchBar({
   setSearchData,
 }: {
-  setSearchData: Dispatch<SetStateAction<string>>;
+  setSearchData: Dispatch<SetStateAction<"" | SearchMedia>>;
 }) {
   const [input, setInput] = useState("");
-  const searchData = useDebounce(input, 5000);
+  // const searchData = useDebounce(input, 5000);
+  //
+  // useEffect(() => {
+  //   setSearchData(searchData);
+  // }, [input, searchData, setSearchData]);
 
-  useEffect(() => {
-    setSearchData(searchData);
-  }, [input, searchData, setSearchData]);
-
-  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
   };
 
-  const onSubmit = async () => {
-    await getSearch(input);
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const response = await getSearch(input);
+    setSearchData(response);
   };
 
   return (
