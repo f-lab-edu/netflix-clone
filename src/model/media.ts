@@ -55,6 +55,7 @@ export interface SearchMedia {
   first_air_date: string;
   genre_ids: number[];
   id: number;
+  media_type: string;
   origin_country: string[];
   original_language: string;
   original_name: string;
@@ -63,4 +64,11 @@ export interface SearchMedia {
   poster_path: string;
   vote_average: number;
   vote_count: number;
+}
+
+export interface SearchResult {
+  page: number;
+  results: SearchMedia[];
+  total_pages: number;
+  total_results: number;
 }
