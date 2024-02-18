@@ -7,12 +7,14 @@ import React, {
   useState,
 } from "react";
 import { getSearch } from "@/app/(afterLogin)/_lib/tmdb-api";
-import { SearchMedia } from "@/model/media";
+import { SearchResult } from "@/model/media";
 export default function SearchBar({
   setSearchData,
 }: {
-  setSearchData: Dispatch<SetStateAction<"" | SearchMedia>>;
+  setSearchData: Dispatch<SetStateAction<"" | SearchResult>>;
 }) {
+  //suspense로 최적화, intersection Observer loading 받아오기
+  const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   // const searchData = useDebounce(input, 5000);
   //
@@ -26,32 +28,42 @@ export default function SearchBar({
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await getSearch(input);
-    setSearchData(response);
+    try {
+      setLoading(true);
+      const response = await getSearch(input);
+      setSearchData(response);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className={style.searchBar}>
-      <form onSubmit={onSubmit}>
-        <input className={style.input} onChange={onChangeInput} />
-        <button className={style.action}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="25"
-            height="25"
-            stroke="white"
-            fill="none"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M15.796 15.811 21 21m-3-10.5a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"
-            />
-          </svg>
-        </button>
-      </form>
+    <div className={" flex flex-col"}>
+      <div className={style.searchBar}>
+        <form onSubmit={onSubmit}>
+          <input className={style.input} onChange={onChangeInput} />
+          <button className={style.action}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="25"
+              height="25"
+              stroke="white"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M15.796 15.811 21 21m-3-10.5a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+      {loading && <div>Loading...</div>}
     </div>
   );
 }

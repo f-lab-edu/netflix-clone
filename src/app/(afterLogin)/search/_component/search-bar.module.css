@@ -34,15 +34,15 @@
 
 @media all and (max-width: 1024px){
   .searchBar{
-    width: 80vw;
+    width: 70vw;
     height: 40px;
   }
   .input {
-    width: 80vw;
+    width: 70vw;
     height: 40px;
   }
   .action {
-    width: 60px;
+    width: 70px;
     height: 40px;
   }
 }
