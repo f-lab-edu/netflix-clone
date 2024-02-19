@@ -1,11 +1,9 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import QueryClientWrapper from "@/components/ui/query-client-wrapper";
 import { UserContextProvider } from "@/context/user-context";
 import React from "react";
 import AuthSession from "@/app/_component/auth-session";
-import Header from "@/components/ui/header";
 import { MswComponent } from "@/app/_component/msw-component";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -24,10 +22,8 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <UserContextProvider>
-          <QueryClientWrapper>
-            <MswComponent />
-            <AuthSession>{children}</AuthSession>
-          </QueryClientWrapper>
+          <MswComponent />
+          <AuthSession>{children}</AuthSession>
         </UserContextProvider>
       </body>
     </html>
