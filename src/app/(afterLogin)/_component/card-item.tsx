@@ -14,7 +14,7 @@ export default function CardItem({
     <Link href={`/contents/${id}?&mediaType=${mediaType}`}>
       <Image
         className={
-          "h-60 md:h-[390px] w-max-[285px] h-max-[390px] border rounded cursor-pointer hover:scale-95 "
+          "h-60 max-w-[285px] min-h-[390px] max-min-[390px] border rounded cursor-pointer hover:scale-95 "
         }
         src={`https://image.tmdb.org/t/p/w500${posterPath}`}
         alt={"movie-poster"}

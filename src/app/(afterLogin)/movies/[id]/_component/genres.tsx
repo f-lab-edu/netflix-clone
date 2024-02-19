@@ -22,7 +22,7 @@ export default function Genres({ params }: { params: string }) {
     fetchGenres();
   }, []);
   return (
-    <div className={"ml-5 mt-5 mb-10"}>
+    <div className={"pl-5 py-3"}>
       {genres && (
         <OptionList
           options={genres}
