@@ -6,16 +6,15 @@ import { useState } from "react";
 import { SearchResult } from "@/model/media";
 import CardItem from "@/app/(afterLogin)/_component/card-item";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
 
 function SearchPage() {
-  const [searchData, setSearchData] = useState<SearchResult | "">("");
+  const [searchData, setSearchData] = useState<SearchResult | null>(null);
   const router = useRouter();
-  // 아무 추천 콘텐츠 보여주기 밑에 return 에서 분기처리
-  // if (!searchData) return;
-
-  // console.log(searchData.results);
-
-  // if (searchData.results)
+  const onClick = (id: number, media_type: string) => {
+    router.push(`/contents/${id}?&mediaType=${media_type}`);
+  };
   return (
     <div className={style.container}>
       <div className={style.header}>
@@ -36,15 +35,23 @@ function SearchPage() {
         </div>
       </div>
       <div className={style.results}>
-        {searchData &&
-          searchData?.results.map((media) => (
-            <CardItem
-              key={media.id}
-              id={media.id}
-              mediaType={media.media_type}
-              posterPath={media.poster_path}
+        {searchData?.results.map((media) => (
+          <div
+            className={style.media}
+            key={media.id}
+            onClick={() => onClick(media.id, media.media_type)}
+          >
+            <Image
+              className={
+                "h-60 max-h-[390px] max-w-[285px] min-h-[390px] border rounded cursor-pointer hover:scale-95 "
+              }
+              src={`https://image.tmdb.org/t/p/w500${media.poster_path}`}
+              alt={"movie-poster"}
+              width={285}
+              height={390}
             />
-          ))}
+          </div>
+        ))}
       </div>
     </div>
   );

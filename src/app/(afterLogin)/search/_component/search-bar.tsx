@@ -4,23 +4,30 @@ import React, {
   Dispatch,
   FormEvent,
   SetStateAction,
+  useDeferredValue,
+  useEffect,
   useState,
 } from "react";
-import { getSearch } from "@/app/(afterLogin)/_lib/tmdb-api";
+import { getSearch } from "../_lib/search";
 import { SearchResult } from "@/model/media";
 export default function SearchBar({
   setSearchData,
 }: {
-  setSearchData: Dispatch<SetStateAction<"" | SearchResult>>;
+  setSearchData: Dispatch<SetStateAction<null | SearchResult>>;
 }) {
   //suspense로 최적화, intersection Observer loading 받아오기
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
-  // const searchData = useDebounce(input, 5000);
-  //
-  // useEffect(() => {
-  //   setSearchData(searchData);
-  // }, [input, searchData, setSearchData]);
+  const deferredValue = useDeferredValue(input);
+
+  const debounce = async () => {
+    const response = await getSearch(deferredValue);
+    setSearchData(response);
+  };
+
+  useEffect(() => {
+    debounce();
+  }, [deferredValue]);
 
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -43,7 +50,11 @@ export default function SearchBar({
     <div className={" flex flex-col"}>
       <div className={style.searchBar}>
         <form onSubmit={onSubmit}>
-          <input className={style.input} onChange={onChangeInput} />
+          <input
+            className={style.input}
+            onChange={onChangeInput}
+            placeholder={"검색어를 입력하세요."}
+          />
           <button className={style.action}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

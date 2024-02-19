@@ -6,7 +6,6 @@
 
 .header{
   width: 100vw;
-  padding: 10px 0;
   height: 70px;
 }
 
@@ -16,22 +15,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  /*border: 1px solid red;*/
+  padding: 10px 0;
 }
 
 .backButton {
   position: absolute;
-  top: 10px;
   left: 10px;
 }
 
 .results {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: space-evenly;
 }
 
-.results a {
+.media {
   padding: 5px;
 }
 
