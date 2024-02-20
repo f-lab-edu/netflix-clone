@@ -9,6 +9,7 @@ import { settings } from "./_lib/slider-setting";
 import { Media } from "@/model/media";
 import { useEffect, useState } from "react";
 import { getInitData } from "@/app/(afterLogin)/browse/_lib/initial-data";
+import ClientSideLoading from "@/components/ui/client-side-loading";
 
 function BrowsePage() {
   const [data, setData] = useState<any>(null);
@@ -22,7 +23,7 @@ function BrowsePage() {
   }, []);
 
   if (!data) {
-    return <div>Loading...</div>;
+    return <ClientSideLoading />;
   }
 
   const {
