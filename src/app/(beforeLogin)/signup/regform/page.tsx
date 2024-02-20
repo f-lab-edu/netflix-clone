@@ -22,7 +22,7 @@ function RegFormPage() {
       <section className={"flex flex-col items-center"}>
         <CheckInCircle />
         <form action={formAction} className={"border-2 py-16 px-5 rounded-3xl"}>
-          <div className={"form-control flex flex-col w-108 "}>
+          <div className={"form-control flex flex-col "}>
             <h1 className={"text-2xl text-center"}>
               비밀번호를 설정해 멤버십을 <br /> 시작하세요.
             </h1>
@@ -57,19 +57,26 @@ function RegFormPage() {
                   className="checkbox checkbox-success cursor-pointer"
                   required
                 />
-                <p className="pl-3 label-text text-white">
+                <label
+                  htmlFor="required_option"
+                  className="pl-3 label-text text-white"
+                >
                   예, 저는 <span>개인정보 처리방침</span>에 따른 개인정보 수집
                   및 활용에 동의합니다. <span>(상세 정보)</span>
-                </p>
+                </label>
               </div>
               <div className={"flex"}>
                 <input
+                  id="choice_option"
                   type="checkbox"
                   className="checkbox checkbox-success cursor-pointer"
                 />
-                <p className="pl-3 label-text text-white ">
+                <label
+                  htmlFor="choice_option"
+                  className="pl-3 label-text text-white "
+                >
                   예, 넷뿌러졌스 특별 할인 알림 이메일을 보내주세요. (선택 사항)
-                </p>
+                </label>
               </div>
             </div>
           </div>

@@ -1,6 +1,10 @@
 export function CheckInCircle() {
   return (
-    <div className={"checkbox mt-[100px] mb-16"}>
+    <div
+      className={
+        "checkbox mt-[100px] mb-16 max-[440px]:mt-[30px] max-[440px]:mb-[30px]"
+      }
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"

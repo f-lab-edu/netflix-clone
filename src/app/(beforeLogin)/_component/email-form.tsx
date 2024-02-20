@@ -6,10 +6,7 @@ export default forwardRef(function EmailForm(
 ) {
   return (
     <form onSubmit={props.onSubmit}>
-      <h3>
-        시청할 준비가 되셨나요? 멤버십을 등록하거나 재시작하려면 이메일 주소를
-        입력하세요.
-      </h3>
+      <h3>MZ와 같이갈 준비가 되셨나요? 이메일을 입력해주세요.</h3>
       <div>
         <input
           ref={ref}
