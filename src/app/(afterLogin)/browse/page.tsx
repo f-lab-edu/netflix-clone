@@ -6,13 +6,30 @@ import "slick-carousel/slick/slick-theme.css";
 import SlickItem from "@/app/(afterLogin)/browse/_component/slick-item";
 import style from "./browse.module.css";
 import { settings } from "./_lib/slider-setting";
-import { Media } from "@/model/media";
 import { useEffect, useState } from "react";
 import { getInitData } from "@/app/(afterLogin)/browse/_lib/initial-data";
 import ClientSideLoading from "@/components/ui/client-side-loading";
+import { Contents } from "@/types/browse/types";
 
+interface Dates {
+  dates: { maximum: string; minimum: string };
+}
+
+type IncludeDatesContents = {
+  [P in keyof Contents | keyof Dates]: P extends keyof Contents
+    ? Contents[P]
+    : Dates;
+};
+type Props = {
+  nowPlayingMovies: IncludeDatesContents;
+  popularMovies: Contents;
+  popularTvProgram: Contents;
+  topRatedTvProgram: Contents;
+  topRatedMovies: IncludeDatesContents;
+  upcomingMovies: Contents;
+};
 function BrowsePage() {
-  const [data, setData] = useState<any>(null);
+  const [data, setData] = useState<Props | null>(null);
 
   useEffect(() => {
     const initFunc = async () => {
@@ -32,7 +49,7 @@ function BrowsePage() {
     topRatedMovies,
     upcomingMovies,
     popularTvProgram,
-    topRateTvProgram,
+    topRatedTvProgram,
   } = data;
 
   return (
@@ -41,7 +58,7 @@ function BrowsePage() {
         <h1>인기 있는 콘텐츠</h1>
         <div className={style.sliderContainer}>
           <Slider {...settings}>
-            {popularMovies?.results.map((media: Media) => (
+            {popularMovies?.results.map((media) => (
               <SlickItem
                 key={media.id}
                 id={media.id}
@@ -56,7 +73,7 @@ function BrowsePage() {
         <h1>극장에서 상영중인 콘텐츠</h1>
         <div className={style.sliderContainer}>
           <Slider {...settings}>
-            {nowPlayingMovies?.results.map((media: Media) => (
+            {nowPlayingMovies?.results.map((media) => (
               <SlickItem
                 key={media.id}
                 id={media.id}
@@ -71,7 +88,7 @@ function BrowsePage() {
         <h1>평점 높은 콘텐츠</h1>
         <div className={style.sliderContainer}>
           <Slider {...settings}>
-            {topRatedMovies?.results.map((media: Media) => (
+            {topRatedMovies?.results.map((media) => (
               <SlickItem
                 key={media.id}
                 id={media.id}
@@ -86,7 +103,7 @@ function BrowsePage() {
         <h1>개봉 예정 콘텐츠</h1>
         <div className={style.sliderContainer}>
           <Slider {...settings}>
-            {upcomingMovies?.results.map((media: Media) => (
+            {upcomingMovies?.results.map((media) => (
               <SlickItem
                 key={media.id}
                 id={media.id}
@@ -101,7 +118,7 @@ function BrowsePage() {
         <h1>인기 있는 TV 프로그램</h1>
         <div className={style.sliderContainer}>
           <Slider {...settings}>
-            {popularTvProgram?.results.map((media: Media) => (
+            {popularTvProgram?.results.map((media) => (
               <SlickItem
                 key={media.id}
                 id={media.id}
@@ -116,12 +133,12 @@ function BrowsePage() {
         <h1>평점 높은 TV 프로그램</h1>
         <div className={style.sliderContainer}>
           <Slider {...settings}>
-            {topRateTvProgram?.results.map((media: Media) => (
+            {topRatedTvProgram?.results.map((media) => (
               <SlickItem
                 key={media.id}
                 id={media.id}
                 image={media.backdrop_path}
-                mediaType={topRateTvProgram.media_type}
+                mediaType={topRatedTvProgram.media_type}
               />
             ))}
           </Slider>
