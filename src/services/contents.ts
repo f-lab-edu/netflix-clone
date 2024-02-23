@@ -4,7 +4,7 @@ import { options } from "@/app/(afterLogin)/_lib/tmdb-config";
 export async function getPopularMovies(language = "ko", page = 1) {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/popular?language=${language}&page=${page}`,
-    options,
+    { ...options, cache: "no-store" },
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
@@ -16,7 +16,7 @@ export async function getPopularMovies(language = "ko", page = 1) {
 export async function getNowPlayingMovies(language = "ko", page = 1) {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/now_playing?language=${language}&page=${page}`,
-    options,
+    { ...options, cache: "no-store" },
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
@@ -28,7 +28,7 @@ export async function getNowPlayingMovies(language = "ko", page = 1) {
 export async function getUpcomingMovies(language = "ko", page = 1) {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/upcoming?language=${language}&page=${page}`,
-    options,
+    { ...options, cache: "no-store" },
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
@@ -38,7 +38,7 @@ export async function getUpcomingMovies(language = "ko", page = 1) {
 export async function getTopRatedMovies(language = "ko", page = 1) {
   const res = await fetch(
     `https://api.themoviedb.org/3/movie/top_rated?language=${language}&page=${page}`,
-    options,
+    { ...options, cache: "no-store" },
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
@@ -51,7 +51,7 @@ export async function getTopRatedMovies(language = "ko", page = 1) {
 export async function getPopularTVProgram(language = "ko", page = 1) {
   const res = await fetch(
     `https://api.themoviedb.org/3/tv/popular?language=${language}&page=${page}`,
-    options,
+    { ...options, cache: "no-store" },
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
@@ -63,7 +63,7 @@ export async function getPopularTVProgram(language = "ko", page = 1) {
 export async function getTopRateTVProgram(language = "ko", page = 1) {
   const res = await fetch(
     `https://api.themoviedb.org/3/tv/top_rated?language=${language}&page=${page}`,
-    options,
+    { ...options, cache: "no-store" },
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
@@ -125,24 +125,6 @@ export async function getSeasons(
   )
     .then((response) => response.json())
     .catch((err) => console.log(err));
-
-  return res;
-}
-export async function getMovieContents(MovieQueryParams: Partial<ReqMovie>) {
-  let queryParams = "";
-
-  for (let param in MovieQueryParams) {
-    queryParams += `${param}=${MovieQueryParams[param]}&`;
-  }
-
-  const res = await fetch(
-    `https://api.themoviedb.org/3/discover/movie?${queryParams}`,
-    options,
-  )
-    .then((response) => response.json())
-    .catch((err) => console.log(err));
-
-  res.media_type = "movie";
 
   return res;
 }
