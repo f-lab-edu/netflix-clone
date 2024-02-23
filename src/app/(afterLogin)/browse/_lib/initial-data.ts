@@ -7,7 +7,7 @@ export const getInitData = async () => {
     topRatedMovies,
     upcomingMovies,
     popularTvProgram,
-    topRateTvProgram,
+    topRatedTvProgram,
   ] = await allContents();
 
   return {
@@ -16,6 +16,6 @@ export const getInitData = async () => {
     topRatedMovies,
     upcomingMovies,
     popularTvProgram,
-    topRateTvProgram,
+    topRatedTvProgram,
   };
 };
