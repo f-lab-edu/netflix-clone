@@ -18,11 +18,10 @@ export default function Home() {
     <section>
       <Background />
       <div className={"absolute w-full text-center top-1/2 "}>
-        <h1 className="mb-5 text-5xl font-bold ">
-          영화, 시리즈 등을 무제한으로
-        </h1>
+        <h1 className="mb-5 text-5xl font-bold ">요즘 대세 영화, TV</h1>
         <p className="mb-5">
-          어디서나 자유롭게 시청하세요. 해지는 언제든 가능합니다.
+          아직 못 보셨나요? 언제 어디서든 자유롭게 확인해보세요. MZ와 같은 길을
+          걸어갈 수 있습니다.
         </p>
         <EmailForm ref={inputRef} onSubmit={onSubmit} />
       </div>
