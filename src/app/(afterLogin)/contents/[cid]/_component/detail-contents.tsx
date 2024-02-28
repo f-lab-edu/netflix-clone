@@ -5,11 +5,10 @@ import {
   getMyListTv,
   getTrailersContent,
 } from "@/services/contents";
-import Seasons from "@/components/seasons/seasons";
+import Seasons from "@/app/(afterLogin)/contents/[cid]/_component/seasons/seasons";
 import DetailContentsInfo from "./detail-contents-info";
 import React from "react";
-import { useUserState } from "@/context/user-context";
-import { DetailContents } from "@/types/contents/types";
+import { DetailContents } from "@/model/media";
 
 async function DetailContents({
   id,
@@ -18,7 +17,6 @@ async function DetailContents({
   id: string;
   mediaType: string;
 }) {
-  // const { sessionId } = useUserState();
   const detailContents = await getDetailContents(id, mediaType);
   const trailers = await getTrailersContent(id, mediaType);
   const favoriteMovies = await getMyListMovie(

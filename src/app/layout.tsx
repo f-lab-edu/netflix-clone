@@ -1,7 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { UserContextProvider } from "@/context/user-context";
 import React from "react";
 import AuthSession from "@/app/_component/auth-session";
 import { MswComponent } from "@/app/_component/msw-component";
@@ -21,10 +20,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <UserContextProvider>
-          <MswComponent />
-          <AuthSession>{children}</AuthSession>
-        </UserContextProvider>
+        <MswComponent />
+        <AuthSession>{children}</AuthSession>
       </body>
     </html>
   );

@@ -1,4 +1,4 @@
-import DetailContents from "@/components/contents/detail-contents";
+import DetailContents from "@/app/(afterLogin)/contents/[cid]/_component/detail-contents";
 
 function ContentsDetailPage({
   params,

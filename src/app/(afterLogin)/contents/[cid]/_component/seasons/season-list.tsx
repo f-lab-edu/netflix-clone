@@ -1,5 +1,5 @@
-import SeasonItem from "@/components/seasons/season-item";
-import { DetailContents } from "@/types/contents/types";
+import SeasonItem from "@/app/(afterLogin)/contents/[cid]/_component/seasons/season-item";
+import { DetailContents } from "@/model/media";
 
 function SeasonList({ detailContents }: { detailContents: DetailContents }) {
   const { id, seasons, poster_path } = detailContents;

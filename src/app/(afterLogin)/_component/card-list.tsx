@@ -1,5 +1,5 @@
 import CardItem from "@/app/(afterLogin)/_component/card-item";
-import { Result } from "@/types/browse/types";
+import { Result } from "@/model/media";
 
 export default function CardList({
   dataList,

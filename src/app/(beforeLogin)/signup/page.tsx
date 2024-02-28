@@ -1,5 +1,8 @@
 import Link from "next/link";
-import { CheckedIcon, CheckInCircle } from "@/components/icon";
+import {
+  CheckedIcon,
+  CheckInCircle,
+} from "@/app/(beforeLogin)/signup/_component/icon";
 
 function SignupPage() {
   const list = [

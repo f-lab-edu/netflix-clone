@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { Options } from "@/types/ui/types";
 import { useRouter } from "next/navigation";
 import { getGenres } from "@/services/contents";
-import OptionList from "@/components/ui/option-list";
+import OptionList from "@/app/(afterLogin)/_component/option-list";
+import { Options } from "@/model/category";
 
 export default function Genres({ params }: { params: string }) {
   const router = useRouter();

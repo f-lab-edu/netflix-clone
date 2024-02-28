@@ -1,10 +1,10 @@
 "use client";
 
 import React, { useState } from "react";
-import { CheckInCircle } from "@/components/icon";
-import MembershipTypeInfoTable from "@/components/login/membership-type-info-table";
-import MembershipTypeDiffFooter from "@/components/login/membership-type-diff-footer";
-import MembershipBenefits from "@/components/login/membershipBenefits";
+import { CheckInCircle } from "../_component/icon";
+import MembershipTypeInfoTable from "@/app/(beforeLogin)/login/_component/membership-type-info-table";
+import MembershipTypeDiffFooter from "@/app/(beforeLogin)/login/_component/membership-type-diff-footer";
+import MembershipBenefits from "@/app/(beforeLogin)/login/_component/membershipBenefits";
 
 function PlanFormPage() {
   const [membership, setMembership] = useState("standard");

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Episode } from "@/types/seasons/types";
+import { Episode } from "@/model/media";
 
 function EpisodeItem({
   episode,

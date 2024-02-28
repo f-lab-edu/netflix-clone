@@ -3,7 +3,7 @@ import CardItem from "./card-item";
 import { useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import Pagination from "./pagination";
-import { Contents } from "@/types/browse/types";
+import { Contents } from "@/model/media";
 
 function CardList({ contents }: { contents: Contents }) {
   const [index, setIndex] = useState(0);

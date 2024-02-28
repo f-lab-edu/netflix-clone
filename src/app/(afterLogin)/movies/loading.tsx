@@ -1,4 +1,4 @@
-import CardSkeleton from "@/components/skeleton-ui/card-skeleton";
+import CardSkeleton from "@/app/(afterLogin)/movies/[id]/_component/card-skeleton";
 
 export default function Loading() {
   const cardStyle = "w-[263.2px] h-[393px]";

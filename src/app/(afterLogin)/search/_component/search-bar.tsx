@@ -15,7 +15,6 @@ export default function SearchBar({
 }: {
   setSearchData: Dispatch<SetStateAction<null | SearchResult>>;
 }) {
-  //suspense로 최적화, intersection Observer loading 받아오기
   const [loading, setLoading] = useState(false);
   const [input, setInput] = useState("");
   const deferredValue = useDeferredValue(input);
@@ -75,6 +74,9 @@ export default function SearchBar({
         </form>
       </div>
       {loading && <div>Loading...</div>}
+      {/*{!loading &&*/}
+      {/*  searchData?.total_results === 0 &&*/}
+      {/*  input.trim().length > 0 && <div>검색 결과가 없습니다.</div>}*/}
     </div>
   );
 }
