@@ -8,8 +8,8 @@ import style from "./browse.module.css";
 import { settings } from "./_lib/slider-setting";
 import { useEffect, useState } from "react";
 import { getInitData } from "@/app/(afterLogin)/browse/_lib/initial-data";
-import ClientSideLoading from "@/components/ui/client-side-loading";
-import { Contents } from "@/types/browse/types";
+import ClientSideLoading from "@/app/(afterLogin)/_component/client-side-loading";
+import { Contents } from "@/model/media";
 
 interface Dates {
   dates: { maximum: string; minimum: string };

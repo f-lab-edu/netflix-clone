@@ -1,8 +1,5 @@
 import Link from "next/link";
-import { DetailContents } from "@/types/contents/types";
-import HeartIcon from "@/app/(afterLogin)/contents/[cid]/_component/heart-icon";
-import { addOrRemoveInMyList } from "@/services/contents";
-import { useUserState } from "@/context/user-context";
+import { DetailContents } from "@/model/media";
 
 function DetailContentsInfo({
   detailContents,
@@ -11,7 +8,6 @@ function DetailContentsInfo({
   detailContents: DetailContents;
   favorites: { tv: number[]; movie: number[] };
 }) {
-  // const { sessionId } = useUserState();
   const title = detailContents.title ?? detailContents.name;
   const genres = detailContents?.genres.map((g) => g.name + " ");
   const series =

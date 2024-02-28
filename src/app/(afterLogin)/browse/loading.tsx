@@ -1,4 +1,4 @@
-import CardItemSkeleton from "@/components/browse/card-item-skeleton";
+import CardItemSkeleton from "@/app/(afterLogin)/browse/_component/card-item-skeleton";
 
 export default function Loading() {
   return (

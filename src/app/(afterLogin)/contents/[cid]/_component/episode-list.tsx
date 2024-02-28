@@ -2,7 +2,7 @@
 import EpisodeItem from "./episode-item";
 import { getSeasons } from "@/services/contents";
 import { useEffect, useState } from "react";
-import { Season } from "@/types/seasons/types";
+import { Season } from "@/model/media";
 
 function EpisodeList({
   id,

@@ -1,5 +1,5 @@
-import { ReqMovie, ReqTv } from "@/types/contents/types";
 import { options } from "@/app/(afterLogin)/_lib/tmdb-config";
+import { ReqTv } from "@/model/media";
 
 export async function getPopularMovies(language = "ko", page = 1) {
   const res = await fetch(

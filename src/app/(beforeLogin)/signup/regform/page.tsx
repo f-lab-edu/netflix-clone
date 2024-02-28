@@ -1,6 +1,6 @@
 "use client";
 
-import { CheckInCircle } from "@/components/icon";
+import { CheckInCircle } from "../_component/icon";
 import { useFormState, useFormStatus } from "react-dom";
 import onSubmit from "../_lib/signup";
 

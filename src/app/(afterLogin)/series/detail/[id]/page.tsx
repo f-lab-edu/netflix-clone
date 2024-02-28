@@ -1,4 +1,4 @@
-import SeasonContents from "@/components/seasons/season-contents";
+import SeasonContents from "@/app/(afterLogin)/contents/[cid]/_component/seasons/season-contents";
 
 function SelectedSeriesPage({
   params,

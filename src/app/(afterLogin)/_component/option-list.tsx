@@ -1,5 +1,5 @@
 import React from "react";
-import { Options } from "@/types/ui/types";
+import { Options } from "@/model/category";
 
 export default function OptionList({
   options,

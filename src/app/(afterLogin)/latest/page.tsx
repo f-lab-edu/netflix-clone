@@ -1,11 +1,11 @@
 "use client";
-import OptionList from "@/components/ui/option-list";
+import OptionList from "@/app/(afterLogin)/_component/option-list";
 import CardList from "@/app/(afterLogin)/_component/card-list";
 import { getTrendContents } from "@/services/contents";
 import React, { useEffect, useState } from "react";
-import ClientSideLoading from "@/components/ui/client-side-loading";
-import { Contents } from "@/types/browse/types";
+import ClientSideLoading from "@/app/(afterLogin)/_component/client-side-loading";
 import style from "./trend.module.css";
+import { Contents } from "@/model/media";
 
 function LatestContentPage() {
   const [selected, setSelected] = useState("week");
