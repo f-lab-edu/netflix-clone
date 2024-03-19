@@ -135,7 +135,6 @@ export async function getTvContents(TvQueryParams: Partial<ReqTv>) {
   for (let param in TvQueryParams) {
     queryParams += `${param}=${TvQueryParams[param]}&`;
   }
-  console.log(queryParams);
 
   const res = await fetch(
     `https://api.themoviedb.org/3/discover/tv?${queryParams}`,
