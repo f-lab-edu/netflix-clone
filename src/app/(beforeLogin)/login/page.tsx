@@ -18,6 +18,7 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
   const router = useRouter();
   const [email, setEmail] = useState(searchParams?.email ?? "");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { data: session } = useSession();
 
   if (session?.user) return router.replace("/browse");
@@ -25,6 +26,7 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
   const onSubmit: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const response = await signIn("credentials", {
         email,
         password,
@@ -35,6 +37,8 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
       router.replace("/browse");
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -63,6 +67,7 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
                 className="input input-bordered"
                 defaultValue={email}
                 required
+                disabled={loading}
                 onChange={(e) => setEmail(e.target.value)}
               />
               <label className="label">
@@ -75,6 +80,7 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
                 placeholder="password"
                 className="input input-bordered"
                 required
+                disabled={loading}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <label className="label">
@@ -92,7 +98,16 @@ function LoginPage({ searchParams }: { searchParams: { email: string } }) {
               </small>
             </div>
             <div className="form-control mt-3">
-              <button className="btn btn-primary">Login</button>
+              {loading ? (
+                <button
+                  className="btn btn-primary disabled:btn-primary"
+                  disabled={loading}
+                >
+                  <span className="loading loading-spinner loading-md" />
+                </button>
+              ) : (
+                <button className="btn btn-primary">Login</button>
+              )}
             </div>
           </form>
           <div className={"flex justify-around"}>
