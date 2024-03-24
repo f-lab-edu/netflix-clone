@@ -1,5 +1,5 @@
 import { options } from "@/app/(afterLogin)/_lib/tmdb-config";
-import { Media, Movie, Tv, Video } from "@/model/media";
+import { Media, Movie, ReqMovie, Tv, Video } from "@/model/media";
 
 export const getDetail = async (mediaType: string, id: string) => {
   const response = await fetch(
@@ -8,7 +8,6 @@ export const getDetail = async (mediaType: string, id: string) => {
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
-  console.log(response);
   if (mediaType === "tv") {
     const {
       name,
@@ -69,7 +68,6 @@ export const getVideo = async (mediaType: string, id: string) => {
   )
     .then((response) => response.json())
     .catch((err) => console.error(err));
-  // console.log(response);
   if (response.results.length > 0) {
     const temp = response.results[0];
     const result: Video = { key: temp.key, site: temp.site };
@@ -88,7 +86,6 @@ export async function getFavorite(includePoster?: boolean) {
     options,
   ).then((response) => response.json());
 
-  console.log(includePoster);
   if (includePoster) {
     const movies = responseMovies.results.map((movie: Media) => ({
       id: movie.id,
@@ -128,3 +125,22 @@ export const addFavorite = async (
 
   if (!response.success) return;
 };
+
+export async function getMovies(params: Partial<ReqMovie>) {
+  let queryParams = "";
+
+  for (let param in params) {
+    queryParams += `${param}=${params[param]}&`;
+  }
+
+  const res = await fetch(
+    `https://api.themoviedb.org/3/discover/movie?language=ko&${queryParams}`,
+    options,
+  )
+    .then((response) => response.json())
+    .catch((err) => console.log(err));
+
+  res.media_type = "movie";
+
+  return res;
+}

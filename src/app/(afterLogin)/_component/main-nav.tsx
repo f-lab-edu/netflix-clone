@@ -6,7 +6,6 @@ import { useSelectedLayoutSegment } from "next/navigation";
 
 export default function MainNav() {
   const segment = useSelectedLayoutSegment();
-  console.log(segment);
   return (
     <>
       <li className={"ml-2"}>
